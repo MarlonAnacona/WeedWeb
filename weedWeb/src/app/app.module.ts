@@ -16,7 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { InfoComponent } from './info/info.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
-
+import { CanActivate } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -50,7 +50,6 @@ const routes: Routes = [
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
-    BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     componentModule,
