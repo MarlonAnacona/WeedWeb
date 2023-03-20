@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { InfoComponent } from './info/info.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CanActivate } from '@angular/router';
+import { MapComponent } from './map/map.component';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
     path: 'Catalogo',
     component: CatalogoComponent,
   },
+  {
+    path: 'Map',
+    component: MapComponent,
+  },
 ];
 
 @NgModule({
@@ -44,6 +49,7 @@ const routes: Routes = [
     LoginComponent,
     InfoComponent,
     CatalogoComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
