@@ -24,7 +24,7 @@
 
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/clipboard/dist/clipboard.min.js"]
           },
           "configurations": {
             "production": {

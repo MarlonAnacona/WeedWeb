@@ -1,5 +1,5 @@
 from django.db import models
-from ApiweedWeb.backend_weed_web.users.models import User as User
+from users.models import User as User
 
 
 #Farm's model with the atributes: user_id, farm_name, longitude and latitude

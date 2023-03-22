@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { componentModule } from './components/componente.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { InfoComponent } from './info/info.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CanActivate } from '@angular/router';
+import { ClipboardModule } from 'ngx-clipboard';
+
 import { MapComponent } from './map/map.component';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -37,6 +40,10 @@ const routes: Routes = [
     component: CatalogoComponent,
   },
   {
+    path: 'Dashboard',
+    component: DashboardComponent,
+  },
+  {
     path: 'Map',
     component: MapComponent,
   },
@@ -49,6 +56,7 @@ const routes: Routes = [
     LoginComponent,
     InfoComponent,
     CatalogoComponent,
+    DashboardComponent,
     MapComponent,
   ],
   imports: [
@@ -59,6 +67,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     componentModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
