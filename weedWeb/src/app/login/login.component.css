@@ -61,8 +61,8 @@ a:hover {
 
 .form-container {
   z-index: 100;
-  position: absolute;
-  right: 0;
+  /* position: absolute;
+  right: 0; */
   top: 50%;
   transform: translateY(-50%);
   max-width: 20%;
@@ -73,9 +73,9 @@ a:hover {
   padding-right: 0rem;
   padding-top: 5rem;
   padding-bottom: 10rem;
-  margin-left: 2rem;
-  margin-right: auto;
-  margin-block-end: auto;
+  margin-left: 60vmax;
+  /* margin-right: auto;
+  margin-block-end: auto; */
   background-color: rgba(228, 237, 210, 0.863);
   border-radius: 70px;
 }
@@ -97,7 +97,8 @@ a:hover {
 }
 
 .container {
-  padding-left: 20rem;
+  display: flex;
+  padding-left: 20px;
   padding-right: 5rem;
 }
 
