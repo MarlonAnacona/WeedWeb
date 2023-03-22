@@ -19,6 +19,7 @@ import { InfoComponent } from './info/info.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CanActivate } from '@angular/router';
 import { ClipboardModule } from 'ngx-clipboard';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MapComponent } from './map/map.component';
 import { WeatherDetailComponent } from './time/weather-detail/weather-detail.component';
@@ -70,7 +71,7 @@ const routes: Routes = [
     TimeComponent,
     WeatherDetailComponent,
     FormatearFechaPipe,
-    FechaANombreDiaPipe
+    FechaANombreDiaPipe,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +82,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     componentModule,
     ClipboardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
