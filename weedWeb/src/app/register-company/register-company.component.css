@@ -1,0 +1,151 @@
+.position-relative {
+  position: static;
+}
+
+.pantalla {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.carousel-caption {
+  padding-left: 40px;
+  padding-right: 0px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: left;
+}
+
+.carousel-caption h5 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+.carousel-caption p {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.carousel-inner {
+  height: 100vh;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+a {
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.form-container-home {
+  display: flex;
+  z-index: 100;
+  position: absolute;
+  top: 0%;
+  max-width: 5%;
+  width: 5%;
+  height: 1%;
+  min-height: 1%;
+  padding-top: 0rem;
+  border-radius: 70px;
+}
+
+.register-container{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 40%;
+  width: 40%;
+  min-width: 20%;
+  min-height: 70%;
+  padding-left: 0.5rem;
+  padding-right: 0rem;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+  margin-left: 30vmax;
+  margin-right: 10vmax;
+  background-color: rgba(228, 237, 210, 0.863);
+  border-radius: 70px;
+}
+
+.container .register-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+}
+
+.homecontainer {
+  padding-left: 1rem;
+  padding-right: 0rem;
+}
+
+.img-opaca {
+  position: relative;
+  opacity: 0.6;
+}
+
+.img-opaca:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  z-index: -1;
+}
+
+.letter {
+  font-family: "Roboto Condensed,sans-serif";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 75px;
+  display: absolute;
+  align-items: left;
+  text-align: left;
+}
+
+.titleContratista {
+  width: 500;
+  height: 40;
+  border-radius: 5px;
+  left: 142px;
+  top: 156px;
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 75px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}

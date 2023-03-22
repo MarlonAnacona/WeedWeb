@@ -26,6 +26,8 @@ import { WeatherDetailComponent } from './time/weather-detail/weather-detail.com
 import { FormatearFechaPipe } from './time/formatear-fecha.pipe';
 import { FechaANombreDiaPipe } from './time/fecha-anombre-dia.pipe';
 import { TimeComponent } from './time/time.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -57,6 +59,14 @@ const routes: Routes = [
     path: 'Time',
     component: TimeComponent,
   },
+  {
+    path: 'Register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'RegisterCompany',
+    component: RegisterCompanyComponent,
+  },
 ];
 
 @NgModule({
@@ -72,6 +82,8 @@ const routes: Routes = [
     WeatherDetailComponent,
     FormatearFechaPipe,
     FechaANombreDiaPipe,
+    RegisterComponent,
+    RegisterCompanyComponent,
   ],
   imports: [
     BrowserModule,
