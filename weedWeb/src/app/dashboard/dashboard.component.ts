@@ -164,5 +164,95 @@ export class DashboardComponent implements OnInit {
       },
       plugins: [plugin],
     });
+
+    this.chart = new Chart('temperatura', {
+      type: 'bar', //this denotes tha type of chart
+
+      data: {
+        // values on X-Axis
+        labels: [
+          '2022-05-10',
+          '2022-05-11',
+          '2022-05-12',
+          '2022-05-13',
+          '2022-05-14',
+          '2022-05-15',
+          '2022-05-16',
+          '2022-05-17',
+          '2022-05-18',
+        ],
+        datasets: [
+          {
+            label: 'Perfomance',
+
+            data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
+          },
+        ],
+      },
+
+      options: {
+        maintainAspectRatio: true,
+        backgroundColor: 'red',
+
+        font: {
+          family: fonts.base,
+          size: 13,
+        },
+        layout: {
+          padding: 10,
+        },
+        elements: {
+          point: {
+            radius: 4,
+            hitRadius: 20,
+
+            backgroundColor: colors.theme['primary'],
+          },
+          line: {
+            tension: 0.4,
+            borderWidth: 4,
+            borderColor: colors.theme['primary'],
+            backgroundColor: colors.transparent,
+            borderCapStyle: 'round',
+          },
+          arc: {
+            backgroundColor: colors.theme['primary'],
+            borderColor: mode == 'dark' ? colors.gray[800] : colors.white,
+            borderWidth: 4,
+          },
+        },
+
+        responsive: true,
+
+        scales: {
+          y: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              drawOnChartArea: false,
+              tickLength: 10,
+              tickWidth: 4,
+              tickColor: 'yellow',
+            },
+          },
+
+          x: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              tickColor: 'yellow',
+              tickLength: 15,
+              tickWidth: 3,
+              drawOnChartArea: false,
+            },
+          },
+        },
+      },
+      plugins: [plugin],
+    });
   }
 }
