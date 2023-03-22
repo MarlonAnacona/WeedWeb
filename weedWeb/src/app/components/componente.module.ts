@@ -12,9 +12,10 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { MenubaruserComponent } from './menubaruser/menubaruser.component';
 
 @NgModule({
-  declarations: [ComponentsComponent, FooterComponent],
+  declarations: [ComponentsComponent, FooterComponent, MenubaruserComponent],
   imports: [
     BrowserModule,
     NgbModule,
@@ -25,6 +26,6 @@ import { FooterComponent } from './footer/footer.component';
   ],
   providers: [],
   bootstrap: [],
-  exports: [ComponentsComponent, FooterComponent],
+  exports: [ComponentsComponent, FooterComponent, MenubaruserComponent],
 })
 export class componentModule {}

@@ -1,3 +1,4 @@
+import { tileLayer } from 'leaflet';
 import Chart from 'chart.js/auto';
 import { Component, OnInit } from '@angular/core';
 // core components
@@ -14,6 +15,10 @@ export class DashboardComponent implements OnInit {
   }
 
   createChart() {
+    var mode = 'light';
+    var fonts = {
+      base: 'Open Sans',
+    };
     var colors = {
       gray: {
         100: '#f6f9fc',
@@ -28,7 +33,7 @@ export class DashboardComponent implements OnInit {
       },
       theme: {
         default: '#172b4d',
-        primary: '#5e72e4',
+        primary: '#228B22',
         secondary: '#f4f5f7',
         info: '#11cdef',
         success: '#2dce89',
@@ -49,7 +54,7 @@ export class DashboardComponent implements OnInit {
         const { ctx } = chart;
         ctx.save();
         ctx.globalCompositeOperation = 'destination-over';
-        ctx.fillStyle = options.color || '#fffbf5';
+        ctx.fillStyle = options.color || '#172b4d';
         ctx.fillRect(0, 0, chart.width, chart.height);
         ctx.restore();
       },
@@ -72,14 +77,15 @@ export class DashboardComponent implements OnInit {
         ],
         datasets: [
           {
-            label: 'Sales',
+            label: 'Perfomance',
+
             data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
-            borderColor: '#228B22',
-            borderWidth: 5,
-            pointBackgroundColor: '#228B22',
-            pointHitRadius: 20,
-            pointBorderColor: 'transparent',
-            tension: 0.4,
+            // borderColor: '#228B22',
+            // borderWidth: 5,
+            // pointBackgroundColor: '#228B22',
+            // pointHitRadius: 20,
+            // pointBorderColor: 'transparent',
+            // tension: 0.4,
           },
           // {
           //   label: 'Profit',
@@ -93,24 +99,69 @@ export class DashboardComponent implements OnInit {
           // },
         ],
       },
+
       options: {
+        maintainAspectRatio: true,
+        backgroundColor: 'red',
+
+        font: {
+          family: fonts.base,
+          size: 13,
+        },
+        layout: {
+          padding: 10,
+        },
+        elements: {
+          point: {
+            radius: 4,
+            hitRadius: 20,
+
+            backgroundColor: colors.theme['primary'],
+          },
+          line: {
+            tension: 0.4,
+            borderWidth: 4,
+            borderColor: colors.theme['primary'],
+            backgroundColor: colors.transparent,
+            borderCapStyle: 'round',
+          },
+          arc: {
+            backgroundColor: colors.theme['primary'],
+            borderColor: mode == 'dark' ? colors.gray[800] : colors.white,
+            borderWidth: 4,
+          },
+        },
+
         responsive: true,
+
         scales: {
           y: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
             grid: {
               drawOnChartArea: false,
+              tickLength: 10,
+              tickWidth: 4,
+              tickColor: 'yellow',
             },
           },
-          x: {
-            grid: {
-              offset: true,
 
+          x: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              tickColor: 'yellow',
+              tickLength: 15,
+              tickWidth: 3,
               drawOnChartArea: false,
             },
           },
         },
       },
-
       plugins: [plugin],
     });
   }
