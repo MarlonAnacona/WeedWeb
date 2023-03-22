@@ -21,6 +21,11 @@ import { CanActivate } from '@angular/router';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { MapComponent } from './map/map.component';
+import { WeatherDetailComponent } from './time/weather-detail/weather-detail.component';
+import { FormatearFechaPipe } from './time/formatear-fecha.pipe';
+import { FechaANombreDiaPipe } from './time/fecha-anombre-dia.pipe';
+import { TimeComponent } from './time/time.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -47,6 +52,10 @@ const routes: Routes = [
     path: 'Map',
     component: MapComponent,
   },
+  {
+    path: 'Time',
+    component: TimeComponent,
+  },
 ];
 
 @NgModule({
@@ -58,6 +67,10 @@ const routes: Routes = [
     CatalogoComponent,
     DashboardComponent,
     MapComponent,
+    TimeComponent,
+    WeatherDetailComponent,
+    FormatearFechaPipe,
+    FechaANombreDiaPipe
   ],
   imports: [
     BrowserModule,

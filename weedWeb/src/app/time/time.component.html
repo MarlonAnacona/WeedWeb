@@ -1,0 +1,23 @@
+<menu-bar-user></menu-bar-user>
+<main class="container-fluid">
+    <div class="row" *ngIf="cargando">
+      <div class="col-12 text-center">
+        <h1 class="display-1">Cargando. Espere un momento por favor</h1>
+        <img src="assets/image/25.gif" alt="">
+      </div>
+    </div>
+    <div *ngIf="!cargando" class="row">
+      <div class="col-12">
+        <div class="text-center mt-2" *ngIf="!cargando">
+          <strong class="display-4">{{city}}, {{region_name}}, {{country_name}}<br> {{hora}}</strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <app-weather-detail [detalles]="detallesHoy"></app-weather-detail>
+      </div>
+  
+      <div *ngFor="let detalles of detallesProximos;" class="col-12 col-md-6 my-2">
+        <app-weather-detail [detalles]="detalles"></app-weather-detail>
+      </div>
+    </div>
+</main>
