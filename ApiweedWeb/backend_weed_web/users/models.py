@@ -16,9 +16,11 @@ class User(models.Model):
         abstrac=True
     
 class Empresa(User):
+    national_id=models.ForeignKey(User, null = False, blank = False,on_delete=models.CASCADE)
     name=models.CharField(max_length=64,null=True)
     
 class Persona(User):
+    national_id=models.ForeignKey(User, null = False, blank = False,on_delete=models.CASCADE)
     first_name=models.CharField(max_length=64,null=True)
     middle_name=models.CharField(max_length=64,null=True)
     last_name=models.CharField(max_length=64,null=True)
