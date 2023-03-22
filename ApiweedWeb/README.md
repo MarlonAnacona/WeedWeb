@@ -37,12 +37,14 @@ postgres=# \q
 
 <br>
 
+<!-- 
 Making the migrations
 ```
 (venv)$ python manage.py makemigrations
 (venv)$ python manage.py migrate
 ```
 After this you should see the default tables that django creates 
+-->
 
 <br>
 
