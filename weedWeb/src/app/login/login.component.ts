@@ -14,4 +14,13 @@ export class LoginComponent implements OnInit {
   home() {
     this.route.navigate(['../Home']);
   }
+
+  /**
+   * Login for the user
+   * if login is success-> go to the Dashboard
+   * else -> error
+   */
+  login() {
+    this.route.navigate(['../Dashboard']);
+  }
 }
