@@ -71,12 +71,21 @@
         <div class="form-group">
           <label for="password" class="letter">Contraseña:</label>
           <div class="col-md-10">
-            <input type="password" class="form-control" id="password" />
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="********"
+            />
           </div>
         </div>
         <div class="my-5">
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-block">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              (click)="login()"
+            >
               Ingresar
             </button>
           </div>
