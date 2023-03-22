@@ -12,7 +12,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { InfoComponent } from './info/info.component';
@@ -75,6 +75,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
