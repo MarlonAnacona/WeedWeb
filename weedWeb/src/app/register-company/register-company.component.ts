@@ -14,7 +14,7 @@ export class RegisterCompanyComponent implements OnInit {
   }
 
   register() {
-    this.route.navigate(['../Dashboard']);
+    this.route.navigate(['../CreateFarm']);
   }
 
 }

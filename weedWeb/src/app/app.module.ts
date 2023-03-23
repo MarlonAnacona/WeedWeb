@@ -28,6 +28,7 @@ import { FechaANombreDiaPipe } from './time/fecha-anombre-dia.pipe';
 import { TimeComponent } from './time/time.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { CreateFarmComponent } from './create-farm/create-farm.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -67,6 +68,10 @@ const routes: Routes = [
     path: 'RegisterCompany',
     component: RegisterCompanyComponent,
   },
+  {
+    path: 'CreateFarm',
+    component: CreateFarmComponent,
+  },
 ];
 
 @NgModule({
@@ -84,6 +89,7 @@ const routes: Routes = [
     FechaANombreDiaPipe,
     RegisterComponent,
     RegisterCompanyComponent,
+    CreateFarmComponent,
   ],
   imports: [
     BrowserModule,
