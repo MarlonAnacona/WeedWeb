@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 # Create your models here.
 
-class UserAccountManager(BaseUserManager):
+class CustomerManager(BaseUserManager):
     def create_user(self, email, password, first_name, last_name, phone_number, **extra_fields):
         # Create and save a new user with the given email and password
         user = self.model(email=email, first_name=first_name, last_name=last_name, phone_number=phone_number, **extra_fields)
@@ -49,7 +49,7 @@ class Customer(AbstractUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
 
-    objects = UserAccountManager()
+    objects = CustomerManager()
 
     def __str__(self):
         return f'customer: {self.first_name} \n  email: {self.email}'
