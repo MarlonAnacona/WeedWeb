@@ -1,11 +1,11 @@
 from django.db import models
-from users.models import User as User
+from users.models import Customer
 
 
 #Farm's model with the atributes: user_id, farm_name, longitude and latitude
 #act: 20/03/2023
 class Farm(models.Model):
-    user_id = models.ForeignKey(User, null = False, blank = False, on_delete = models.CASCADE)
+    user_id = models.ForeignKey(Customer, null = False, blank = False, on_delete = models.CASCADE)
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
     longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
     latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
