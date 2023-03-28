@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { user, userLogin } from '../model/interfaces';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   public name: any;
   public password: any;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router,private serivce:ServicesService) {}
 
   ngOnInit(): void {}
 
@@ -29,8 +30,17 @@ export class LoginComponent implements OnInit {
    * else -> error
    */
   login() {
-    console.log(this.userlogin);
+this.serivce.login(this.userlogin).subscribe({next : (response) =>{
 
-    this.route.navigate(['../CreateFarm']);
+  this.route.navigate(['../CreateFarm']);
+
+
+},  error: (err)=>{
+
+  console.log("Se ha producido un error")
+}
+
+});
   }
+
 }

@@ -12,8 +12,8 @@ export class RegisterComponent implements OnInit {
   firstName: '',
   lastName: '',
   email: '',
-  nationalId: -1,
-  phoneNumber:-1,
+  nationalId: undefined,
+  phoneNumber:undefined,
   password: '',
   };
   public firstName: any;
@@ -31,6 +31,11 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log(this.userRegister);
     this.route.navigate(['../CreateFarm']);
+  }
+
+  home(){
+    this.route.navigate(['../Home']);
+
   }
 
 }
