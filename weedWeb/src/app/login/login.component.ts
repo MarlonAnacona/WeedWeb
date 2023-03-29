@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     private message: MessageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+  }
 
   home() {
     this.route.navigate(['../Home']);
@@ -35,7 +37,8 @@ export class LoginComponent implements OnInit {
    * else -> error
    */
   login() {
-    this.route.navigate(['../CreateFarm']);
+    //
+
     //Servicio que llama y trae los tokens
 
     this.serivce.login(this.userlogin).subscribe({
@@ -45,8 +48,8 @@ export class LoginComponent implements OnInit {
           summary: 'Bienvenido ',
           detail: ' ',
         });
-
-        //this.route.navigate(['../CreateFarm']);
+        localStorage.setItem('token', response);
+        this.route.navigate(['../CreateFarm']);
       },
       error: (err) => {
         this.message.add({
@@ -54,8 +57,6 @@ export class LoginComponent implements OnInit {
           summary: 'Datos incorrectos',
           detail: 'Intente nuevamente',
         });
-
-        console.log('Se ha producido un error');
       },
     });
   }

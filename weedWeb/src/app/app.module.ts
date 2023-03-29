@@ -1,3 +1,4 @@
+import { AuthGuardService } from './courseguard/auth-guard.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { componentModule } from './components/componente.module';
@@ -37,6 +38,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { Authservice } from './courseguard/auth.service';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -58,14 +60,17 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
     component: MapComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Time',
     component: TimeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Register',
@@ -78,6 +83,7 @@ const routes: Routes = [
   {
     path: 'CreateFarm',
     component: CreateFarmComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 
@@ -117,7 +123,12 @@ const routes: Routes = [
     ConfirmDialogModule,
     BrowserAnimationsModule,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    AuthGuardService,
+    Authservice,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

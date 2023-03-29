@@ -1,15 +1,19 @@
 //Clase en la cual se guarda el guardian en caso de estar logueado o no a la aplicación
 export class Authservice {
-  loogedIn = localStorage.getItem('token') || false;
+  loogedIn = localStorage.getItem('token') || null;
 
   //En caso de estar logeado
   login() {
-    this.loogedIn = true;
+    if (this.loogedIn) {
+      this.loogedIn;
+    } else {
+      this.loogedIn = null;
+    }
   }
 
   //En caso de salirse de la cuenta
   logout() {
-    this.loogedIn = false;
+    this.loogedIn = null;
   }
 
   //Autentica el logeo
