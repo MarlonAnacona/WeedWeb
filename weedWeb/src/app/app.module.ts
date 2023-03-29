@@ -1,3 +1,4 @@
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { componentModule } from './components/componente.module';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,13 @@ import { TimeComponent } from './time/time.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { CreateFarmComponent } from './create-farm/create-farm.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -92,7 +99,12 @@ const routes: Routes = [
     CreateFarmComponent,
   ],
   imports: [
+    ButtonModule,
+    ToastModule,
+    InputSwitchModule,
     BrowserModule,
+    MessageModule,
+    MessagesModule,
     FormsModule,
     NgbModule,
     NgbPaginationModule,
@@ -102,8 +114,10 @@ const routes: Routes = [
     componentModule,
     ClipboardModule,
     HttpClientModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

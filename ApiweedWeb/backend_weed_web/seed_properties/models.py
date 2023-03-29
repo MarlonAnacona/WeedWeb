@@ -1,5 +1,5 @@
 from django.db import models
-from seed.models import Seeds
+from seeds.models import Seeds
 
 # Create your models here.
 

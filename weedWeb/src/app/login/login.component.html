@@ -1,3 +1,4 @@
+<div><p-toast></p-toast></div>
 <div ng-controller="controller">
   <div class="pantalla">
     <div style="background-color: black">
@@ -14,7 +15,7 @@
               alt="..."
             />
             <div class="carousel-caption d-none d-md-block">
-              <h5>LA GRANJA DE  LA FELICIDAD</h5>
+              <h5>LA GRANJA DE LA FELICIDAD</h5>
               <p>Conoce como cultivar y cuidad tus amigos</p>
             </div>
           </div>
@@ -50,7 +51,8 @@
           <button
             class="btn"
             data-bs-toggle="offcanvas"
-(click)="home()"            role="button"
+            (click)="home()"
+            role="button"
             aria-controls="offcanvasExample"
           >
             <img src="../../../assets/image/logo.png " width="70" height="50" />
@@ -73,7 +75,6 @@
                 class="form-control"
                 name="userlogin.email"
                 class="form-control"
-
                 id="username"
                 pInputText
                 [(ngModel)]="userlogin.email"

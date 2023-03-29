@@ -20,16 +20,16 @@ Creating the DB
 $ sudo -u postgres psql
 ```
 ```
-postgres=# CREATE DATABASE your-db-name;
-postgres=# CREATE USER your-username WITH PASSWORD 'your-password';
+postgres=# CREATE DATABASE weedWeb;
+postgres=# CREATE USER weed WITH PASSWORD 'root';
 ```
 ```
-postgres=# ALTER ROLE your-username SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE your-username SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE your-username SET timezone TO 'UTC';
+postgres=# ALTER ROLE weed SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE weed SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE weed SET timezone TO 'UTC';
 ```
 ```
-postgres=# GRANT ALL PRIVILEGES ON DATABASE your-db-name TO your-username;
+postgres=# GRANT ALL PRIVILEGES ON DATABASE weedWeb TO weed;
 ```
 ```
 postgres=# \q

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { user, userLogin } from '../model/interfaces';
@@ -16,7 +17,11 @@ export class LoginComponent implements OnInit {
   public name: any;
   public password: any;
 
-  constructor(private route: Router,private serivce:ServicesService) {}
+  constructor(
+    private route: Router,
+    private serivce: ServicesService,
+    private message: MessageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -30,17 +35,28 @@ export class LoginComponent implements OnInit {
    * else -> error
    */
   login() {
-this.serivce.login(this.userlogin).subscribe({next : (response) =>{
+    this.route.navigate(['../CreateFarm']);
+    //Servicio que llama y trae los tokens
 
-  this.route.navigate(['../CreateFarm']);
+    this.serivce.login(this.userlogin).subscribe({
+      next: (response) => {
+        this.message.add({
+          severity: 'success',
+          summary: 'Bienvenido ',
+          detail: ' ',
+        });
 
+        //this.route.navigate(['../CreateFarm']);
+      },
+      error: (err) => {
+        this.message.add({
+          severity: 'error',
+          summary: 'Datos incorrectos',
+          detail: 'Intente nuevamente',
+        });
 
-},  error: (err)=>{
-
-  console.log("Se ha producido un error")
-}
-
-});
+        console.log('Se ha producido un error');
+      },
+    });
   }
-
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-info',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info.component.css'],
 })
 export class InfoComponent implements OnInit {
-  constructor() {}
+  checked: boolean = false;
+  constructor(
+    private messagerService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {}
 }
