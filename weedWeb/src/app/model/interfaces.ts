@@ -2,8 +2,8 @@ export interface userRegister {
   firstName: string;
   lastName: string;
   email: string;
-  nationalId: number;
-  phoneNumber:number;
+  nationalId?: number;
+  phoneNumber?:number;
   password: string;
 }
 
@@ -20,8 +20,8 @@ export interface companyRegister {
   name: string;
   email: string;
   password: string;
-  nit: number;
-  phoneNumber:number;
+  nit?: number;
+  phoneNumber?:number;
 }
 
 export interface userLogin {
