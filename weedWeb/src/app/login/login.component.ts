@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
 
     this.serivce.login(this.userlogin).subscribe({
       next: (response) => {
+        localStorage.setItem('token', response.access);
+        this.route.navigate(['../CreateFarm']);
         this.message.add({
           severity: 'success',
           summary: 'Bienvenido ',
           detail: ' ',
         });
-        localStorage.setItem('token', response);
-        this.route.navigate(['../CreateFarm']);
       },
       error: (err) => {
         this.message.add({

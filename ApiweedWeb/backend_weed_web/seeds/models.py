@@ -1,11 +1,12 @@
 from django.db import models
+from django.core import validators
 
 # Create your models here.
 class Seeds(models.Model):
-    description=models.TextField()
-    cbd = models.FloatField()
-    thc = models.FloatField()
-    species_name=models.CharField(unique=True,max_length=64)
+    description=models.TextField(blank=False,null=False,max_length=300)
+    cbd = models.FloatField(blank=False,null=False,validators=[validators.MinValueValidator(0.0),validators.MaxValueValidator(1.0)])
+    thc = models.FloatField(blank=False,null=False,validators=[validators.MinValueValidator(0.0),validators.MaxValueValidator(1.0)])
+    species_name=models.CharField(unique=True,max_length=64,blank=False,null=False)
     
     #Get the seed's description
     def __str__(self):
@@ -30,4 +31,15 @@ class Seeds(models.Model):
         seed.save()
         return seed
 
+
+
+
+class GrowingInfo(models.Model):
+    CHOICES_DIFICULTY= (('Low', 'Low'), ('Medium low', 'Medium low'), ('Medium', 'Medium'), ('Medium high', 'Medium high'), ('High', 'High'), ('Very high', 'Vey high'))
+    flowering_time=models.IntegerField(null=True,blank=False)
+    harvest_time=models.IntegerField(null=True,blank=False)
+    grow_dificulty=models.CharField(choices=CHOICES_DIFICULTY,max_length=30,default=None,blank=False,null=False)
+    yield_outdoor=models.DecimalField(null=True,blank=False,max_digits=4,decimal_places=2)
+    yield_indoor=models.DecimalField(null=True,blank=False,max_digits=4,decimal_places=2)
+    seed_id=models.ForeignKey(Seeds, on_delete=models.CASCADE, null=False,blank=False)
 
