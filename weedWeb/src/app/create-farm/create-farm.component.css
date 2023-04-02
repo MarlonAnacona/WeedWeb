@@ -1,0 +1,30 @@
+.container-farm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-left: 13vmax;
+  margin-right: 10vmax;
+}
+
+.container-farm img{
+  width: 100%;
+}
+
+.container-farm .btn{
+  max-width: 90%;
+  width: 100%;
+  min-width: 20%;
+  min-height: 70%;
+  width: 100%;
+}
+
+.container-farm .text-button{
+  height: auto;
+  justify-content: center;
+  font-weight: bold;
+  color:#556B24
+
+
+}

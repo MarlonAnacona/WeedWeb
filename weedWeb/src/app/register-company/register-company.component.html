@@ -1,0 +1,120 @@
+<div class="pantalla">
+  <div style="background-color: black">
+    <div
+      id="carouselExampleInterval"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+          <img
+            src="https://www.comunidad.madrid/sites/default/files/styles/colorbox_modal/public/doc/sanidad/drog/cannabis_plantacion.jpg?itok=E8HoucXT"
+            class="d-block w-100 img-fluid img-opaca"
+            alt="..."
+          />
+        </div>
+        <div class="carousel-item" bsdata--interval="2000">
+          <img
+            src="https://www.cdc.gov/marijuana/featured-topics/images/cannabis-plant.jpg?_=33642"
+            class="d-block w-100 img-fluid img-opaca"
+            alt="..."
+          />
+        </div>
+        <div class="carousel-item" bsdata--interval="2000">
+          <img
+            src="http://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2022/08-Agosto/362/AgenciaUNAL-010822-01.jpg"
+            class="d-block w-100 img-fluid img-opaca"
+            alt="..."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="homecontainer">
+    <div class="form-container-home">
+      <h1>
+        <button
+          class="btn"
+          data-bs-toggle="offcanvas"
+          href="#offcanvasExample"
+          role="button"
+          aria-controls="offcanvasExample"
+        >
+          <img src="../../../assets/image/logo.png " width="70" height="50" />
+          <div class="text-center text-white">HOME</div>
+        </button>
+      </h1>
+    </div>
+  </div>
+
+  <div class="register-container">
+    <div class="container">
+      <form>
+        <h2 class="text-center">Registrarse</h2>
+        <div class="form-row">
+
+          <div class="form-group col-md-12">
+            <label>Nombre de empresa</label>
+            <input
+              type="text"
+              name="national_id"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Contraseña</label>
+            <input
+              type="text"
+              name="password"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Nit</label>
+            <input
+              type="text"
+              name="national_id"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-12">
+            <label>Número teléfonico</label>
+            <input
+              type="number"
+              name="phone_number"
+              class="form-control"
+              required
+            />
+          </div>
+
+        </div>
+          <div class="register-button">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              (click)="register()"
+            >
+              Registrarse
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
