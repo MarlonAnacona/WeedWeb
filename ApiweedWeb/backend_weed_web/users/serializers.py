@@ -64,7 +64,7 @@ class CompanySerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'id': {'read_only': True},
             'password': {'write_only': True},
-            'NIT': {'read_only': True}
+            'NIT': {'riquired': True}
              }
     
 
