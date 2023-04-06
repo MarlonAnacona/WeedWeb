@@ -39,7 +39,7 @@ class Customer(AbstractUser, PermissionsMixin):
     username = None
     first_name = None
     last_name = None
-    email = models.EmailField(unique=True) 
+    email = models.EmailField(unique=True, blank=False) 
     password = models.CharField(max_length=200, validators=[validators.MinLengthValidator(8)])
     phone_number = models.CharField(max_length=10, validators=[validators.MinLengthValidator(10)], blank=False, null=False)
     is_active = models.BooleanField(default=True)
@@ -47,7 +47,7 @@ class Customer(AbstractUser, PermissionsMixin):
     
     
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['phone_number']
+    REQUIRED_FIELDS = ['phone_number', 'password', 'phone_number']
 
     objects = CustomerManager()
 
