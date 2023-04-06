@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from users.models import Customer
 from seeds.models import Seeds
 
@@ -11,6 +12,7 @@ class Farm(models.Model):
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
     longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
     latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
+    date_creation_farm = models.DateField(null = False, default = lambda: timezone.now().date())
 
     #Get the farm's name
     def __str__(self):
@@ -26,8 +28,8 @@ class Farm(models.Model):
 
     #Create farm function to insert a new Farm into bd
     @classmethod
-    def create_farm(cls, user_id, farm_name, longitude, latitude):
-        farm = cls(user_id=user_id, farm_name=farm_name, latitude=latitude, longitude=longitude)
+    def create_farm(cls, user_id, farm_name, longitude, latitude, date_creation_farm):
+        farm = cls(user_id=user_id, farm_name=farm_name, latitude=latitude, longitude=longitude, date_creation_farm=date_creation_farm)
         farm.save()
         return farm
 
@@ -40,6 +42,7 @@ class Parcel(models.Model):
     width = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
     length = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
     crop_modality = models.CharField(choices=CHOICES_CROP_MODALITY, max_length=30, default=None, blank=False, null=False)
+    date_creation_parcel = models.DateField(null = False, default=timezone.now)
 
 
 
@@ -53,8 +56,8 @@ class Parcel(models.Model):
 
 
     @classmethod
-    def create_parcel(cls, farm_id, seed_id, width, length, crop_modality):
-        parcel = cls(farm_id=farm_id, seed_id=seed_id, width=width, length=length, crop_modality=crop_modality)
+    def create_parcel(cls, farm_id, seed_id, width, length, crop_modality, date_creation_parcel):
+        parcel = cls(farm_id=farm_id, seed_id=seed_id, width=width, length=length, crop_modality=crop_modality, date_creation_parcel=date_creation_parcel)
         parcel.save()
         return parcel
 
