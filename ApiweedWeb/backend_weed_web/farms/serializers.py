@@ -41,9 +41,7 @@ class FarmSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
             farm = Farm(**validated_data)
-
             farm.save()
-
             return farm
 
 
@@ -91,9 +89,7 @@ class ParcelSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
             parcel = Parcel(**validated_data)
-
             parcel.save()
-
             return parcel
 
 
