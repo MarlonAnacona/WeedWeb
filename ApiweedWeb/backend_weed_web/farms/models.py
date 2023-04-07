@@ -42,7 +42,7 @@ class Parcel(models.Model):
     width = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
     length = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
     crop_modality = models.CharField(choices=CHOICES_CROP_MODALITY, max_length=30, default=None, blank=False, null=False)
-    date_creation_parcel = models.DateField(null = False, default=timezone.now)
+    date_creation_parcel = models.DateField(null = False, default = lambda: timezone.now().date())
 
 
 
