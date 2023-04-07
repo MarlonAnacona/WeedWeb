@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.utils import timezone
 from users.models import Customer
@@ -12,7 +13,7 @@ class Farm(models.Model):
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
     longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
     latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
-    date_creation_farm = models.DateField(null = False, default = lambda: timezone.now().date())
+    date_creation_farm = models.DateField(null = False, default = datetime.date.today)
 
     #Get the farm's name
     def __str__(self):
