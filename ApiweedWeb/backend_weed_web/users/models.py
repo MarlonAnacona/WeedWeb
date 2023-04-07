@@ -39,15 +39,20 @@ class Customer(AbstractUser, PermissionsMixin):
     username = None
     first_name = None
     last_name = None
-    email = models.EmailField(unique=True) 
+    email = models.EmailField(unique=True, blank=False) 
     password = models.CharField(max_length=200, validators=[validators.MinLengthValidator(8)])
-    phone_number = models.CharField(max_length=10, validators=[validators.MinLengthValidator(10)], blank=False, null=False)
+    phone_number = models.CharField(max_length=10,
+                                    validators=[validators.MinLengthValidator(10)],
+                                    blank=False,
+                                    null=False,
+                                    unique=True
+                                    )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     
     
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['phone_number']
+    REQUIRED_FIELDS = ['phone_number', 'password', 'phone_number']
 
     objects = CustomerManager()
 
@@ -61,7 +66,8 @@ class Person(Customer):
     national_id = models.CharField(max_length=20,
                                    validators=[validators.RegexValidator(r'^\d{1,20}$', 'Enter a valid national ID (up to 20 digits)')],
                                    blank=False,
-                                   null=False
+                                   null=False,
+                                   unique=True
                                    )
     first_name = models.CharField(max_length=30, blank=False, null=False)
     middle_name = models.CharField(max_length=30, blank=True, null=True)
@@ -74,7 +80,7 @@ class Person(Customer):
 
 class Company(Customer):
     
-    NIT = models.CharField(max_length=30, blank=False, null=False)
+    NIT = models.CharField(max_length=30, blank=False, null=False, unique=True)
     name = models.CharField(max_length=50, blank=False, null=False)
     
     def __str__(self):
