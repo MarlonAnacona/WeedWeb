@@ -1,9 +1,10 @@
 export interface userRegister {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  nationalId?: number;
-  phoneNumber?:number;
+  national_id?: number;
+  phone_number?: string;
+  middle_name?: string;
   password: string;
 }
 
@@ -12,7 +13,7 @@ export interface user {
   lastName: string;
   email: string;
   nationalId: number;
-  phoneNumber:number;
+  phoneNumber: number;
   password: string;
 }
 
@@ -20,8 +21,8 @@ export interface companyRegister {
   name: string;
   email: string;
   password: string;
-  nit?: number;
-  phoneNumber?:number;
+  NIT?: number;
+  phone_number?: number;
 }
 
 export interface userLogin {

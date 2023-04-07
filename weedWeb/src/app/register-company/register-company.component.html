@@ -53,13 +53,13 @@
       <form>
         <h2 class="text-center">Registrarse</h2>
         <div class="form-row">
-
           <div class="form-group col-md-12">
             <label>Nombre de empresa</label>
             <input
               type="text"
-              name="national_id"
+              name="name"
               class="form-control"
+              [(ngModel)]="companyRegister.name"
               required
             />
           </div>
@@ -69,6 +69,7 @@
             <input
               type="email"
               name="email"
+              [(ngModel)]="companyRegister.email"
               class="form-control"
               required
             />
@@ -79,6 +80,7 @@
             <input
               type="text"
               name="password"
+              [(ngModel)]="companyRegister.password"
               class="form-control"
               required
             />
@@ -90,6 +92,7 @@
               type="text"
               name="national_id"
               class="form-control"
+              [(ngModel)]="companyRegister.NIT"
               required
             />
           </div>
@@ -99,20 +102,20 @@
             <input
               type="number"
               name="phone_number"
+              [(ngModel)]="companyRegister.phone_number"
               class="form-control"
               required
             />
           </div>
-
         </div>
-          <div class="register-button">
-            <button
-              type="submit"
-              class="btn btn-primary btn-block"
-              (click)="register()"
-            >
-              Registrarse
-            </button>
+        <div class="register-button">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="register()"
+          >
+            Registrarse
+          </button>
         </div>
       </form>
     </div>
