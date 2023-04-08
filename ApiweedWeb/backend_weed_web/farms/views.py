@@ -24,6 +24,16 @@ class CreateParcelView(generics.CreateAPIView):
     serializer_class = ParcelSerializer
     permission_classes = [permissions.AllowAny]
 
+class FarmUpdateAPIView(generics.UpdateAPIView):
+    serializer_class = FarmSerializer
+    queryset = Farm.objects.all()
+    lookup_field = "pk"
+
+class ParcelUpdateAPIView(generics.UpdateAPIView):
+    serializer_class = ParcelSerializer
+    queryset = Farm.objects.all()
+    lookup_field = "pk"
+
 
 
 
