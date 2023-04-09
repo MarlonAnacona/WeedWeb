@@ -33,10 +33,11 @@ class Seeds(models.Model):
 
 class GrowingInfo(models.Model):
     CHOICES_DIFICULTY= (('Low', 'Low'), ('Medium low', 'Medium low'), ('Medium', 'Medium'), ('Medium high', 'Medium high'), ('High', 'High'), ('Very high', 'Vey high'))
+    seed_id=models.ForeignKey(Seeds, on_delete=models.CASCADE, null=False,blank=False)
     flowering_time=models.IntegerField(null=True,blank=False)
     harvest_time=models.IntegerField(null=True,blank=False)
     grow_dificulty=models.CharField(choices=CHOICES_DIFICULTY,max_length=30,default=None,blank=False,null=False)
     yield_outdoor=models.DecimalField(null=True,blank=False,max_digits=4,decimal_places=2)
     yield_indoor=models.DecimalField(null=True,blank=False,max_digits=4,decimal_places=2)
-    seed_id=models.ForeignKey(Seeds, on_delete=models.CASCADE, null=False,blank=False)
+    
 
