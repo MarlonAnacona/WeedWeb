@@ -1,12 +1,11 @@
 from django.db import models
-from django.core import validators
 
 # Create your models here.
 class Seeds(models.Model):
-    description=models.TextField(blank=False,null=False,max_length=300)
-    cbd = models.FloatField(blank=False,null=False,validators=[validators.MinValueValidator(0.0),validators.MaxValueValidator(1.0)])
-    thc = models.FloatField(blank=False,null=False,validators=[validators.MinValueValidator(0.0),validators.MaxValueValidator(1.0)])
-    species_name=models.CharField(unique=True,max_length=64,blank=False,null=False)
+    description=models.TextField()
+    cbd = models.FloatField()
+    thc = models.FloatField()
+    species_name=models.CharField(unique=True,max_length=64)
     
     #Get the seed's description
     def __str__(self):
@@ -30,8 +29,6 @@ class Seeds(models.Model):
         seed = Seeds(description=description, cbd=cbd, thc=thc, species_name=species_name)
         seed.save()
         return seed
-
-
 
 
 class GrowingInfo(models.Model):
