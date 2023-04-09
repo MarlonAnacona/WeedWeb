@@ -1,16 +1,31 @@
 <menu-bar-user></menu-bar-user>
-<div id="textoInicial">Mapa de parcelas</div>
-<div id="map"></div>
-<div id="textoSec">
-  Aquí podras observar en el mapa tus parcelas y las disponibles, solo debes
-  presionar el botón para ver lo que deseas en el mapa.
+<div id="Principal" style="display: flexbox ;">
+  <div id="textoInicial" style="text-align: center;" >Mapa de parcelas</div>
+  <p-card  [style]="{  display: 'flexbox', width: '1600px', height: '700px', margin: '0 auto' }">
+    <div id="map" > </div>
+    <p style="font-size: 25px; color: rgb(0, 0, 0); text-align: center; display: flexbox;"> Aquí podras observar tus parcelas y las disponibles</p>
+    <p-table  id="tabla" styleClass="p-datatable-gridlines"  [value]="products" responsiveLayout="scroll"  [scrollable]="false" scrollHeight="400px" >
+      <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha de creación</th>
+            <th>Información</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-parcels>
+        <tr>
+            <td>{{parcels.id}}</td>
+            <td>{{parcels.farm_name}}</td>
+            <td>{{parcels.create_date}}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-success mr-2" ></button>
+            </td>
+        </tr>
+    </ng-template>
+    </p-table>
+    
+  </p-card>
+  
 </div>
-<button id="boton1" name="button">Ver mis parcelas</button>
-<br />
-<img
-  id="imagenHoja"
-  src="../../../assets/image/hoja.png"
-  width="100 "
-  height="100 "
-/>
-<button id="boton2" name="button">Ver parcelas disponibles</button>
+
