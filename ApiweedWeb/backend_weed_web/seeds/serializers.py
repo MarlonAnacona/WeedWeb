@@ -3,12 +3,20 @@ from .models import Seeds, GrowingInfo
 
 
 class GrowingInfoSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model: GrowingInfo
-        fields = ["seed_id", "flowering_time", "harvest_time",
-                "grow_dificulty", "yield_outdoor", "yield_indoor"]
+        model = GrowingInfo
+        fields = [
+            "seed_id",
+            "flowering_time",
+            "harvest_time",
+            "grow_dificulty",
+            "yield_outdoor",
+            "yield_indoor"
+        ]
+
         extra_kwargs = {
-            "seed_id": {"required": True}
+            "seed_id":{"required" : True}
         }
         
     
