@@ -30,4 +30,10 @@ class SeedUpdateView(generics.UpdateAPIView):
     serializer_class = SeedSerializer
     queryset = Seeds.objects.all()
     lookup_field = "pk"
+    
+class RetriveSeedOwnInfo(generics.RetrieveAPIView):    
+    serializer_class = SeedSerializer
+    queryset = Seeds.objects.all()
+    permission_classes = [permissions.IsAuthenticated,isOwnerPermissions]
+    lookup_field = 'pk'
 
