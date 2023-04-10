@@ -42,6 +42,7 @@ import { Authservice } from './courseguard/auth.service';
 
 import { CardModule } from 'primeng/card';
 import {TableModule} from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 import { Parcels } from './map/productservice';
 
 
@@ -89,7 +90,7 @@ const routes: Routes = [
   {
     path: 'CreateFarm',
     component: CreateFarmComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
 ];
 
@@ -130,6 +131,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     CardModule,
     TableModule,
+    DialogModule,
   ],
   providers: [
     MessageService,
