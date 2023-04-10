@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .serializers import GrowingInfoSerializer
+from .serializers import GrowingInfoSerializer,SeedSerializer
 from .models import Seeds, GrowingInfo
 from .permissions import isOwnerPermissions
 
@@ -21,4 +21,13 @@ class RetriveGrowingOwnInfo(generics.RetrieveAPIView):
     queryset = GrowingInfo.objects.all()
     permission_classes = [permissions.IsAuthenticated,isOwnerPermissions]
     lookup_field = 'pk'
+
+class CreateSeedInfoView(generics.CreateAPIView):
+    serializer_class = SeedSerializer
+    permission_classes = [permissions.AllowAny]
+
+class SeedUpdateView(generics.UpdateAPIView):
+    serializer_class = SeedSerializer
+    queryset = Seeds.objects.all()
+    lookup_field = "pk"
 
