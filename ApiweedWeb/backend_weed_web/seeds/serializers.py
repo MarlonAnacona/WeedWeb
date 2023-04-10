@@ -37,14 +37,20 @@ class GrowingInfoSerializer(serializers.ModelSerializer):
         return instance
 
 class SeedSerializer(serializers.ModelSerializer):
+
     class Meta:
+        model = Seeds
         fields = [
             "species_name",
             "description",
             "cbd",
             "thc"
         ]
-        
+        extra_kwargs = {
+            "seed_id":{"required" : True}
+        }
+    
+    
     def create(self, validated_data):
         seed = Seeds(**validated_data)
         seed.save()

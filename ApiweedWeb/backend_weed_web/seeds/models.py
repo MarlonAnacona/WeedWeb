@@ -9,7 +9,6 @@ class Seeds(models.Model):
     cbd = models.FloatField()
     thc = models.FloatField()
     
-
     # Get the seed's description
     def __str__(self):
         return self.description
@@ -28,8 +27,8 @@ class Seeds(models.Model):
 
     # Create seed function to insert a new Seed into bd
     @classmethod
-    def create_seed(description, cbd, thc, species_name):
-        seed = Seeds(species_name=species_name,description=description, cbd=cbd,
+    def create_seed(cls,species_name, cbd, thc,description):
+        seed = cls(species_name=species_name,description=description, cbd=cbd,
                     thc=thc)
         seed.save()
         return seed
