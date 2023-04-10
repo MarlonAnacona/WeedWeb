@@ -4,10 +4,11 @@ from django.db import models
 
 
 class Seeds(models.Model):
+    species_name = models.CharField(unique=True, max_length=64)
     description = models.TextField()
     cbd = models.FloatField()
     thc = models.FloatField()
-    species_name = models.CharField(unique=True, max_length=64)
+    
 
     # Get the seed's description
     def __str__(self):
@@ -26,10 +27,10 @@ class Seeds(models.Model):
         return self.species_name
 
     # Create seed function to insert a new Seed into bd
-    @staticmethod
+    @classmethod
     def create_seed(description, cbd, thc, species_name):
-        seed = Seeds(description=description, cbd=cbd,
-                    thc=thc, species_name=species_name)
+        seed = Seeds(species_name=species_name,description=description, cbd=cbd,
+                    thc=thc)
         seed.save()
         return seed
 

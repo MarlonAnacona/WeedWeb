@@ -35,3 +35,25 @@ class GrowingInfoSerializer(serializers.ModelSerializer):
         instance.yield_indoor = validated_data.get('yield_indoor', instance.yield_indoor)
         instance.save()
         return instance
+
+class SeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = [
+            "species_name",
+            "description",
+            "cbd",
+            "thc"
+        ]
+        
+    def create(self, validated_data):
+        seed = Seeds(**validated_data)
+        seed.save()
+        return seed
+
+    def update(self, instance, validated_data):
+        instance.species_name = validated_data.get('species_name', instance.species_name)
+        instance.description = validated_data.get('description', instance.description)
+        instance.cbd = validated_data.get('cbd', instance.cbd)
+        instance.thc = validated_data.get('thc', instance.thc)
+        instance.save()
+        return instance
