@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Map, tileLayer } from 'leaflet';
 import { Parcels } from './productservice';
-import { Parcela } from './parcels';
+import { Parcela } from '../model/interfaces';
 
 @Component({
   selector: 'app-map',
@@ -9,15 +9,17 @@ import { Parcela } from './parcels';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  
   products: Parcela[] = [];
+  selectedParcelas: Parcela[] = [];
 
-  constructor(private productService: Parcels) { }
+  constructor(private productService: Parcels) {}
 
   ngOnInit() {
-    this.productService.getProductsSmall().then(data => this.products = data);
+    this.productService
+      .getProductsSmall()
+      .then((data) => (this.products = data));
   }
-  
+
   ngAfterViewInit(): void {
     const map = new Map('map').setView([3.43722, -76.5225], 13);
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

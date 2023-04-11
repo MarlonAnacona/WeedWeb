@@ -41,10 +41,10 @@ import { ButtonModule } from 'primeng/button';
 import { Authservice } from './courseguard/auth.service';
 
 import { CardModule } from 'primeng/card';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { ToolbarModule } from 'primeng/toolbar';
 import { Parcels } from './map/productservice';
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -113,6 +113,7 @@ const routes: Routes = [
   ],
   imports: [
     ButtonModule,
+
     ToastModule,
     InputSwitchModule,
     BrowserModule,
@@ -122,6 +123,7 @@ const routes: Routes = [
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    ToolbarModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     componentModule,
