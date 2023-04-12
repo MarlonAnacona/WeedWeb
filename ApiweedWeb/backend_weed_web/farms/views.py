@@ -4,7 +4,7 @@ from rest_framework import generics, permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import FarmSerializer, ParcelSerializer
 from .models import Farm, Parcel
-from .permissions import isOwnerPermissions
+from .permissions import IsFarmOwnerPermission, IsParcelOwnerPermission
 
 # Create your views here.
 
@@ -27,11 +27,13 @@ class CreateParcelView(generics.CreateAPIView):
 class FarmUpdateAPIView(generics.UpdateAPIView):
     serializer_class = FarmSerializer
     queryset = Farm.objects.all()
+    permission_classes = [permissions.IsAuthenticated, IsFarmOwnerPermission]
     lookup_field = "pk"
 
 class ParcelUpdateAPIView(generics.UpdateAPIView):
     serializer_class = ParcelSerializer
     queryset = Farm.objects.all()
+    permission_classes = [permissions.IsAuthenticated, IsParcelOwnerPermission]
     lookup_field = "pk"
 
 
