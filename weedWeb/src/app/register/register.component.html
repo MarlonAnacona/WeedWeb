@@ -58,7 +58,7 @@
             <input
               type="text"
               name="userRegister.firstName"
-              [(ngModel)]="userRegister.firstName"
+              [(ngModel)]="userRegister.first_name"
               class="form-control"
               required
             />
@@ -69,7 +69,7 @@
             <input
               type="text"
               name="userRegister.lastName"
-              [(ngModel)]="userRegister.lastName"
+              [(ngModel)]="userRegister.last_name"
               class="form-control"
               required
             />
@@ -80,7 +80,7 @@
             <input
               type="text"
               name="userRegister.nationalId"
-              [(ngModel)]="userRegister.nationalId"
+              [(ngModel)]="userRegister.national_id"
               class="form-control"
               required
             />
@@ -100,7 +100,7 @@
           <div class="form-group col-md-12">
             <label>Contraseña</label>
             <input
-              type="text"
+              type="password"
               name="userRegister.password"
               [(ngModel)]="userRegister.password"
               class="form-control"
@@ -112,21 +112,21 @@
             <label>Número teléfonico</label>
             <input
               type="number"
-              name="userRegister.phoneNumber"
-              [(ngModel)]="userRegister.phoneNumber"
+              name="userRegister.phone_number"
+              [(ngModel)]="userRegister.phone_number"
               class="form-control"
               required
             />
           </div>
         </div>
-          <div class="register-button">
-            <button
-              type="submit"
-              class="btn btn-primary btn-block"
-              (click)="register()"
-            >
-              Registrarse
-            </button>
+        <div class="register-button">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="register()"
+          >
+            Registrarse
+          </button>
         </div>
       </form>
     </div>

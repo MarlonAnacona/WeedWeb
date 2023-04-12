@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-create-farm',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateFarmComponent implements OnInit {
 
-  constructor() { }
+  public visibleA: Boolean = false
+  public visibleB: Boolean = false
+
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  showDialog(){
+    this.visibleA = true;
+  }
+
+  showParcela(){
+    this.visibleA = false;
+    this.visibleB = true;
   }
 
 }
