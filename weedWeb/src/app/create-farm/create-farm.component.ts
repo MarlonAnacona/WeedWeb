@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { farmCreate, parcelaCreate } from '../model/interfaces';
 import { ServicesService } from './../services/services.service';
 
@@ -10,6 +11,7 @@ import { ServicesService } from './../services/services.service';
 })
 export class CreateFarmComponent implements OnInit {
   public farmCreate: farmCreate = {
+    user_id: this.servicesService.obtenerTokenDecodificado().user_id,
     farm_name: '',
     latitude: undefined,
     longitude: undefined,
@@ -31,10 +33,11 @@ export class CreateFarmComponent implements OnInit {
 
   public visibleA: Boolean = false;
   public visibleB: Boolean = false;
-
+  public user: any;
   constructor(
     private route: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private message: MessageService
   ) {}
 
   ngOnInit(): void {}
@@ -43,11 +46,18 @@ export class CreateFarmComponent implements OnInit {
     console.log(this.farmCreate);
     this.servicesService.createFarm(this.farmCreate).subscribe({
       next: (data) => {
-        console.log(data);
-        this.route.navigate(['../CreateFarm']);
+        this.message.add({
+          severity: 'success',
+          summary: 'Movimiento exitoso',
+          detail: 'Has logrado crear tu granja ',
+        });
       },
       error: (err) => {
-        console.log(err);
+        this.message.add({
+          severity: 'error',
+          summary: 'Hubo un error ',
+          detail: 'No se ha logrado crear tu granja ',
+        });
       },
     });
   }
@@ -56,11 +66,18 @@ export class CreateFarmComponent implements OnInit {
     console.log(this.parcelaCreate);
     this.servicesService.createParcela(this.parcelaCreate).subscribe({
       next: (data) => {
-        console.log(data);
-        this.route.navigate(['../CreateFarm']);
+        this.message.add({
+          severity: 'success',
+          summary: 'Movimiento exitoso',
+          detail: 'Has logrado crear tu granja ',
+        });
       },
       error: (err) => {
-        console.log(err);
+        this.message.add({
+          severity: 'error',
+          summary: 'Hubo un error ',
+          detail: 'No se ha logrado crear tu granja ',
+        });
       },
     });
   }

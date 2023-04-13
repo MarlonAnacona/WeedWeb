@@ -8,6 +8,7 @@ export interface userRegister {
   password: string;
 }
 export interface farmCreate {
+  user_id: string;
   farm_name: string;
   latitude?: number;
   longitude?: number;

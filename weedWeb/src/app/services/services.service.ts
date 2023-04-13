@@ -34,4 +34,23 @@ export class ServicesService {
   createParcela(data: parcelaCreate) {
     return this.Http.post(this.url + 'farms/create-parcel/', data);
   }
+
+  obtenerToken() {
+    return localStorage.getItem('token');
+  }
+
+  decodificarToken(token: string) {
+    const payload = token.split('.')[1];
+    const payloadDecodificado = atob(payload);
+    const objetoToken = JSON.parse(payloadDecodificado);
+    return objetoToken;
+  }
+
+  obtenerTokenDecodificado() {
+    const token = this.obtenerToken();
+    if (token != null) {
+      const tokenDecodificado = this.decodificarToken(token);
+      return tokenDecodificado;
+    }
+  }
 }
