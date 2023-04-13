@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { farmCreate, parcelaCreate } from '../model/interfaces';
@@ -7,75 +6,71 @@ import { ServicesService } from './../services/services.service';
 @Component({
   selector: 'app-create-farm',
   templateUrl: './create-farm.component.html',
-  styleUrls: ['./create-farm.component.css']
+  styleUrls: ['./create-farm.component.css'],
 })
 export class CreateFarmComponent implements OnInit {
-
-  public farmCreate: farmCreate ={
+  public farmCreate: farmCreate = {
     farm_name: '',
     latitude: undefined,
     longitude: undefined,
-  }
+  };
 
-  public farm_name:any;
-  public latitude:any;
-  public longitude:any;
+  public farm_name: any;
+  public latitude: any;
+  public longitude: any;
 
-  public parcelaCreate: parcelaCreate ={
+  public parcelaCreate: parcelaCreate = {
     width: undefined,
     length: undefined,
     crop_modality: '',
-  }
+  };
 
-  public width:any;
-  public length:any;
-  public crop_modality:any;
+  public width: any;
+  public length: any;
+  public crop_modality: any;
 
-  public visibleA: Boolean = false
-  public visibleB: Boolean = false
+  public visibleA: Boolean = false;
+  public visibleB: Boolean = false;
 
   constructor(
     private route: Router,
     private servicesService: ServicesService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  createFarm(){
+  createFarm() {
     console.log(this.farmCreate);
     this.servicesService.createFarm(this.farmCreate).subscribe({
-      next: (data) =>{
+      next: (data) => {
         console.log(data);
         this.route.navigate(['../CreateFarm']);
       },
       error: (err) => {
         console.log(err);
       },
-    })
+    });
   }
 
-  createParcela(){
+  createParcela() {
     console.log(this.parcelaCreate);
     this.servicesService.createParcela(this.parcelaCreate).subscribe({
-      next: (data) =>{
+      next: (data) => {
         console.log(data);
-        this.route.navigate(['../CreateFarm'])
+        this.route.navigate(['../CreateFarm']);
       },
-      error: (err) =>{
+      error: (err) => {
         console.log(err);
-      }
-    })
-
+      },
+    });
   }
 
-  showFarm(){
+  showFarm() {
     this.visibleA = true;
   }
 
-  showParcela(){
+  showParcela() {
     this.visibleA = false;
     this.visibleB = true;
   }
-
 }
