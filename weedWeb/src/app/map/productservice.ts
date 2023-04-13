@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Parcela } from '../model/interfaces';
+import { parcela } from '../model/interfaces';
 @Injectable()
 export class Parcels {
   Granjas: string[] = ['Bamboo Watch', 'Black Watch'];
@@ -12,14 +12,14 @@ export class Parcels {
     return this.http
       .get<any>('assets/products-small.json')
       .toPromise()
-      .then((res) => <Parcela[]>res.data)
+      .then((res) => <parcela[]>res.data)
       .then((data) => {
         return data;
       });
   }
 
-  generateProduct(): Parcela {
-    const product: Parcela = {
+  generateProduct(): parcela {
+    const product: parcela = {
       id: this.generateId(),
       farm_name: this.generateName(),
     };

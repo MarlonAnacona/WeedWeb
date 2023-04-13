@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Map, tileLayer } from 'leaflet';
 import { Parcels } from './productservice';
-import { Parcela } from '../model/interfaces';
+import { parcela } from '../model/interfaces';
 
 @Component({
   selector: 'app-map',
@@ -9,8 +9,8 @@ import { Parcela } from '../model/interfaces';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  products: Parcela[] = [];
-  selectedParcelas: Parcela[] = [];
+  products: parcela[] = [];
+  selectedParcelas: parcela[] = [];
 
   constructor(private productService: Parcels) {}
 

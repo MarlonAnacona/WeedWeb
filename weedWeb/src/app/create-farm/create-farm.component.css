@@ -25,6 +25,10 @@
   justify-content: center;
   font-weight: bold;
   color:#556B24
+}
 
+.model .register-farm{
+  width: '50vw';
+  display: flex;
 
 }

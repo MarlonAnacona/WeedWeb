@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { companyRegister, userLogin, userRegister } from '../model/interfaces';
+import { companyRegister, userLogin, userRegister, farmCreate, parcelaCreate } from '../model/interfaces';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -19,5 +19,13 @@ export class ServicesService {
 
   companyRegister(data: companyRegister) {
     return this.Http.post(this.url + 'company/create/ ', data);
+  }
+
+  createFarm(data:farmCreate){
+    return this.Http.post(this.url+'create-farm/',data)
+  }
+
+  createParcela(data:parcelaCreate){
+    return this.Http.post(this.url+'create-parcel/',data)
   }
 }
