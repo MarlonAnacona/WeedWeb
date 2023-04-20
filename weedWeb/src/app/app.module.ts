@@ -45,6 +45,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { Parcels } from './map/productservice';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -112,8 +113,8 @@ const routes: Routes = [
     CreateFarmComponent,
   ],
   imports: [
+    GoogleMapsModule,
     ButtonModule,
-
     ToastModule,
     InputSwitchModule,
     BrowserModule,

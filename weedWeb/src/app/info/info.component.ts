@@ -1,5 +1,8 @@
+import { catchError, map, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { MapGeocoder } from '@angular/google-maps';
 
 @Component({
   selector: 'app-info',
@@ -7,10 +10,11 @@ import { MessageService, ConfirmationService } from 'primeng/api';
   styleUrls: ['./info.component.css'],
 })
 export class InfoComponent implements OnInit {
-  checked: boolean = false;
   constructor(
     private messagerService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private http: HttpClient,
+    private geocoder: MapGeocoder
   ) {}
 
   ngOnInit(): void {}
