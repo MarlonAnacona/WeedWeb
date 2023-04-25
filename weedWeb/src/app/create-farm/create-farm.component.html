@@ -35,22 +35,13 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label>Latitud</label>
-          <input
-            type="number"
-            name="farmCreate.latitude"
-            [(ngModel)]="farmCreate.latitude"
-            class="form-control"
-            required
-          />
-        </div>
-
-        <div class="form-group col-md-12">
-          <label>Longitud</label>
+          <label>Dirección</label>
           <input
             type="text"
-            name="farmCreate.longitude"
-            [(ngModel)]="farmCreate.longitude"
+            name="farmAddress"
+            [(ngModel)]="farmAddress"
+            #inputPlaces 
+            id="inputPlaces"
             class="form-control"
             required
           />
@@ -60,7 +51,7 @@
           <button
             type="submit"
             class="btn btn-primary btn-block"
-            (click)="showParcela()"
+            (click)="geocodeAddres()"
             (click)="createFarm()"
           >
             Crear granja
@@ -70,18 +61,18 @@
     </form>
   </p-dialog>
 
-  <p-dialog [(visible)]="visibleB" [style]="{ width: '50vw' }">
+  <!-- <p-dialog [(visible)]="visibleB" [style]="{ width: '50vw' }">
     <form>
       <h2 class="text-center">Parcela</h2>
       <div class="form-row">
-        <!-- <div class="form-group col-md-12">
+         <div class="form-group col-md-12">
           <label>Nombre de la parcela</label>
           <input
             type="text"
             name="userRegister.firstName"
             class="form-control"
           />
-        </div> -->
+        </div> 
 
         <div class="form-group col-md-12">
           <label>Ancho(m)</label>
@@ -123,5 +114,5 @@
         </div>
       </div>
     </form>
-  </p-dialog>
+  </p-dialog>-->
 </div>
