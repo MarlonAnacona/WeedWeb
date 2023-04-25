@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { farmCreate, parcelaCreate } from '../model/interfaces';
 import { ServicesService } from './../services/services.service';
+import { MapGeocoder } from '@angular/google-maps';
 
 @Component({
   selector: 'app-create-farm',
@@ -10,6 +11,9 @@ import { ServicesService } from './../services/services.service';
   styleUrls: ['./create-farm.component.css'],
 })
 export class CreateFarmComponent implements OnInit {
+  autocomplete!: google.maps.places.Autocomplete;
+  farmAddress: string = '';
+  
   public farmCreate: farmCreate = {
     user_id: this.servicesService.obtenerTokenDecodificado().user_id,
     farm_name: '',
@@ -37,10 +41,38 @@ export class CreateFarmComponent implements OnInit {
   constructor(
     private route: Router,
     private servicesService: ServicesService,
-    private message: MessageService
+    private message: MessageService,
+    private geocoder: MapGeocoder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  const inputElement = document.getElementById(
+      'inputPlaces'
+    ) as HTMLInputElement;
+    if (inputElement) {
+      this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
+        types: ['geocode'],
+      });
+    }
+}
+
+
+  geocodeAddres() {
+    this.geocoder
+      .geocode({
+        address: this.farmAddress,
+      })
+      .subscribe(({ results }) => {
+
+        if (results) {
+          console.log(results);
+          const location = results[0].geometry.location;
+          console.log(
+            `Latitud: ${location.lat()}, Longitud: ${location.lng()}`
+          );
+        }
+      });
+  }
 
   createFarm() {
     console.log(this.farmCreate);
@@ -86,8 +118,8 @@ export class CreateFarmComponent implements OnInit {
     this.visibleA = true;
   }
 
-  showParcela() {
+  /*showParcela() {
     this.visibleA = false;
     this.visibleB = true;
-  }
+  }*/
 }
