@@ -7,7 +7,9 @@
   margin-left: 13vmax;
   margin-right: 10vmax;
 }
-
+::ng-deep .pac-container {
+  z-index: 9999;
+}
 .container-farm img{
   width: 100%;
 }
@@ -27,8 +29,4 @@
   color:#556B24
 }
 
-.model .register-farm{
-  width: '50vw';
-  display: flex;
 
-}

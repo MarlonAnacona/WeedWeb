@@ -13,7 +13,9 @@ import { MapGeocoder } from '@angular/google-maps';
 export class CreateFarmComponent implements OnInit {
   autocomplete!: google.maps.places.Autocomplete;
   farmAddress: string = '';
-  
+  position: any;
+  zoom = 4;
+
   public farmCreate: farmCreate = {
     user_id: this.servicesService.obtenerTokenDecodificado().user_id,
     farm_name: '',
@@ -38,6 +40,8 @@ export class CreateFarmComponent implements OnInit {
   public visibleA: Boolean = false;
   public visibleB: Boolean = false;
   public user: any;
+   options: any ;
+
   constructor(
     private route: Router,
     private servicesService: ServicesService,
@@ -46,18 +50,23 @@ export class CreateFarmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.autocompletado()
+}
+
+autocompletado(){
   const inputElement = document.getElementById(
-      'inputPlaces'
-    ) as HTMLInputElement;
-    if (inputElement) {
-      this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
-        types: ['geocode'],
-      });
-    }
+    'inputPlaces'
+  ) as HTMLInputElement;
+  if (inputElement) {
+    this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
+      types: ['geocode'],
+    });
+  }
 }
 
 
-  geocodeAddres() {
+
+   geocodeAddres() {
     this.geocoder
       .geocode({
         address: this.farmAddress,
@@ -65,19 +74,34 @@ export class CreateFarmComponent implements OnInit {
       .subscribe(({ results }) => {
 
         if (results) {
-          console.log(results);
+          if(results[0] !=null){
           const location = results[0].geometry.location;
           console.log(
             `Latitud: ${location.lat()}, Longitud: ${location.lng()}`
           );
+          this.farmCreate={
+            ...this.farmCreate,
+            latitude: location.lat(),
+             longitude:location.lng()
+           }
+           this.createFarm();
+        }else{
+          this.message.add({
+            severity: 'error',
+            summary: 'Hubo un error ',
+            detail: 'No se ha logrado crear tu granja ',
+          });
         }
+      }
       });
   }
 
   createFarm() {
-    console.log(this.farmCreate);
+
     this.servicesService.createFarm(this.farmCreate).subscribe({
       next: (data) => {
+        this.visibleA = false;
+
         this.message.add({
           severity: 'success',
           summary: 'Movimiento exitoso',
@@ -95,7 +119,7 @@ export class CreateFarmComponent implements OnInit {
   }
 
   createParcela() {
-    console.log(this.parcelaCreate);
+
     this.servicesService.createParcela(this.parcelaCreate).subscribe({
       next: (data) => {
         this.message.add({
@@ -103,6 +127,7 @@ export class CreateFarmComponent implements OnInit {
           summary: 'Movimiento exitoso',
           detail: 'Has logrado crear tu granja ',
         });
+
       },
       error: (err) => {
         this.message.add({

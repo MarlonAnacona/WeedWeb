@@ -1,4 +1,5 @@
 <menu-bar-user></menu-bar-user>
+
 <div class="container-farm">
   <h1>
     <button
@@ -14,52 +15,56 @@
   </h1>
 
   <p-dialog
-    [(visible)]="visibleA"
-    [style]="{ width: '50vw' }"
-    [modal]="true"
-    class="model"
-    styleClass="p-fluid"
-  >
-    <form>
-      <h2 class="text-center">Granja</h2>
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label>Nombre de la granja</label>
-          <input
-            type="text"
-            name="farmCreate.farmName"
-            [(ngModel)]="farmCreate.farm_name"
-            class="form-control"
-            required
-          />
-        </div>
+  [(visible)]="visibleA"
+  [style]="{ width: '50vw' }"
+  [modal]="true"
+  class="model"
+  styleClass="p-fluid"
+  [baseZIndex]="999"
+  (onShow)="autocompletado()"
+>
 
-        <div class="form-group col-md-12">
-          <label>Dirección</label>
-          <input
-            type="text"
-            name="farmAddress"
-            [(ngModel)]="farmAddress"
-            #inputPlaces 
-            id="inputPlaces"
-            class="form-control"
-            required
-          />
-        </div>
-        <br />
-        <div class="register-farm">
-          <button
-            type="submit"
-            class="btn btn-primary btn-block"
-            (click)="geocodeAddres()"
-            (click)="createFarm()"
-          >
-            Crear granja
-          </button>
-        </div>
+  <form>
+    <h2 class="text-center">Granja</h2>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Nombre de la granja</label>
+        <input
+          type="text"
+          name="farmCreate.farmName"
+          [(ngModel)]="farmCreate.farm_name"
+          class="form-control"
+          required
+        />
       </div>
-    </form>
-  </p-dialog>
+
+
+
+      <div class="form-group col-md-12 ">
+        <label>Dirección</label>
+        <input
+
+          type="text"
+          name="farmAddress"
+          [(ngModel)]="farmAddress"
+          #inputPlaces
+          id="inputPlaces"
+          class="form-control"
+          required
+        />
+      </div>
+      <br />
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          (click)="geocodeAddres()"
+        >
+          Crear granja
+        </button>
+    </div>
+  </form>
+</p-dialog>
+
 
   <!-- <p-dialog [(visible)]="visibleB" [style]="{ width: '50vw' }">
     <form>
@@ -72,7 +77,7 @@
             name="userRegister.firstName"
             class="form-control"
           />
-        </div> 
+        </div>
 
         <div class="form-group col-md-12">
           <label>Ancho(m)</label>

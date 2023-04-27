@@ -56,9 +56,7 @@ export class MapComponent implements OnInit {
         address: this.address,
       })
       .subscribe(({ results }) => {
-        // results.forEach((element) => {
-        //   console.log(element.geometry);
-        // });
+
         if (results) {
           console.log(results);
 

@@ -135,6 +135,7 @@ const routes: Routes = [
     CardModule,
     TableModule,
     DialogModule,
+
   ],
   providers: [
     MessageService,
