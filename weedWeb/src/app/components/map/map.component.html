@@ -1,8 +1,8 @@
-<input type="text" [(ngModel)]="address" #inputPlaces id="inputPlaces"  class="form-control"/>
-<button (click)="geocodeAddres()">Buscar</button>
+<!--<input type="text" [(ngModel)]="address" #inputPlaces id="inputPlaces"  class="form-control"/>-->
+<!--<button (click)="geocodeAddres()">Buscar</button>-->
 <google-map
-  height="400px"
-  width="750px"
+  height="540px"
+  width="540px"
   [center]="position"
   [zoom]="zoom"
   (mapClick)="moveMap($event)"
@@ -14,5 +14,5 @@
   ></map-marker>
 </google-map>
 
-<div>Latitude: {{ display?.lat }}</div>
-<div>Longitude: {{ display?.lng }}</div>
+<!--<div>Latitude: {{ display?.lat }}</div>
+<div>Longitude: {{ display?.lng }}</div>-->
