@@ -1,6 +1,6 @@
 <menu-bar-user></menu-bar-user>
 <div id="Principal" style="display: flexbox">
-  <div id="textoInicial" style="text-align: center">Mapa de parcelas</div>
+  <div id="textoInicial" style="text-align: center">Mapa de granjas</div>
   <p-card
     [style]="{
       display: 'flexbox',
@@ -19,9 +19,38 @@
         display: flexbox;
       "
     >
-      Aquí podras observar tus parcelas y las disponibles
+      Aquí podras observar tus granjas y las agregar nuevas parcelas
     </p>
-
+    <!-- <p-table
+      id="tabla"
+      styleClass="p-datatable-gridlines"
+      [value]="products"
+      responsiveLayout="scroll"
+      [scrollable]="false"
+      scrollHeight="400px"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de creación</th>
+          <th>Información</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-parcels>
+        <tr>
+          <td>{{ parcels.farm_name }}</td>
+          <td>{{ parcels.create_date }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-info"
+              class="p-button-rounded p-button-success mr-2"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table> -->
     <div class="card">
       <p-table
         #dt
@@ -81,8 +110,9 @@
               <button
                 pButton
                 pRipple
-                icon="pi pi-pencil"
+                icon="pi pi-info"
                 class="p-button-rounded p-button-success mr-2"
+
               ></button>
             </td>
           </tr>
