@@ -39,6 +39,14 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { Authservice } from './courseguard/auth.service';
+
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ToolbarModule } from 'primeng/toolbar';
+import { Parcels } from './map/productservice';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   {
@@ -65,7 +73,7 @@ const routes: Routes = [
   {
     path: 'Map',
     component: MapComponent,
-    canActivate: [AuthGuardService],
+    //canActivate: [AuthGuardService],
   },
   {
     path: 'Time',
@@ -83,7 +91,7 @@ const routes: Routes = [
   {
     path: 'CreateFarm',
     component: CreateFarmComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
 ];
 
@@ -105,6 +113,7 @@ const routes: Routes = [
     CreateFarmComponent,
   ],
   imports: [
+    GoogleMapsModule,
     ButtonModule,
     ToastModule,
     InputSwitchModule,
@@ -115,6 +124,7 @@ const routes: Routes = [
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    ToolbarModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     componentModule,
@@ -122,12 +132,17 @@ const routes: Routes = [
     HttpClientModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
+    CardModule,
+    TableModule,
+    DialogModule,
+
   ],
   providers: [
     MessageService,
     ConfirmationService,
     AuthGuardService,
     Authservice,
+    Parcels,
   ],
   bootstrap: [AppComponent],
 })

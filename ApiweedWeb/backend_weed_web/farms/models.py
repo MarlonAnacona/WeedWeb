@@ -13,7 +13,7 @@ class Farm(models.Model):
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
     longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
     latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
-    date_creation_farm = models.DateField(null = False, default = timezone.now)
+    date_creation_farm = models.DateField(null = False, default = datetime.date.today)
 
     #Get the farm's name
     def __str__(self):
@@ -43,7 +43,7 @@ class Parcel(models.Model):
     width = models.DecimalField(null = False, blank = False, max_digits = 5, decimal_places = 2)
     length = models.DecimalField(null = False, blank = False, max_digits = 5, decimal_places = 2)
     crop_modality = models.CharField(choices = CHOICES_CROP_MODALITY, max_length = 30, default = None, blank = False, null = False)
-    date_creation_parcel = models.DateField(null = False, default = timezone.now)
+    date_creation_parcel = models.DateField(null = False, default = datetime.date.today)
 
 
 
