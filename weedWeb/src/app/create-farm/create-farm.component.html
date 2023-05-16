@@ -7,9 +7,104 @@
       href="#offcanvasExample"
       role="button"
       aria-controls="offcanvasExample"
+      (click)="showDialog()"
     >
       <img src="../../../assets/image/createFarm.svg "/>
       <div class="text-button">Crea tu primera granja</div>
     </button>
   </h1>
+
+  <p-dialog [(visible)]="visibleA" [style]="{width: '50vw'}">
+    <form>
+      <h2 class="text-center">Granja</h2>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Nombre de la granja</label>
+          <input
+            type="text"
+            name="userRegister.firstName"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>Direccion</label>
+          <input
+            type="text"
+            name="userRegister.lastName"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="register-button">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="showParcela()"
+          >
+            Crear granja
+          </button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-dialog header="Header" [(visible)]="visibleB" [style]="{width: '50vw'}">
+    <form>
+      <h2 class="text-center">Parcela</h2>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Nombre de la parcela</label>
+          <input
+            type="text"
+            name="userRegister.firstName"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>Ancho</label>
+          <input
+            type="text"
+            name="userRegister.lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Ancho(m)</label>
+          <input
+            type="number"
+            name="userRegister.lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Largo(m)</label>
+          <input
+            type="number"
+            name="userRegister.lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Tipo de semilla</label>
+          <input
+            type="text"
+            name="userRegister.lastName"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="register-button">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+          >
+            Crear parcela
+          </button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
 </div>

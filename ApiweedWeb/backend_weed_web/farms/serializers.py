@@ -35,13 +35,17 @@ class FarmSerializer(serializers.ModelSerializer):
         ]
 
         extra_kwargs = {
-            "user_id":{"required" : True}
+            "user_id":{"required" : True},
+            "date_creation_farm":{"read_only" : True}
         }
 
 
 
     def create(self, validated_data):
         farm = Farm(**validated_data)
+
+        
+
         farm.save()
         return farm
 
@@ -91,7 +95,8 @@ class ParcelSerializer(serializers.ModelSerializer):
 
         extra_kwargs = {
             "farm_id":{"required" : True},
-            "seed_id":{"required" : True}
+            "seed_id":{"required" : True},
+            "date_creation_parcel":{"read_only" : True}
         }
 
 

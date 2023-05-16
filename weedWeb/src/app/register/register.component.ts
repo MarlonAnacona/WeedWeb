@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { ServicesService } from './../services/services.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private message: MessageService
   ) {}
 
   ngOnInit(): void {}
@@ -37,10 +39,20 @@ export class RegisterComponent implements OnInit {
 
     this.servicesService.userRegister(this.userRegister).subscribe({
       next: (data) => {
-        this.route.navigate(['../CreateFarm']);
+        // this.route.navigate(['../CreateFarm']);
+        this.message.add({
+          severity: 'success',
+          summary: 'Ha sido registrado con éxito ',
+          detail: ' ',
+        });
+        this.route.navigate(['../Login']);
       },
       error: (err) => {
-        console.log(err);
+        this.message.add({
+          severity: 'error',
+          summary: 'No ha sido posible el registro ',
+          detail: ' ',
+        });
       },
     });
   }
