@@ -22,5 +22,6 @@ urlpatterns = [
     path('farms/', include('farms.urls')),
     path('seeds/', include('seeds.urls')),
     path('seed-properties/', include('seed_properties.urls')),
+    path('weather-api/', include('weather_api.urls')),
 
 ]
