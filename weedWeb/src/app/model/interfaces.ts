@@ -7,6 +7,34 @@ export interface userRegister {
   middle_name?: string;
   password: string;
 }
+export interface farmCreate {
+  user_id: string;
+  farm_name: string;
+  latitude?: number;
+  longitude?: number;
+}
+
+export interface parcelaCreate {
+  width?: number;
+  length?: number;
+  crop_modality: string;
+}
+
+export interface farm {
+  farm_name: string;
+  latitude?: number;
+  longitude?: number;
+  create_date?: string;
+}
+
+export interface parcela {
+  id?: string;
+  farm_name?: string;
+  width?: number;
+  length?: number;
+  crop_modality?: string;
+  create_date?: string;
+}
 
 export interface user {
   firstName: string;

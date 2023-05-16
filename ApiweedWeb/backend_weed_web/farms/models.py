@@ -13,6 +13,7 @@ class Farm(models.Model):
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
     longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
     latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
+    number_of_parcel = models.IntegerField(null = False, blank = False, default = 0)
     date_creation_farm = models.DateField(null = False, default = datetime.date.today)
 
     #Get the farm's name
@@ -40,10 +41,10 @@ class Parcel(models.Model):
 
     farm_id =  models.ForeignKey(Farm, null = False, blank = False, on_delete = models.CASCADE)
     seed_id = models.ForeignKey(Seeds, null = False, blank = False, on_delete = models.CASCADE)
-    width = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
-    length = models.DecimalField(null=True, blank=False, max_digits=5, decimal_places=2)
-    crop_modality = models.CharField(choices=CHOICES_CROP_MODALITY, max_length=30, default=None, blank=False, null=False)
-    date_creation_parcel = models.DateField(null = False, default=timezone.now)
+    width = models.DecimalField(null = False, blank = False, max_digits = 5, decimal_places = 2)
+    length = models.DecimalField(null = False, blank = False, max_digits = 5, decimal_places = 2)
+    crop_modality = models.CharField(choices = CHOICES_CROP_MODALITY, max_length = 30, default = None, blank = False, null = False)
+    date_creation_parcel = models.DateField(null = False, default = datetime.date.today)
 
 
 

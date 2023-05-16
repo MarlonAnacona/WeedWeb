@@ -1,0 +1,18 @@
+<!--<input type="text" [(ngModel)]="address" #inputPlaces id="inputPlaces"  class="form-control"/>-->
+<!--<button (click)="geocodeAddres()">Buscar</button>-->
+<google-map
+  height="540px"
+  width="540px"
+  [center]="position"
+  [zoom]="zoom"
+  (mapClick)="moveMap($event)"
+  (mapMousemove)="move($event)"
+  ><map-marker
+    [position]="position"
+    [label]="mensaje"
+    [title]="busquedad"
+  ></map-marker>
+</google-map>
+
+<!--<div>Latitude: {{ display?.lat }}</div>
+<div>Longitude: {{ display?.lng }}</div>-->

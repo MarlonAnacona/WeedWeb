@@ -1,15 +1,123 @@
 <menu-bar-user></menu-bar-user>
+
 <div class="container-farm">
   <h1>
     <button
       class="btn"
       data-bs-toggle="offcanvas"
-      href="#offcanvasExample"
       role="button"
       aria-controls="offcanvasExample"
+      (click)="showFarm()"
     >
-      <img src="../../../assets/image/createFarm.svg "/>
+      <img src="../../../assets/image/createFarm.svg " />
       <div class="text-button">Crea tu primera granja</div>
     </button>
   </h1>
+
+  <p-dialog
+  [(visible)]="visibleA"
+  [style]="{ width: '50vw' }"
+  [modal]="true"
+  class="model"
+  styleClass="p-fluid"
+  [baseZIndex]="999"
+  (onShow)="autocompletado()"
+>
+
+  <form>
+    <h2 class="text-center">Granja</h2>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Nombre de la granja</label>
+        <input
+          type="text"
+          name="farmCreate.farmName"
+          [(ngModel)]="farmCreate.farm_name"
+          class="form-control"
+          required
+        />
+      </div>
+
+
+
+      <div class="form-group col-md-12 ">
+        <label>Dirección</label>
+        <input
+
+          type="text"
+          name="farmAddress"
+          [(ngModel)]="farmAddress"
+          #inputPlaces
+          id="inputPlaces"
+          class="form-control"
+          required
+        />
+      </div>
+      <br />
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          (click)="geocodeAddres()"
+        >
+          Crear granja
+        </button>
+    </div>
+  </form>
+</p-dialog>
+
+
+  <!-- <p-dialog [(visible)]="visibleB" [style]="{ width: '50vw' }">
+    <form>
+      <h2 class="text-center">Parcela</h2>
+      <div class="form-row">
+         <div class="form-group col-md-12">
+          <label>Nombre de la parcela</label>
+          <input
+            type="text"
+            name="userRegister.firstName"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>Ancho(m)</label>
+          <input
+            type="number"
+            name="parcelaCreate.width"
+            [(ngModel)]="parcelaCreate.width"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Largo(m)</label>
+          <input
+            type="number"
+            name="parcelaCreate.length"
+            [(ngModel)]="parcelaCreate.length"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Tipo de cultivo</label>
+          <input
+            type="text"
+            name="parcelaCreate.crop_modality"
+            [(ngModel)]="parcelaCreate.crop_modality"
+            class="form-control"
+            required
+          />
+        </div>
+        <br />
+        <div class="register-parcel">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="createParcela()"
+          >
+            Crear parcela
+          </button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>-->
 </div>
