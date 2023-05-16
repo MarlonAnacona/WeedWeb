@@ -3,15 +3,15 @@ from .models import SeedFlavor, SeedEffect, SeedSmell
 from rest_framework import generics
 from .serializers import SeedFlavorSerializer, SeedEffectSerializer, SeedSmellSerializer
 
-class SeedFlavorList(generics.ListAPIView):
+class SeedFlavorListView(generics.ListAPIView):
     queryset = SeedFlavor.objects.all()
     serializer_class = SeedFlavorSerializer
 
-class SeedEffectList(generics.ListAPIView):
+class SeedEffectListView(generics.ListAPIView):
     queryset = SeedEffect.objects.all()
     serializer_class = SeedEffectSerializer
 
-class SeedSmellList(generics.ListAPIView):
+class SeedSmellListView(generics.ListAPIView):
     queryset = SeedSmell.objects.all()
     serializer_class = SeedSmellSerializer
 
