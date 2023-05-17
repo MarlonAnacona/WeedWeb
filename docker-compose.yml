@@ -11,6 +11,7 @@ services:
     command:  >
            sh -c "python3 backend_weed_web/manage.py makemigrations &&
            python3 backend_weed_web/manage.py migrate &&
+           python3 backend_weed_web/manage.py test &&
            python3 backend_weed_web/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/weed_web_back

@@ -44,7 +44,6 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
-import { Parcels } from './map/productservice';
 import { GoogleMapsModule } from '@angular/google-maps';
 
 const routes: Routes = [
@@ -142,7 +141,6 @@ const routes: Routes = [
     ConfirmationService,
     AuthGuardService,
     Authservice,
-    Parcels,
   ],
   bootstrap: [AppComponent],
 })

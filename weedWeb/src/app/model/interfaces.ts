@@ -21,6 +21,7 @@ export interface parcelaCreate {
 }
 
 export interface farm {
+  id?: string;
   farm_name: string;
   latitude?: number;
   longitude?: number;
