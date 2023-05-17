@@ -1,7 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Map, tileLayer } from 'leaflet';
-import { Parcels } from './productservice';
-import { parcela } from '../model/interfaces';
+import { farm, parcela } from '../model/interfaces';
 
 @Component({
   selector: 'app-map',
@@ -9,18 +7,25 @@ import { parcela } from '../model/interfaces';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  products: parcela[] = [];
+  product_farm: farm[] = [{id: "1",
+  farm_name: "Casa blanca"}];
+  produt_parcel: parcela[]=[{id: "1",
+  width: 5, length: 2, crop_modality: "Exterior",create_date: "8 de mayo" }];
   selectedParcelas: parcela[] = [];
+  public visibleA: Boolean = false;
 
-  constructor(private productService: Parcels) {}
+  constructor() {}
 
   ngOnInit() {
-    this.productService
-      .getProductsSmall()
-      .then((data) => (this.products = data));
+
   }
 
   ngAfterViewInit(): void {
 
+  }
+
+  showModalFarm() {
+    this.visibleA = true;
+    
   }
 }
