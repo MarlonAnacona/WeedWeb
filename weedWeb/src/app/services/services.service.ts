@@ -48,6 +48,7 @@ export class ServicesService {
     return objetoToken;
   }
 
+
   obtenerTokenDecodificado() {
     const token = this.obtenerToken();
     if (token != null) {
@@ -60,7 +61,10 @@ export class ServicesService {
 
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
       return this.Http.get(this.url+'/farms/get-farm/',{headers});
+  }
 
-
+  tokenRefresh(token:any){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+    return this.Http.post(this.url+'/users/api/token/refresh/', 'Bearer '+ token)
   }
 }

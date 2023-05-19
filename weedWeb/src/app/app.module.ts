@@ -67,17 +67,17 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
     component: MapComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Time',
     component: TimeComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Register',
@@ -90,7 +90,7 @@ const routes: Routes = [
   {
     path: 'CreateFarm',
     component: CreateFarmComponent,
-    // canActivate: [AuthGuardService],
+   canActivate: [AuthGuardService],
   },
 ];
 

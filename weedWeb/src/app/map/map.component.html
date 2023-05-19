@@ -9,8 +9,23 @@
       margin: '0 auto'
     }"
   >
-    <app-map-google id="map" class="card"></app-map-google>
 
+  <google-map
+
+  id="map"
+  class="card"
+  height="540px"
+  width="540px"
+  [center]="position"
+  [zoom]="zoom"
+  (mapClick)="moveMap($event)"
+  (mapMousemove)="move($event)"
+  ><map-marker
+    [position]="position"
+    [label]="mensaje"
+    [title]="busquedad"
+  ></map-marker>
+</google-map>
     <p
       style="
         font-size: 25px;
@@ -73,15 +88,18 @@
             <td>{{ product_farm.farm_name }}</td>
             <td>{{ product_farm.date_creation_farm }}</td>
             <td>
+            </td>
+            <td>
               <button
                 pButton
                 pRipple
-                icon="pi pi-info"
+                icon="pi pi-map-marker"
                 class="p-button-rounded p-button-success mr-2"
-                (click)="showModalFarm()"
+                (click)="pointMark(product_farm.latitude,product_farm.longitude)"
                 [value]="product_farm"
               ></button>
             </td>
+
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">

@@ -84,5 +84,23 @@ export class MapComponent implements OnInit {
           });
         }
       });
+
+
+
+  }
+
+
+  pointMark(lat:number,lon:number)
+  {
+    const location={lat:lat,lng:lon}
+    this.position = {
+      lat: lat,
+      lng: lon,
+    };
+    this.zoom = 15;
+    new google.maps.Marker({
+      position: location,
+      map: this.map,
+    });
   }
 }
