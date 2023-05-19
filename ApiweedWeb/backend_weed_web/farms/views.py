@@ -49,8 +49,8 @@ class FarmListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         my_user = self.request.user
-        self.queryset = Farm.objects.filter(pk = my_user.id)
-        print("kdkd")
+    
+        queryset = Farm.objects.filter(user_id = my_user.id)
         return queryset
 
 
