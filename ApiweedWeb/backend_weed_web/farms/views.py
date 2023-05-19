@@ -46,6 +46,11 @@ class FarmListAPIView(generics.ListAPIView):
     filterset_class = FarmFilters
     permission_classes = [permissions.IsAuthenticated, IsFarmOwnerPermission]
 
+    def get_queryset(self):
+        my_user = self.request.user
+        queryset = Farm.objects.filter(user_id = my_user.id)
+        return queryset
+
 
 class ParcelListAPIView(generics.ListAPIView):
     serializer_class = ParcelSerializer
