@@ -23,10 +23,12 @@ Methods:
 """
 
 class FarmSerializer(serializers.ModelSerializer):
-
+    id = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Farm
         fields = [
+            "id",
             "user_id",
             "farm_name",
             "longitude",

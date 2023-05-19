@@ -18,7 +18,6 @@ class MyTokenRefreshView(TokenRefreshView):
 
 class CreateFarmView(generics.CreateAPIView):
     serializer_class = FarmSerializer
-    print("jdjd")
     permission_classes = [permissions.AllowAny]
 
 
@@ -47,11 +46,7 @@ class FarmListAPIView(generics.ListAPIView):
     filterset_class = FarmFilters
     permission_classes = [permissions.IsAuthenticated, IsFarmOwnerPermission]
 
-    def get_queryset(self):
-        my_user = self.request.user
     
-        queryset = Farm.objects.filter(user_id = my_user.id)
-        return queryset
 
 
 class ParcelListAPIView(generics.ListAPIView):
@@ -59,6 +54,7 @@ class ParcelListAPIView(generics.ListAPIView):
     queryset = Parcel.objects.all()
     filterset_class = ParcelFilters
     permission_classes = [permissions.IsAuthenticated, IsParcelOwnerPermission]
+
 
 
 

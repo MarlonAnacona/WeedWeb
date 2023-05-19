@@ -16,5 +16,5 @@ urlpatterns = [
      path('update-farm/<int:pk>/', views.FarmUpdateAPIView.as_view(), name='update_farm'),
      path('update-parcel/<int:pk>/', views.ParcelUpdateAPIView.as_view(), name='update_parcel'),
      path('get-farm/', views.FarmListAPIView.as_view(), name='get_farm'),
-     path('get-parcel/', views.ParcelListAPIView.as_view(), name='update_parcel'),
+     path('get-parcel/', views.ParcelListAPIView.as_view(), name='get_parcel'),
 ]
