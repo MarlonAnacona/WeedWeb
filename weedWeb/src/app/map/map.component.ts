@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { farm, parcela } from '../model/interfaces';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-map',
@@ -7,15 +8,31 @@ import { farm, parcela } from '../model/interfaces';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  product_farm: farm[] = [];
-  produt_parcel: parcela[]=[];
+  product_farm: any;
+  selected_farm:any;
+  produt_parcel: any;
   selectedParcelas: parcela[] = [];
+  token= localStorage.getItem('token')
+
   public visibleA: Boolean = false;
 
-  constructor() {}
+  constructor(private services: ServicesService) {}
 
   ngOnInit() {
+    if(this.token){
 
+    this.services.getFarm(this.token).subscribe({
+      next:(data)=>{
+        console.log(data)
+        this.product_farm=data;
+
+      },
+      error:(err)=>{
+      console.log(err)
+      }
+
+    })
+  }
   }
 
   ngAfterViewInit(): void {

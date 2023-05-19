@@ -28,12 +28,12 @@
         [value]="product_farm"
         [rows]="10"
         [paginator]="true"
-        [globalFilterFields]="['id', 'farm_name', 'create_farm', 'info']"
+        [globalFilterFields]="['farm_name', 'date_creation_farm']"
         responsiveLayout="scroll"
         [tableStyle]="{ 'min-width': '50rem' }"
-        [(selection)]="selectedParcelas"
+        [(selection)]="selected_farm"
         [rowHover]="true"
-        dataKey="id"
+        dataKey="Nombre"
         currentPageReportTemplate="Mostrando  {first} pagina de {last}. Datos totales {totalRecords} "
         [showCurrentPageReport]="true"
       >
@@ -55,14 +55,10 @@
             <th style="width: 3rem">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <th pSortableColumn="id">
-              Identificación <p-sortIcon field="Id"></p-sortIcon>
-            </th>
-
             <th pSortableColumn="farm_name">
               Nombre <p-sortIcon field="name"></p-sortIcon>
             </th>
-            <th pSortableColumn="create_date">
+            <th pSortableColumn="date_creation_farm">
               Fecha de creación <p-sortIcon field="fechaCreacion"></p-sortIcon>
             </th>
             <th>Información</th>
@@ -74,9 +70,8 @@
             <td>
               <p-tableCheckbox [value]="product_farm"></p-tableCheckbox>
             </td>
-            <td>{{ product_farm.id }}</td>
             <td>{{ product_farm.farm_name }}</td>
-            <td>{{ product_farm.create_date }}</td>
+            <td>{{ product_farm.date_creation_farm }}</td>
             <td>
               <button
                 pButton
@@ -96,14 +91,14 @@
         </ng-template>
       </p-table>
       <!--nombre_variable despues en type script -->
-       <p-dialog header="Información granjas - {{product_farm}} "  
+       <p-dialog header="Información granjas - {{product_farm}} "
       [(visible)]="visibleA"
       [style]="{ width: '50vw' }"
       [modal]="true"
       class="model"
       styleClass="p-fluid"
       [baseZIndex]="999"
-      
+
       >
       <!-- <h2>{{product_farm}}</h2> -->
       <p-table

@@ -8,6 +8,8 @@ import {
   parcelaCreate,
 } from '../model/interfaces';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -54,7 +56,11 @@ export class ServicesService {
     }
   }
 
-  getFarm(){
-    return this.Http.get(this.url+'/farms/get-farm/');
+  getFarm(token:any){
+
+      const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+      return this.Http.get(this.url+'/farms/get-farm/',{headers});
+
+
   }
 }
