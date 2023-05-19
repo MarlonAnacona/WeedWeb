@@ -7,10 +7,8 @@ import { farm, parcela } from '../model/interfaces';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  product_farm: farm[] = [{id: "1",
-  farm_name: "Casa blanca"}];
-  produt_parcel: parcela[]=[{id: "1",
-  width: 5, length: 2, crop_modality: "Exterior",create_date: "8 de mayo" }];
+  product_farm: farm[] = [];
+  produt_parcel: parcela[]=[];
   selectedParcelas: parcela[] = [];
   public visibleA: Boolean = false;
 
@@ -26,6 +24,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   showModalFarm() {
     this.visibleA = true;
-    
+
   }
 }

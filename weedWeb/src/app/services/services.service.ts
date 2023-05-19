@@ -53,4 +53,8 @@ export class ServicesService {
       return tokenDecodificado;
     }
   }
+
+  getFarm(){
+    return this.Http.get(this.url+'/farms/get-farm/');
+  }
 }
