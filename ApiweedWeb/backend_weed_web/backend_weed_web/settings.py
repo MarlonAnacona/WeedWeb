@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'seeds',
     'seed_properties',
     'farms',
+    'weather_api',
     
 ]
 
