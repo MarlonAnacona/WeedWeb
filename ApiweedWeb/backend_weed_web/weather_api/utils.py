@@ -21,14 +21,14 @@ def open_meteo_get_data(latitude: float, longitude: float, **url_params) -> Dict
         data = response.json()
 
         # Process and return the requested data
-        return data
+        return {'data': data, 'status_code': response.status_code}
 
     except requests.exceptions.HTTPError as err:
-        raise Exception('HTTP Error:', err)
+        return {'error': err, 'status_code': response.status_code}
     except json.JSONDecodeError as err:
-        raise Exception('JSON Decode Error:', err)
+        return {'error': err, 'status_code': response.status_code}
     except Exception as err:
-        raise Exception('Error:', err)
+        return {'error': err, 'status_code': response.status_code}
     
 
 
