@@ -153,6 +153,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_weed_web.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -164,7 +165,19 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_CONTAINER_NAME', 'localhost'),
         'PORT': os.getenv('DB_PORT', '5432'),
-    }
+     
+    },
+
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "test_" + os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_CONTAINER_NAME', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+     
+    },
+
 }
 
 
