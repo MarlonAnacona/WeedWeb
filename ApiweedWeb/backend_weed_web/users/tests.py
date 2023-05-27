@@ -6,24 +6,13 @@ from .models import Customer, Company, Person
 
 class CustomerModelTestCase(TestCase):
 
-    # @classmethod
-    # def setUpClass(cls):
-    #     super().setUpClass()
-    #     # Apply migrations before running the tests
-    #     call_command('migrate', interactive=True, database='test')
-
-
-
-
     def setUp(self):
     # Set up any necessary data for the tests
-
-        # call_command('migrate', interactive=True, database='test')
 
         self.data = {
                 'email': "test_customer@email.com",
                 'password': 'contrasena123',
-                'phone_number': '1234567892'
+                'phone_number': '1234567890'
                 }
 
         Customer.objects.create(**self.data)
