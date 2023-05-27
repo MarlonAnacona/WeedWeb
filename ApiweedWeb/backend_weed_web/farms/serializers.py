@@ -23,10 +23,12 @@ Methods:
 """
 
 class FarmSerializer(serializers.ModelSerializer):
-
+    id = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Farm
         fields = [
+            "id",
             "user_id",
             "farm_name",
             "longitude",
@@ -102,9 +104,18 @@ class ParcelSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-        parcel = Parcel(**validated_data)
-        parcel.save()
-        return parcel
+        farm_id = validated_data.get('farm_id')
+        farm = Farm.objects.get(id=farm_id)
+        number_of_parcels = farm.number_of_parcel
+
+        if number_of_parcels < 11:
+            parcel = Parcel(**validated_data)
+            parcel.save()
+            farm.number_of_parcel += 1
+            farm.save()
+            return parcel
+        else:
+            raise serializers.ValidationError("Número máximo de parcelas alcanzado para esta granja.")
 
     def update(self, instance, validated_data):
         instance.seed_id = validated_data.get('seed_id', instance.seed_id)

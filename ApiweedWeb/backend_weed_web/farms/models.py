@@ -11,8 +11,9 @@ from seeds.models import Seeds
 class Farm(models.Model):
     user_id = models.ForeignKey(Customer, null = False, blank = False, on_delete = models.CASCADE)
     farm_name = models.CharField(null = False, blank = False, max_length = 64)
-    longitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
-    latitude = models.DecimalField(null = False, blank = False, max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(null = False, blank = False, max_digits=30, decimal_places=15)
+    latitude = models.DecimalField(null = False, blank = False, max_digits=30, decimal_places=15)
+    number_of_parcel = models.IntegerField(null = False, blank = False, default = 0)
     date_creation_farm = models.DateField(null = False, default = datetime.date.today)
 
     #Get the farm's name

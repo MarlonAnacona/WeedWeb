@@ -44,8 +44,9 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
-import { Parcels } from './map/productservice';
 import { GoogleMapsModule } from '@angular/google-maps';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -68,17 +69,17 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
     component: MapComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Time',
     component: TimeComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Register',
@@ -91,7 +92,7 @@ const routes: Routes = [
   {
     path: 'CreateFarm',
     component: CreateFarmComponent,
-    // canActivate: [AuthGuardService],
+   canActivate: [AuthGuardService],
   },
 ];
 
@@ -142,7 +143,6 @@ const routes: Routes = [
     ConfirmationService,
     AuthGuardService,
     Authservice,
-    Parcels,
   ],
   bootstrap: [AppComponent],
 })

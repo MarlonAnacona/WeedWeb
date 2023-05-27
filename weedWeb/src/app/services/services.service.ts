@@ -8,6 +8,8 @@ import {
   parcelaCreate,
 } from '../model/interfaces';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -46,11 +48,23 @@ export class ServicesService {
     return objetoToken;
   }
 
+
   obtenerTokenDecodificado() {
     const token = this.obtenerToken();
     if (token != null) {
       const tokenDecodificado = this.decodificarToken(token);
       return tokenDecodificado;
     }
+  }
+
+  getFarm(token:any){
+
+      const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+      return this.Http.get(this.url+'/farms/get-farm/',{headers});
+  }
+
+  tokenRefresh(token:any){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+    return this.Http.post(this.url+'/users/api/token/refresh/', 'Bearer '+ token)
   }
 }

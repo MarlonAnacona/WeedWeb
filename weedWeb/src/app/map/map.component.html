@@ -9,8 +9,23 @@
       margin: '0 auto'
     }"
   >
-    <app-map-google id="map" class="card"></app-map-google>
 
+  <google-map
+
+  id="map"
+  class="card"
+  height="540px"
+  width="540px"
+  [center]="position"
+  [zoom]="zoom"
+  (mapClick)="moveMap($event)"
+  (mapMousemove)="move($event)"
+  ><map-marker
+    [position]="position"
+    [label]="mensaje"
+    [title]="busquedad"
+  ></map-marker>
+</google-map>
     <p
       style="
         font-size: 25px;
@@ -21,43 +36,95 @@
     >
       Aquí podras observar tus granjas y las agregar nuevas parcelas
     </p>
-    <!-- <p-table
-      id="tabla"
-      styleClass="p-datatable-gridlines"
-      [value]="products"
-      responsiveLayout="scroll"
-      [scrollable]="false"
-      scrollHeight="400px"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Nombre</th>
-          <th>Fecha de creación</th>
-          <th>Información</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-parcels>
-        <tr>
-          <td>{{ parcels.farm_name }}</td>
-          <td>{{ parcels.create_date }}</td>
-          <td>
-            <button
-              pButton
-              pRipple
-              icon="pi pi-info"
-              class="p-button-rounded p-button-success mr-2"
-            ></button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table> -->
+
     <div class="card">
       <p-table
         #dt
-        [value]="products"
+        [value]="product_farm"
         [rows]="10"
         [paginator]="true"
-        [globalFilterFields]="['id', 'farm_name', 'create_farm', 'info']"
+        [globalFilterFields]="['farm_name', 'date_creation_farm']"
+        responsiveLayout="scroll"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [(selection)]="selected_farm"
+        [rowHover]="true"
+        dataKey="Nombre"
+        currentPageReportTemplate="Mostrando  {first} pagina de {last}. Datos totales {totalRecords} "
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <span class="p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                placeholder="Buscar..."
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="farm_name">
+              Nombre <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="date_creation_farm">
+              Fecha de creación <p-sortIcon field="fechaCreacion"></p-sortIcon>
+            </th>
+            <th>Información</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product_farm>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="product_farm"></p-tableCheckbox>
+            </td>
+            <td>{{ product_farm.farm_name }}</td>
+            <td>{{ product_farm.date_creation_farm }}</td>
+            <td>
+            </td>
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-map-marker"
+                class="p-button-rounded p-button-success mr-2"
+                (click)="pointMark(product_farm.latitude,product_farm.longitude)"
+                [value]="product_farm"
+              ></button>
+            </td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            Tiene en total: {{ product_farm ? product_farm.length : 0 }} Granjas.
+          </div>
+        </ng-template>
+      </p-table>
+      <!--nombre_variable despues en type script -->
+       <p-dialog header="Información granjas - {{product_farm}} "
+      [(visible)]="visibleA"
+      [style]="{ width: '50vw' }"
+      [modal]="true"
+      class="model"
+      styleClass="p-fluid"
+      [baseZIndex]="999"
+
+      >
+      <!-- <h2>{{product_farm}}</h2> -->
+      <p-table
+        #dt
+        [value]="produt_parcel"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['id', 'width', 'length', 'crop_modality', 'create_date']"
         responsiveLayout="scroll"
         [tableStyle]="{ 'min-width': '50rem' }"
         [(selection)]="selectedParcelas"
@@ -88,41 +155,48 @@
               Identificación <p-sortIcon field="Id"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="farm_name">
-              Nombre <p-sortIcon field="name"></p-sortIcon>
+            <th pSortableColumn="width">
+              Ancho <p-sortIcon field="width"></p-sortIcon>
+            </th>
+            <th pSortableColumn="length">
+              Largo <p-sortIcon field="length"></p-sortIcon>
+            </th>
+            <th pSortableColumn="crop_modality">
+              Modalidad de cultivo <p-sortIcon field="crop_modality"></p-sortIcon>
             </th>
             <th pSortableColumn="create_date">
-              Fecha de creación <p-sortIcon field="fechaCreacion"></p-sortIcon>
+              Fecha de creación <p-sortIcon field="create_date"></p-sortIcon>
             </th>
-            <th>Información</th>
-            <th></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-produt_parcel>
           <tr>
             <td>
-              <p-tableCheckbox [value]="product"></p-tableCheckbox>
+              <p-tableCheckbox [value]="produt_parcel"></p-tableCheckbox>
             </td>
-            <td>{{ product.id }}</td>
-            <td>{{ product.farm_name }}</td>
-            <td>{{ product.create_date }}</td>
-            <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-info"
-                class="p-button-rounded p-button-success mr-2"
-
-              ></button>
-            </td>
+            <td>{{ produt_parcel.id }}</td>
+            <td>{{ produt_parcel.width }}</td>
+            <td>{{ produt_parcel.length }}</td>
+            <td>{{ produt_parcel.crop_modality }}</td>
+            <td>{{ produt_parcel.create_date }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
           <div class="flex align-items-center justify-content-between">
-            Tiene en total: {{ products ? products.length : 0 }} Granjas.
+            Tiene en total: {{ produt_parcel ? produt_parcel.length : 0 }} Parcelas.
           </div>
         </ng-template>
+        <ng-template pTemplate="summary">
+          <button
+          pButton
+          pRipple
+          label="Nueva parcela"
+          icon="pi pi-plus"
+          class="p-button-success mr-2"
+        ></button>
+        </ng-template>
       </p-table>
+      </p-dialog>
     </div>
   </p-card>
 </div>

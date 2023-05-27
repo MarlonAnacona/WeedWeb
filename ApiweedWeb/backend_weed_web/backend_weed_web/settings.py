@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-5p+r_c%7od#s0ve_hc9z$96o&%k)v)e!twz!3+*zjv)^p9k_nd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '0.0.0.0:4200']
+ALLOWED_HOSTS = ['0.0.0.0', '0.0.0.0:4200','*']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_filters',
     'rest_framework_simplejwt',
     'corsheaders',
 
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'seeds',
     'seed_properties',
     'farms',
+    'weather_api',
     
 ]
 
@@ -79,7 +81,12 @@ REST_FRAMEWORK = {
      'DEFAULT_PERMISSION_CLASSES': (
         
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    
+    'DEFAULT_FILTER_BACKENDS': (
+
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),  
     
 }
 
@@ -146,6 +153,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_weed_web.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -157,8 +165,22 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_CONTAINER_NAME', 'localhost'),
         'PORT': os.getenv('DB_PORT', '5432'),
-    }
+     
+    },
+
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "test_" + os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_CONTAINER_NAME', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+     
+    },
+
 }
+
+
 
 
 # Password validation

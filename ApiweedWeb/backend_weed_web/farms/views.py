@@ -46,12 +46,15 @@ class FarmListAPIView(generics.ListAPIView):
     filterset_class = FarmFilters
     permission_classes = [permissions.IsAuthenticated, IsFarmOwnerPermission]
 
+    
+
 
 class ParcelListAPIView(generics.ListAPIView):
     serializer_class = ParcelSerializer
     queryset = Parcel.objects.all()
     filterset_class = ParcelFilters
     permission_classes = [permissions.IsAuthenticated, IsParcelOwnerPermission]
+
 
 
 

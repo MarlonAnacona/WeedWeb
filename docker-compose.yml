@@ -8,19 +8,29 @@ services:
 
   weed_web_backend:
     build: ./ApiweedWeb
-    command: python3 backend_weed_web/manage.py runserver 0.0.0.0:8000 && python3 backend_weed_web/manage.py makemigrations && python3 backend_weed_web/manage.py migrate
+    command:  >
+           sh -c "python3 backend_weed_web/manage.py makemigrations &&
+           python3 backend_weed_web/manage.py migrate &&
+           python3 backend_weed_web/manage.py test &&
+           python3 backend_weed_web/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/weed_web_back
     ports:
       - "8000:8000"
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_CONTAINER_NAME}
+      - DB_PORT=5432
+    
     depends_on:
       - postgres_weed
+    
      
   postgres_weed:
     container_name: postgres_weed
     image: postgres:14.1-alpine
-    # env_file:
-    #    - ./ApiweedWeb/backend_weed_web/.env
     restart: always
     environment:
       POSTGRES_DB: ${DB_NAME}
@@ -28,16 +38,12 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - '5432:5432'
-
-
-    
-  # pgadmin:
-  #   container_name: pgadmin
-  #   image: dpage/pgadmin4:latest
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
-  #     - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
-  #   ports:
-  #     - "5050:80"
-  #   restart: always
-  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - "5050:80"
+    restart: always

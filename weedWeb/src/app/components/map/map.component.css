@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+::ng-deep .pac-container {
+  z-index: 9999;
+}
+
 .sb-title {
   position: relative;
   top: -12px;
