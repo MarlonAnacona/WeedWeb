@@ -11,7 +11,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         customer = Customer.objects.get(email=user.email)
         # Add custom claims            
         token['email'] = customer.email,
-        token['phone_number'] = customer.phone_number,      
+        token['phone_number'] = customer.phone_number, 
         # ...
 
         return token   
