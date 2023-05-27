@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.serivce.login(this.userlogin).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.access);
+        localStorage.setItem('tokenRefresh', response.refresh);
         this.route.navigate(['../CreateFarm']);
         this.message.add({
           severity: 'success',

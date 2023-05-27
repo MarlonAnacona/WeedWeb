@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ngx-bootstrap": "^10.2.0",
+    "primeng": "^15.3.0"
+  }
+}

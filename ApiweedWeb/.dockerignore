@@ -1,0 +1,21 @@
+
+# # Exclude temporary files and directories
+# *.pyc
+# *.pyo
+# __pycache__
+# *.swp
+# *.bak
+# *.tmp
+# *.log
+# *.pid
+
+# # Exclude build artifacts and cache
+# *.pyc
+# *.pyo
+# __pycache__
+# *.pyd
+# *.so
+# *.egg-info
+# *.egg
+# build/
+# dist/
