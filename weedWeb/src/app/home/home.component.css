@@ -23,10 +23,14 @@ nav {
 }
 
 .caja{
-  margin-top: 30px;
-  margin-left: 200px;
+  display:grid;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  /* margin-top: 30px;
+  margin-left: auto;
   margin-bottom: 100px;
-  width: auto;
+  width: auto; */
 }
 
 .images{
@@ -43,7 +47,7 @@ nav {
   transition: .5 ease;
 }
 
-.images img:hover{
+.caja .images img:hover{
   cursor: pointer;
   width: 550px;
   opacity: 1;
@@ -52,7 +56,6 @@ nav {
 
 
 .container-fluid {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -163,7 +166,6 @@ nav {
   width: 100%;
   text-align: center;
   line-height: 24px;
-  background-color: #424143;
 }
 
 .tittle h1{
@@ -171,7 +173,7 @@ nav {
   font-weight: 700;
   padding-top: 70px;
   padding-bottom: 23px;
-  background: #fff;
+  background: #000000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -180,7 +182,6 @@ nav {
   width: 100%;
   text-align: center;
   line-height: 24px;
-  background-color: #424143;
 }
 
 /* .back{
@@ -193,7 +194,7 @@ nav {
   font-weight: 700;
   padding-top: 70px;
   padding-bottom: 23px;
-  background: #fff;
+  background: #000000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -281,6 +282,12 @@ section .card .image img{
   background: linear-gradient(106.32deg, #006602 14.23%, rgba(255,25,25,0) 139.97%);
 }
 
+.abs-center {
+  display:grid;
+  min-height: 20vh;
+  margin-bottom: 12%;
+}
+
 .box3 {
   position: absolute;
   width: 100%;
@@ -306,6 +313,6 @@ section .card .about{
   display: flex;
   text-align: center;
   color: #444;
-  margin-top: 45px;
+  margin-top: 30px;
   margin-bottom: 5px;
 }
