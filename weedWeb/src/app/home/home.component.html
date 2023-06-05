@@ -1,6 +1,7 @@
 <div ng-controller="controller">
   <menu-bar></menu-bar>
-  <div style="background-color: black">
+  <div  style="background-color: black">
+    <div class="bigBox">
     <div class="justify-content-center">
       <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -43,39 +44,40 @@
       </div>
     </div>
   </div>
+  </div>
     <!-- Esto es la seccion del home donde se muestran los beneficios de la marihuana -->
-  <div class="tittle">
+  <div name="beneficios" id="beneficios"class="tittle">
     <h1>Beneficios</h1>
   </div>
   <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active cuadro-opaco">
-        <img src="https://matillaplant.com/blog-marihuana/wp-content/uploads/2020/04/marihuana-de-colores-verde.jpg"
+        <img src="../../assets//image//cannabis1.jpg"
           class="img-fluid " alt="..." />
         <div class="carousel-caption abs-center">
-          <h3>Marihuanol</h3>
-          <p> La marihuana como uso medicinal se ha utilizado desde muchos paises
-            con el objetivo de calmar el dolor de las enfermades</p>
+          <h3>Reducción de la ansiedad y el estrés</h3>
+          <p> Algunas personas encuentran que el consumo de marihuana puede ayudar a aliviar los síntomas de ansiedad y estrés.
+            Sin embargo, es importante tener en cuenta que las reacciones pueden variar de una persona a otra, y en algunos casos, el consumo de marihuana puede aumentar la ansiedad.</p>
         </div>
       </div>
       <div class="carousel-item cuadro-opaco">
         <img
-          src="https://www.zamnesia.es/img/cms/Blog/1444_different_colours_of_cannabis/Why%20Do%20Cannabis%20Buds%20Have%20Different%20Colours.jpg"
+          src="../../assets//image//cannabis2.jpg"
           class="img-fluid " alt="..." />
         <div class="carousel-caption abs-center">
-          <h3>Prohibido olvidar</h3>
-          <p> La marihuana igualmente tiene efectos beneficiosos contra las
-            enfermedades neurodegenerativas, tales como el Alzheimer</p>
+          <h3>Alivio del dolor</h3>
+          <p> La marihuana se ha utilizado tradicionalmente como analgésico. Los cannabinoides interactúan con los receptores del dolor en el sistema nervioso,
+            lo que puede ayudar a reducir el dolor crónico, la inflamación y las molestias en general.</p>
         </div>
       </div>
       <div class="carousel-item cuadro-opaco">
-        <img src="https://www.alnatural.com.mx/sites/default/files/inline-images/cannabis-sun.jpg" class="img-fluid "
+        <img src="../../assets//image//cannabis3.jpg" class="img-fluid "
           alt="..." />
         <div class="carousel-caption abs-center">
-          <h3>Relajación</h3>
-          <p>No es un secreto que la marihuana es un tabú marcado por la sociedad
-            es una practica mal vista, sin embargo ayuda al estres y la
-            relajación de las personas cuando se fuma (cantidas moderadas)</p>
+          <h3>Tratamiento de condiciones médicas específica</h3>
+          <p>En algunos casos, la marihuana se utiliza como parte del tratamiento para ciertas condiciones médicas,
+             como el glaucoma, la esclerosis múltiple, el síndrome de Tourette y la epilepsia refractaria.
+            Los cannabinoides pueden tener propiedades neuroprotectoras y anticonvulsivas que pueden ser beneficiosas en estos casos.</p>
         </div>
       </div>
     </div>
@@ -89,7 +91,7 @@
     </button>
   </div>
   <!-- Esto es la seccion del home donde se muestran los tipos de semillas -->
-  <div class="tittle">
+  <div class="tittle" name="semillas" id="semillas">
     <h1>Conoce algunos tipos de semillas de cannabis</h1>
   </div>
   <div class="caja">
@@ -119,7 +121,7 @@
               <span class="profession">Desarrolladora frontend</span>
             </div>
             <div class="about">
-              <p>Soy una desarrolladora junior</p>
+              <p>Soy una desarrolladora junior frontend con experiencia en vue, react, angular y sus derivadas. Me gusta mucho el desarrollo web y el trabajo colaborativo.</p>
             </div>
           </div>
         </div>
@@ -203,7 +205,7 @@
               <span class="profession">Desarrollador backend</span>
             </div>
             <div class="about">
-              <p>Soy un desarrollador junior</p>
+              <p>Soy un desarrollador junior en backend, estudiante de ingeniería de sistemas con gusto por el desarrollo backend con python y en continuo aprendizaje.</p>
             </div>
           </div>
         </div>
@@ -268,13 +270,29 @@
               <span class="profession">Desarrollador backend</span>
             </div>
             <div class="about">
-              <p>Soy un desarrollador junior</p>
+              <p>Soy un desarrollador junior fullstack, me apasiona mucho el mundo del desarrollo de software y estoy dispuesto aprender cada dia más de este maravilloso mundo</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <br>
+  <br>
+
+  <!-- <div class="containerSeeds">
+    <div class="boxSeed">
+      <div class="imgBox">
+        <img src="https://matillaplant.com/blog-marihuana/wp-content/uploads/2020/04/marihuana-de-colores-verde.jpg" alt="">
+      </div>
+      <div class="contentBox">
+          <h1>Marihuanol
+            <br>
+            <span>La marihuana como uso medicinal se ha utilizado desde muchos paises con el objetivo de calmar el dolor de las enfermades</span>
+          </h1>
+      </div>
+    </div>
+  </div> -->
   <br>
   <app-footer></app-footer>
 </div>
