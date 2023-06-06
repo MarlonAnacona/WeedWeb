@@ -25,6 +25,12 @@ export class ServicesService {
     return this.Http.post(this.url + 'users/person/create/', data);
   }
 
+  getUser(id:any,token:any ){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+
+    return this.Http.get(this.url + 'users/person/'+ id,{headers});
+  }
+
   companyRegister(data: companyRegister) {
     return this.Http.post(this.url + 'users/company/create/ ', data);
   }
@@ -63,8 +69,31 @@ export class ServicesService {
       return this.Http.get(this.url+'/farms/get-farm/',{headers});
   }
 
-  tokenRefresh(token:any){
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
-    return this.Http.post(this.url+'/users/api/token/refresh/', 'Bearer '+ token)
+  tokenRefresh(): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+   const token={
+    refresh: localStorage.getItem('tokenRefresh')
+   }
+    return this.Http.post(this.url+'users/api/token/refresh/',  token, {headers})
   }
+
+  refresacarToken(){
+    this.tokenRefresh().subscribe({ next: (response)=>{
+
+      localStorage.setItem('token',response.access)
+    }})
+  }
+
+  createParcel(body:parcelaCreate){
+
+
+    return this.Http.post(this.url+'farms/create-parcel',body)
+  }
+
+  findAllSeeds(): Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+
+    return this.Http.get(this.url+'seeds/get-seed/',{headers})
+  }
+
 }

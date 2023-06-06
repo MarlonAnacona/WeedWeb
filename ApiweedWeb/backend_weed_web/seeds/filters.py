@@ -1,8 +1,18 @@
 from django_filters import rest_framework as filters
 from .models import Seeds, GrowingInfo
 
+class SeedFilters(filters.FilterSet):
+    seed_id = filters.NumberFilter(field_name="id", lookup_expr="exact")
+    species_name = filters.CharFilter(field_name = "species_name", lookup_expr = "exact")
+    description = filters.CharFilter(field_name = "description", lookup_expr = "contains")
+    cbd = filters.NumberFilter(field_name = "cbd", lookup_expr = "exact")
+    thc = filters.NumberFilter(field_name = "thc", lookup_expr = "exact")
 
-class GrowFilter(filters.filterSet):
+    class Meta:
+        model = Seeds
+        fields = ["seed_id","species_name", "description", "cbd", "thc"]
+
+class GrowFilter(filters.FilterSet):
     CHOICES_DIFICULTY = (('Low', 'Low'), ('Medium low', 'Medium low'), ('Medium', 'Medium'),
                         ('Medium high', 'Medium high'), ('High', 'High'), ('Very high', 'Vey high'))
     seed_id = filters.NumberFilter(field_name="seed_id", lookup_expr="exact")

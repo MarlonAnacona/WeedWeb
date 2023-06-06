@@ -37,7 +37,7 @@
         <button
           class="btn"
           data-bs-toggle="offcanvas"
-          href="#offcanvasExample"
+          (click)="Home()"
           role="button"
           aria-controls="offcanvasExample"
         >
@@ -50,62 +50,77 @@
 
   <div class="register-container">
     <div class="container">
-      <form>
+      <form [formGroup]="forma">
         <h2 class="text-center">Registrarse</h2>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Nombre de empresa</label>
             <input
               type="text"
-              name="name"
+              name="nombreEmpresa"
+              formControlName="nombreEmpresa"
+              [class.is-invalid] = "validacionNombreEmpresa"
               class="form-control"
               [(ngModel)]="companyRegister.name"
               required
             />
+            <small *ngIf="validacionNombreEmpresa" class="text-danger">El nombre es un campo requerido</small>
           </div>
 
           <div class="form-group col-md-12">
             <label>Email</label>
             <input
               type="email"
-              name="email"
+              formControlName="emailEmpresa"
+              [class.is-invalid] = "validacionEmailEmpresa"
+              name="emailEmpresa"
               [(ngModel)]="companyRegister.email"
               class="form-control"
               required
             />
+            <small *ngIf="validacionEmailEmpresa" class="text-danger">Ingrese un email válido</small>
           </div>
 
           <div class="form-group col-md-12">
             <label>Contraseña</label>
             <input
               type="password"
-              name="password"
+              formControlName="passwordEmpresa"
+              [class.is-invalid]="validacionPasswordEmpresa"
+              name="passwordEmpresa"
               [(ngModel)]="companyRegister.password"
               class="form-control"
               required
             />
+            <small *ngIf="validacionPasswordEmpresa" class="text-danger">Ingrese una contraseña válida</small>
           </div>
 
           <div class="form-group col-md-12">
             <label>Nit</label>
             <input
               type="text"
-              name="national_id"
+              formControlName="nit"
+              [class.is-invalid]="validacionNit"
+              name="nit"
               class="form-control"
               [(ngModel)]="companyRegister.NIT"
               required
             />
+            <small *ngIf="validacionNit" class="text-danger">Ingrese un nit válido</small>
           </div>
 
           <div class="form-group col-md-12">
             <label>Número teléfonico</label>
             <input
               type="number"
-              name="phone_number"
+              formControlName="telefonoEmpresa"
+              [class.is.valdid]="validacionTelefonoEmpresa"
+              name="telefonoEmpresa"
               [(ngModel)]="companyRegister.phone_number"
               class="form-control"
               required
             />
+            <small *ngIf="validacionTelefonoEmpresa" class="text-danger">El teléfono es requerido</small>
           </div>
         </div>
         <div class="register-button">

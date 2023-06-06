@@ -1,3 +1,4 @@
+
 nav {
   padding: 10px;
 }
@@ -23,10 +24,14 @@ nav {
 }
 
 .caja{
-  margin-top: 30px;
-  margin-left: 200px;
+  display:grid;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  /* margin-top: 30px;
+  margin-left: auto;
   margin-bottom: 100px;
-  width: auto;
+  width: auto; */
 }
 
 .images{
@@ -43,7 +48,7 @@ nav {
   transition: .5 ease;
 }
 
-.images img:hover{
+.caja .images img:hover{
   cursor: pointer;
   width: 550px;
   opacity: 1;
@@ -52,10 +57,13 @@ nav {
 
 
 .container-fluid {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.bigBox{
+  padding-top: 80px;
 }
 
 .carousel-caption {
@@ -71,7 +79,6 @@ nav {
 
 .carousel-item {
   width: 100%;
-
   height: 100%;
 }
 
@@ -99,7 +106,6 @@ nav {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
   z-index: -1;
 }
 
@@ -145,12 +151,12 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* color oscuro con opacidad */
+  /* background-color: rgba(0, 0, 0, 1); */
 }
 
-.box:hover:before {
+/* .box:hover:before {
   opacity: 1;
-}
+} */
 /* Estilos para el contenido del div */
 .cuadro-opaco p {
   color: white;
@@ -163,7 +169,6 @@ nav {
   width: 100%;
   text-align: center;
   line-height: 24px;
-  background-color: #424143;
 }
 
 .tittle h1{
@@ -171,7 +176,7 @@ nav {
   font-weight: 700;
   padding-top: 70px;
   padding-bottom: 23px;
-  background: #fff;
+  background: #000000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -180,20 +185,14 @@ nav {
   width: 100%;
   text-align: center;
   line-height: 24px;
-  background-color: #424143;
 }
-
-/* .back{
-  width: 20px;
-  background-color: #424143;
-} */
 
 .tittle2 h1{
   font-size: 35px;
   font-weight: 700;
   padding-top: 70px;
   padding-bottom: 23px;
-  background: #fff;
+  background: #000000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -236,18 +235,6 @@ nav {
   z-index: 100;
 }
 
-/* .swiper{
-  width: 950px;
-} */
-
-/* section {
-  position: relative;
-  width: 450%;
-  height: 1075px;
-  display: flex;
-  align-items: center;
-} */
-
 section .card .image{
   height: 140px;
   width: 140px;
@@ -281,6 +268,12 @@ section .card .image img{
   background: linear-gradient(106.32deg, #006602 14.23%, rgba(255,25,25,0) 139.97%);
 }
 
+.abs-center {
+  display:grid;
+  min-height: 20vh;
+  margin-bottom: 12%;
+}
+
 .box3 {
   position: absolute;
   width: 100%;
@@ -306,6 +299,46 @@ section .card .about{
   display: flex;
   text-align: center;
   color: #444;
-  margin-top: 45px;
+  margin-top: 30px;
   margin-bottom: 5px;
+}
+
+.containerSeeds{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+ .boxSeed{
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  margin: 3rem;
+}
+
+.boxSeed:hover .imgBox{
+  transform: translate(-1.5rem, -1.5rem);
+}
+
+.boxSeed:hover .contentBox{
+  transform: translate(3.5rem, 3.5rem);
+}
+
+.imgBox{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
+.imgBox img{
+  width: 20rem;
+  height: 20rem;
+  resize: cover;
+  object-fit: cover;
 }

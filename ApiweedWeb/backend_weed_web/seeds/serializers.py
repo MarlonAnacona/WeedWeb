@@ -41,6 +41,7 @@ class SeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seeds
         fields = [
+            "id",
             "species_name",
             "description",
             "cbd",

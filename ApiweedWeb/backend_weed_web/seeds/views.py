@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import GrowingInfoSerializer,SeedSerializer
 from .models import Seeds, GrowingInfo
 from .permissions import isOwnerPermissions
+from .filters import SeedFilters
 
 # Create your views here.
 
@@ -37,3 +38,8 @@ class RetriveSeedOwnInfo(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated,isOwnerPermissions]
     lookup_field = 'pk'
 
+class SeedListAPIView(generics.ListAPIView):
+    serializer_class = SeedSerializer
+    queryset = Seeds.objects.all()
+    filterset_class = SeedFilters
+    permission_classes = [permissions.IsAuthenticated, isOwnerPermissions]

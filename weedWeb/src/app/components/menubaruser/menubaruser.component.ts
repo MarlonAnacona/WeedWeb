@@ -5,8 +5,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './menubaruser.component.html',
   styleUrls: ['./menubaruser.component.css'],
 })
-export class MenubaruserComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+export class MenubaruserComponent implements OnInit {
+
+  userName: string|null="";
+
+  constructor() {
+    if(localStorage.getItem('userName')){
+      this.userName = localStorage.getItem('userName');
+    }
+
+  }
+
+  ngOnInit(): void {
+
+  }
 }

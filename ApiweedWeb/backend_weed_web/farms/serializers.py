@@ -87,6 +87,7 @@ class ParcelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parcel
         fields = [
+            "id",
             "farm_id",
             "seed_id",
             "width",
@@ -96,6 +97,7 @@ class ParcelSerializer(serializers.ModelSerializer):
         ]
 
         extra_kwargs = {
+            'id': {'read_only': True},
             "farm_id":{"required" : True},
             "seed_id":{"required" : True},
             "date_creation_parcel":{"read_only" : True}
