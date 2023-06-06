@@ -15,18 +15,22 @@ export interface farmCreate {
 }
 
 export interface parcelaCreate {
-  width?: number;
-  length?: number;
-  crop_modality: string;
+  farm_id: number,
+  seed_id: number,
+  width: number,
+  length: number,
+  crop_modality: string
+
 }
 
 export interface farm {
-  id?: string;
+  user_id?: string;
   farm_name: string;
   latitude?: number;
   longitude?: number;
   create_date?: string;
 }
+
 
 export interface parcela {
   id?: string;
@@ -36,6 +40,7 @@ export interface parcela {
   crop_modality?: string;
   create_date?: string;
 }
+
 
 export interface user {
   firstName: string;
@@ -57,4 +62,12 @@ export interface companyRegister {
 export interface userLogin {
   email: string;
   password: string;
+}
+
+export interface seed{
+  id: number;
+  description:string;
+  cbd:number;
+  thc:number;
+  species_name:string;
 }

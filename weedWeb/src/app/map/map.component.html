@@ -76,8 +76,8 @@
             <th pSortableColumn="date_creation_farm">
               Fecha de creación <p-sortIcon field="fechaCreacion"></p-sortIcon>
             </th>
-            <th>Información</th>
-            <th></th>
+            <th>Agregar parcela</th>
+            <th>Ubicación </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product_farm>
@@ -88,6 +88,13 @@
             <td>{{ product_farm.farm_name }}</td>
             <td>{{ product_farm.date_creation_farm }}</td>
             <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-plus"
+                class="p-button-rounded p-button-success mr-2"
+                (click)="showCreatFarm(product_farm.id)"
+              ></button>
             </td>
             <td>
               <button
@@ -108,6 +115,60 @@
           </div>
         </ng-template>
       </p-table>
+      <p-dialog
+
+      header="Creación de parcela"
+      [(visible)]="visibleCreateFarm"
+      [style]="{ width: '50vw' }"
+      [modal]="true"
+      class="model"
+      styleClass="p-fluid"
+      [baseZIndex]="999"
+      >
+      <form (ngSubmit)="onSubmit()">
+        <div>
+          <label for="farmId">Farm ID:</label>
+          <input type="number" id="farmId" name="farmId" [(ngModel)]="farmId" required [disabled]="true">
+        </div>
+
+        <div>
+          <label for="seedName">Seed Name:</label>
+          <select id="seedName" name="seedName" [(ngModel)]="seedName" (ngModelChange)="onSeedNameChange()" required>
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let option of seedOptions" [value]="option.species_name">{{ option.species_name }}</option>
+          </select>
+        </div>
+
+        <div *ngIf="selectedOption">
+          <h3>Información:</h3>
+          <p>Descripción: {{ selectedOption.description }}</p>
+          <p>CBD: {{ selectedOption.cbd }}</p>
+          <p>THC: {{ selectedOption.thc }}</p>
+        </div>
+
+
+        <div>
+          <label for="width">Width:</label>
+          <input type="number" id="width" name="width" [(ngModel)]="width" required>
+        </div>
+
+        <div>
+          <label for="length">Length:</label>
+          <input type="number" id="length" name="length" [(ngModel)]="length" required>
+        </div>
+
+        <label for="cropModality">cropModality:</label>
+        <select id="cropModality" name="cropModality" [(ngModel)]="cropModality"  required>
+          <option value="">Seleccione una opción</option>
+          <option value="Indoor">indoor</option>
+          <option value="Outdoor">outdoor</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+      </p-dialog>
+
       <!--nombre_variable despues en type script -->
        <p-dialog header="Información granjas - {{product_farm}} "
       [(visible)]="visibleA"
@@ -197,6 +258,7 @@
         </ng-template>
       </p-table>
       </p-dialog>
+
     </div>
   </p-card>
 </div>

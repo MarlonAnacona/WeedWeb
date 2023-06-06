@@ -1,6 +1,7 @@
 import { tileLayer } from 'leaflet';
 import Chart from 'chart.js/auto';
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from '../services/services.service';
 // core components
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   public chart: any;
 
+  constructor(private service:ServicesService){
+
+  }
   ngOnInit() {
+    this.service.refresacarToken()
     this.createChart();
   }
 

@@ -18,6 +18,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   selectedParcelas: parcela[] = [];
   token= localStorage.getItem('token')
   public visibleA: Boolean = false;
+  public visibleCreateFarm: Boolean = false;
   apiLoaded!: Observable<boolean>;
   autocomplete!: google.maps.places.Autocomplete;
   checked: boolean = false;
@@ -32,6 +33,17 @@ export class MapComponent implements OnInit, AfterViewInit {
     lng: 12,
   };
 
+  farmId: number=0;
+  seedId: number=0;
+  width: number=0;
+  length: number=0;
+  cropModality: string="";
+  seedOptions:any[]=[];
+  seedName: string ="";
+  showProductId:number=-1;
+
+  parcelaCreate:any;
+  idSeedSet:number=-1;
   constructor(private services: ServicesService,
     private messagerService: MessageService,
     private confirmationService: ConfirmationService,
@@ -40,6 +52,16 @@ export class MapComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.services.refresacarToken();
+    this.services.findAllSeeds().subscribe({
+      next:(response)=>{
+        console.log(response)
+        this.seedOptions=response;
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
     const inputElement = document.getElementById(
       'inputPlaces'
     ) as HTMLInputElement;
@@ -52,7 +74,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     this.services.getFarm(this.token).subscribe({
       next:(data)=>{
-        console.log(data)
         this.product_farm=data;
 
       },
@@ -63,19 +84,14 @@ export class MapComponent implements OnInit, AfterViewInit {
     })
   }
 
-//   const refresh=localStorage.getItem('tokenRefresh')
-//   if(refresh){
+  }
+
+  selectedOption: any;
 
 
-//   this.services.tokenRefresh(refresh).subscribe({
-//     next:(response) =>{
-//       localStorage.setItem('token',response.access)
-//     },
-//     error:(err)=>{
-
-//     }
-//   })
-// }
+  onSeedNameChange() {
+    this.selectedOption = this.seedOptions.find(option => option.species_name === this.seedName);
+    this.idSeedSet=this.selectedOption.id
   }
 
   ngAfterViewInit(): void {
@@ -84,6 +100,12 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   showModalFarm() {
     this.visibleA = true;
+
+  }
+  showCreatFarm(id:number) {
+    this.farmId=id
+
+    this.visibleCreateFarm = true;
 
   }
 
@@ -152,5 +174,41 @@ export class MapComponent implements OnInit, AfterViewInit {
       position: location,
       map: this.map,
     });
+  }
+
+
+  createParcela(data:any) {
+
+    this.services.createParcela(data).subscribe({
+      next: (response) => {
+        this.messagerService.add({
+          severity: 'success',
+          summary: 'Movimiento exitoso',
+          detail: 'Has logrado crear tu granja ',
+        });
+
+      },
+      error: (err) => {
+        this.messagerService.add({
+          severity: 'error',
+          summary: 'Hubo un error ',
+          detail: 'No se ha logrado crear tu granja ',
+        });
+      },
+    });
+  }
+
+  onSubmit() {
+
+    const data = {
+      farm_id: this.farmId,
+      seed_id: this.idSeedSet,
+      width: this.width,
+      length: this.length,
+      crop_modality: this.cropModality
+    };
+
+
+   this.createParcela(data)
   }
 }
