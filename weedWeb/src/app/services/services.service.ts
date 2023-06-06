@@ -87,7 +87,7 @@ export class ServicesService {
   createParcel(body:parcelaCreate){
 
 
-    return this.Http.post(this.url+'farms/create-parcel',body)
+    return this.Http.post(this.url+'farms/create-parcel/',body)
   }
 
   findAllSeeds(): Observable<any>{
