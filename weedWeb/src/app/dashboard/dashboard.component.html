@@ -11,24 +11,18 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">
-                    Traffic
+                    Escoja la granja
                   </h5>
                   <span class="h2 font-weight-bold mb-0">350,897</span>
                 </div>
-                <div class="col-auto">
-                  <div
-                    class="icon icon-shape bg-danger text-white rounded-circle shadow"
-                  >
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
+                <div>
+                  <label for="seedName">Granja:</label>
+                  <select id="seedName" name="seedName" [(ngModel)]="farmName"  required>
+                    <option value="">Seleccione una opción</option>
+                    <option *ngFor="let option of seedOptions" [value]="option.species_name">{{ option.species_name }}</option>
+                  </select>
                 </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"
-                  ><i class="fa fa-arrow-up"></i> 3.48%</span
-                >
-                <span class="text-nowrap">Since last month</span>
-              </p>
+
             </div>
           </div>
         </div>
@@ -125,7 +119,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-black text-light ls-1 mb-1">Datos</h6>
-              <h2 class="text-black mb-0">Precipitación</h2>
+              <h2 class="text-black mb-0">Temperatura</h2>
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
@@ -160,7 +154,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h2 class="mb-0">Total orders</h2>
+              <h2 class="mb-0">Precipitación</h2>
             </div>
           </div>
         </div>

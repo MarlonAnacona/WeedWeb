@@ -10,13 +10,30 @@ import { ServicesService } from '../services/services.service';
 })
 export class DashboardComponent implements OnInit {
   public chart: any;
+  long:number=-106.346771000;
+  latitude:number=56.13036600;
+
+  days:any[]=[];
+  temperature:any[]=[];
+  precipitation:any[]=[];
+  seedOptions:any[]=[];
+  farmName: string ="";
 
   constructor(private service:ServicesService){
 
   }
   ngOnInit() {
     this.service.refresacarToken()
-    this.createChart();
+    this.service.getWheaterApi(this.latitude,this.long).subscribe({
+      next: (response)=>{
+        this.days=response.hourly.time
+        this.temperature=response.hourly.temperature_2m
+        this.precipitation=response.hourly.precipitation_probability
+        this.createChart();
+      }, error: (err)=>{
+
+      }
+    })
   }
 
   createChart() {
@@ -70,38 +87,16 @@ export class DashboardComponent implements OnInit {
       data: {
         // values on X-Axis
         labels: [
-          '2022-05-10',
-          '2022-05-11',
-          '2022-05-12',
-          '2022-05-13',
-          '2022-05-14',
-          '2022-05-15',
-          '2022-05-16',
-          '2022-05-17',
-          '2022-05-18',
+          ...this.days
         ],
         datasets: [
           {
             label: 'Perfomance',
 
-            data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
-            // borderColor: '#228B22',
-            // borderWidth: 5,
-            // pointBackgroundColor: '#228B22',
-            // pointHitRadius: 20,
-            // pointBorderColor: 'transparent',
-            // tension: 0.4,
+            data: [...this.temperature],
+
           },
-          // {
-          //   label: 'Profit',
-          //   data: ['542', '542', '536', '327', '17', '0.00', '538', '541'],
-          //   borderColor: '#8f0065',
-          //   borderWidth: 5,
-          //   pointBackgroundColor: '#8f0065',
-          //   pointBorderColor: 'transparent',
-          //   pointHitRadius: 20,
-          //   tension: 0.4,
-          // },
+
         ],
       },
 
@@ -171,26 +166,18 @@ export class DashboardComponent implements OnInit {
     });
 
     this.chart = new Chart('temperatura', {
-      type: 'bar', //this denotes tha type of chart
+      type: 'line', //this denotes tha type of chart
 
       data: {
         // values on X-Axis
         labels: [
-          '2022-05-10',
-          '2022-05-11',
-          '2022-05-12',
-          '2022-05-13',
-          '2022-05-14',
-          '2022-05-15',
-          '2022-05-16',
-          '2022-05-17',
-          '2022-05-18',
+          ...this.days
         ],
         datasets: [
           {
             label: 'Perfomance',
 
-            data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
+            data: [...this.precipitation],
           },
         ],
       },

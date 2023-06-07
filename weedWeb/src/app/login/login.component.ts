@@ -48,17 +48,25 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         localStorage.setItem('token', response.access);
         localStorage.setItem('tokenRefresh', response.refresh);
-        this.route.navigate(['../CreateFarm']);
+        this.tokenObject = jwt_decode(response.access)
 
-         // Decodificar el token utilizando atob()
-         this.tokenObject = jwt_decode(response.access)
+          this.serivce.getUser(this.tokenObject.user_id).subscribe({
+            next: (data) => {
 
-         localStorage.setItem('userName',this.tokenObject.email)
-             this.message.add({
-               severity: 'success',
-               summary: 'Bienvenido ',
-               detail: ' ',
-             });
+              this.route.navigate(['../CreateFarm']);
+
+              // Decodificar el token utilizando atob()
+
+              localStorage.setItem('userName',this.tokenObject.email)
+                  this.message.add({
+                    severity: 'success',
+                    summary: 'Bienvenido ',
+                    detail: ' ',
+                  });            }, error : (err)=>{
+              console.log(err)
+            }
+
+          })
 
 
       },

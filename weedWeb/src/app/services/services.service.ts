@@ -25,10 +25,10 @@ export class ServicesService {
     return this.Http.post(this.url + 'users/person/create/', data);
   }
 
-  getUser(id:any,token:any ){
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+  getUser(id:any ){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
 
-    return this.Http.get(this.url + 'users/person/'+ id,{headers});
+    return this.Http.get(this.url + 'users/person/'+ id+'/',{headers});
   }
 
   companyRegister(data: companyRegister) {
@@ -96,4 +96,8 @@ export class ServicesService {
     return this.Http.get(this.url+'seeds/get-seed/',{headers})
   }
 
+
+  getWheaterApi(latitude:number, longitude:number): Observable<any>{
+    return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain')
+  }
 }
