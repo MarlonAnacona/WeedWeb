@@ -53,16 +53,17 @@ export class LoginComponent implements OnInit {
           this.serivce.getUser(this.tokenObject.user_id).subscribe({
             next: (data) => {
 
-              this.route.navigate(['../CreateFarm']);
 
-              // Decodificar el token utilizando atob()
-
-              localStorage.setItem('userName',this.tokenObject.email)
+              localStorage.setItem('userName',data.first_name+' '+ data.last_name)
                   this.message.add({
                     severity: 'success',
                     summary: 'Bienvenido ',
                     detail: ' ',
-                  });            }, error : (err)=>{
+                  });
+                  this.route.navigate(['../CreateFarm']);
+
+                },
+                  error : (err)=>{
               console.log(err)
             }
 

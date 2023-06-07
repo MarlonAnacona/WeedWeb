@@ -25,10 +25,10 @@ export class ServicesService {
     return this.Http.post(this.url + 'users/person/create/', data);
   }
 
-  getUser(id:any ){
+  getUser(id:any ): Observable<any>{
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
 
-    return this.Http.get(this.url + 'users/person/'+ id+'/',{headers});
+    return this.Http.get(this.url + 'users/person/'+ id,{headers});
   }
 
   companyRegister(data: companyRegister) {
@@ -63,9 +63,10 @@ export class ServicesService {
     }
   }
 
-  getFarm(token:any){
+  getFarm(token:any) :Observable<any>{
 
-      const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+
+      const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
       return this.Http.get(this.url+'/farms/get-farm/',{headers});
   }
 

@@ -10,20 +10,36 @@ import { ServicesService } from '../services/services.service';
 })
 export class DashboardComponent implements OnInit {
   public chart: any;
+  public chart1: any;
   long:number=-106.346771000;
   latitude:number=56.13036600;
 
   days:any[]=[];
   temperature:any[]=[];
   precipitation:any[]=[];
-  seedOptions:any[]=[];
+  farmsOptions:any[]=[];
   farmName: string ="";
+  selectFarmOption:any;
 
   constructor(private service:ServicesService){
 
   }
   ngOnInit() {
     this.service.refresacarToken()
+    this.service.getFarm(localStorage.getItem('token')).subscribe({
+      next:(data)=>{
+        this.farmsOptions=data;
+
+      },
+      error:(err)=>{
+      console.log(err)
+      }
+
+    })
+
+  }
+
+  getDaysWheater(){
     this.service.getWheaterApi(this.latitude,this.long).subscribe({
       next: (response)=>{
         this.days=response.hourly.time
@@ -35,7 +51,6 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
-
   createChart() {
     var mode = 'light';
     var fonts = {
@@ -81,6 +96,10 @@ export class DashboardComponent implements OnInit {
         ctx.restore();
       },
     };
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
     this.chart = new Chart('MyChart', {
       type: 'line', //this denotes tha type of chart
 
@@ -165,7 +184,10 @@ export class DashboardComponent implements OnInit {
       plugins: [plugin],
     });
 
-    this.chart = new Chart('temperatura', {
+    if (this.chart1) {
+      this.chart1.destroy();
+    }
+    this.chart1 = new Chart('temperatura', {
       type: 'line', //this denotes tha type of chart
 
       data: {
@@ -247,4 +269,15 @@ export class DashboardComponent implements OnInit {
       plugins: [plugin],
     });
   }
+
+
+
+  onSeedNameChange() {
+    this.selectFarmOption = this.farmsOptions.find(option => option.farm_name === this.farmName);
+    console.log(this.selectFarmOption)
+    this.long=this.selectFarmOption.longitude
+    this.latitude=this.selectFarmOption.latitude
+    this.getDaysWheater()
+  }
+
 }
