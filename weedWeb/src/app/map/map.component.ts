@@ -84,6 +84,14 @@ export class MapComponent implements OnInit, AfterViewInit {
     })
   }
 
+  this.services.getParcel(1).subscribe({
+    next: (response)=>{
+      console.log(response)
+    }, error:(err)=>{
+      console.log(err)
+    }
+  })
+
   }
 
   selectedOption: any;
