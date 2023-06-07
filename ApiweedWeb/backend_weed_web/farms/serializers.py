@@ -107,7 +107,7 @@ class ParcelSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         farm_id = validated_data.get('farm_id')
-        farm = Farm.objects.get(id=farm_id)
+        farm = Farm.objects.get(id=farm_id.id)
         number_of_parcels = farm.number_of_parcel
 
         if number_of_parcels < 11:
