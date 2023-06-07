@@ -41,6 +41,11 @@ class ParcelUpdateAPIView(generics.UpdateAPIView):
 
 
 class FarmListAPIView(generics.ListAPIView):
+    def get_queryset(self):
+        my_user = self.request.user
+        queryset = Farm.objects.filter(user_id = my_user.id)
+        return queryset
+        
     serializer_class = FarmSerializer
     queryset = Farm.objects.all()
     filterset_class = FarmFilters
