@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public name: any;
   public password: any;
   tokenObject: any;
+  public visibleA: Boolean = false;
   constructor(
     private route: Router,
     private serivce: ServicesService,
@@ -32,6 +33,17 @@ export class LoginComponent implements OnInit {
 
   home() {
     this.route.navigate(['../Home']);
+  }
+
+  showModal() {
+    this.visibleA = true;
+  }
+  registerCompany() {
+    this.route.navigate(['../RegisterCompany']);
+  }
+
+  registerUser() {
+    this.route.navigate(['../Register']);
   }
 
   /**
