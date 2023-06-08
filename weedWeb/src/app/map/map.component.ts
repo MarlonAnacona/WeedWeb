@@ -44,6 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   seedOptions: any[] = [];
   seedName: string = "";
   showProductId: number = -1;
+  editVisibleParcel:boolean=false;
 
   parcelaCreate: any;
   idSeedSet: number = -1;
@@ -104,6 +105,19 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.idSeedSet = this.selectedOption.id
   }
 
+  showParcelEdit(id:any){
+    this.editVisibleParcel=true
+//Llamar servicio de traer parcela por id y mandar al html
+    this.services.getParcel(id).subscribe({
+      next: (response)=>{
+        //data del user que seria igual a response
+      },
+      error: (err)=>{
+
+      }
+    })
+
+  }
   ngAfterViewInit(): void {
 
   }

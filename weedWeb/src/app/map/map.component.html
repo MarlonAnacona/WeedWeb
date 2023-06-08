@@ -183,6 +183,9 @@
               <th pSortableColumn="create_date">
                 Fecha de creación <p-sortIcon field="create_date"></p-sortIcon>
               </th>
+              <th pSortableColumn="info">
+                Editar/Ver <p-sortIcon field="create_date"></p-sortIcon>
+              </th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-produt_parcel>
@@ -195,6 +198,11 @@
               <td>{{ produt_parcel.length }}</td>
               <td>{{ getTranslatedCropModality(produt_parcel.crop_modality) }}</td>
               <td>{{ produt_parcel.date_creation_parcel}}</td>
+              <td>
+                <button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-success mr-2"
+                  [value]="produt_parcel" (click)="showParcelEdit(produt_parcel.id)"
+                  (click)="parcel(produt_parcel.id)"></button>
+              </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">
@@ -203,6 +211,12 @@
             </div>
           </ng-template>
         </p-table>
+      </p-dialog>
+      <p-dialog [(visible)]="editVisibleParcel" [style]="{ width: '50vw' }" [modal]="true" class="model"
+      styleClass="p-fluid" [baseZIndex]="999">
+
+<!-- Crear dialog para editar parcelas -->
+
       </p-dialog>
     </div>
   </p-card>
