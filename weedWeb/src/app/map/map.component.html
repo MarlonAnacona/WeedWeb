@@ -1,67 +1,38 @@
 <menu-bar-user></menu-bar-user>
 <div id="Principal" style="display: flexbox">
-  <div id="textoInicial" style="text-align: center">Mapa de granjas</div>
-  <p-card
-    [style]="{
+  <div id="textoInicial" style="text-align: center">Información de granjas</div>
+  <p-card [style]="{
       display: 'flexbox',
       width: '1600px',
       height: '700px',
       margin: '0 auto'
-    }"
-  >
+    }">
 
-  <google-map
-
-  id="map"
-  class="card"
-  height="540px"
-  width="540px"
-  [center]="position"
-  [zoom]="zoom"
-  (mapClick)="moveMap($event)"
-  (mapMousemove)="move($event)"
-  ><map-marker
-    [position]="position"
-    [label]="mensaje"
-    [title]="busquedad"
-  ></map-marker>
-</google-map>
-    <p
-      style="
+    <google-map id="map" class="card" height="540px" width="540px" [center]="position" [zoom]="zoom"
+      (mapClick)="moveMap($event)" (mapMousemove)="move($event)"><map-marker [position]="position" [label]="mensaje"
+        [title]="busquedad"></map-marker>
+    </google-map>
+    <p style="
         font-size: 25px;
         color: rgb(0, 0, 0);
         text-align: center;
         display: flexbox;
-      "
-    >
-      Aquí podras observar tus granjas y las agregar nuevas parcelas
+      ">
+      Aquí podras observar tus granjas y agregar nuevas parcelas
     </p>
-
+    <!-- Card principal -->
     <div class="card">
-      <p-table
-        #dt
-        [value]="product_farm"
-        [rows]="10"
-        [paginator]="true"
-        [globalFilterFields]="['farm_name', 'date_creation_farm']"
-        responsiveLayout="scroll"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        [(selection)]="selected_farm"
-        [rowHover]="true"
-        dataKey="Nombre"
+      <p-table #dt [value]="product_farm" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['farm_name', 'date_creation_farm']" responsiveLayout="scroll"
+        [tableStyle]="{ 'min-width': '50rem' }" [(selection)]="selected_farm" [rowHover]="true" dataKey="Nombre"
         currentPageReportTemplate="Mostrando  {first} pagina de {last}. Datos totales {totalRecords} "
-        [showCurrentPageReport]="true"
-      >
+        [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-between">
             <span class="p-input-icon-right">
               <i class="pi pi-search"></i>
-              <input
-                pInputText
-                type="text"
-                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                placeholder="Buscar..."
-              />
+              <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                placeholder="Buscar..." />
             </span>
           </div>
         </ng-template>
@@ -89,34 +60,17 @@
             <td>{{ product_farm.farm_name }}</td>
             <td>{{ product_farm.date_creation_farm }}</td>
             <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-plus"
-                class="p-button-rounded p-button-success mr-2"
-                (click)="showCreatParcel(product_farm.id)"
-              ></button>
+              <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success mr-2"
+                (click)="showCreatParcel(product_farm.id)"></button>
             </td>
             <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-map-marker"
-                class="p-button-rounded p-button-success mr-2"
-                (click)="pointMark(product_farm.latitude,product_farm.longitude)"
-                [value]="product_farm"
-              ></button>
+              <button pButton pRipple icon="pi pi-map-marker" class="p-button-rounded p-button-success mr-2"
+                (click)="pointMark(product_farm.latitude,product_farm.longitude)" [value]="product_farm"></button>
             </td>
             <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-eye"
-                class="p-button-rounded p-button-success mr-2"
-                [value]="product_farm"
-                (click)="showParcel(product_farm.id,product_farm.farm_name)"
-                (click)="parcel(product_farm.id)"
-              ></button>
+              <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success mr-2"
+                [value]="product_farm" (click)="showParcel(product_farm.id,product_farm.farm_name)"
+                (click)="parcel(product_farm.id)"></button>
             </td>
           </tr>
         </ng-template>
@@ -129,147 +83,126 @@
 
       <!-- Crear una parcela -->
       <div class="parcela">
-      <p-dialog
-      [(visible)]="visibleCreateFarm"
-      [style]="{ width: '50vw' }"
-      [modal]="true"
-      class="model"
-      styleClass="p-fluid"
-      [baseZIndex]="999"
-      >
-      <h2 class="text-center">Crea tus parcelas</h2>
-      <form (ngSubmit)="onSubmit()">
-        <div class="farmID">
-          <label for="farmId">Identificador de la granja:</label>
-          <input type="number" id="farmId" name="farmId" [(ngModel)]="farmId" required [disabled]="true">
-        </div>
-        <br>
+        <p-dialog [(visible)]="visibleCreateFarm" [style]="{ width: '50vw' }" [modal]="true" class="model"
+          styleClass="p-fluid" [baseZIndex]="999">
+          <h2 class="text-center">Crea tus parcelas</h2>
+          <br />
+          <form (ngSubmit)="onSubmit()">
+            <div class="farmID">
+              <label class="label">Esta es tu granja número:&nbsp;</label>
+              <span class="value">{{ farmId }}</span>
+            </div>
+            <br>
 
-        <div class="seedName">
-          <label for="seedName">Nombre de la semilla:</label>
-          <select id="seedName" name="seedName" [(ngModel)]="seedName" (ngModelChange)="onSeedNameChange()" required>
-            <option value="">Seleccione una opción</option>
-            <option *ngFor="let option of seedOptions" [value]="option.species_name">{{ option.species_name }}</option>
-          </select>
-        </div>
+            <div class="seedName">
+              <label for="seedName">Nombre de la semilla:&nbsp;</label>
+              <select id="seedName" name="seedName" [(ngModel)]="seedName" (ngModelChange)="onSeedNameChange()"
+                required>
+                <option value="">Seleccione una opción</option>
+                <option *ngFor="let option of seedOptions" [value]="option.species_name">{{ option.species_name }}
+                </option>
+              </select>
+            </div>
 
-        <br>
-        <div class="texInformation">
-        <div class="text-center" *ngIf="selectedOption">
-          <h3>Información:</h3>
-          <p>Descripción: {{ selectedOption.description }}</p>
-          <p>CBD: {{ selectedOption.cbd }} %</p>
-          <p>THC: {{ selectedOption.thc }} %</p>
-        </div>
+            <br>
+            <div class="texInformation">
+              <div class="text-center" *ngIf="selectedOption">
+                <h3>Información:</h3>
+                <p>Descripción: {{ selectedOption.description }}</p>
+                <p>CBD: {{ selectedOption.cbd }} %</p>
+                <p>THC: {{ selectedOption.thc }} %</p>
+              </div>
+            </div>
+
+            <div class="width">
+              <label for="width">Ancho:&nbsp;</label>
+              <input type="number" id="width" name="width" [(ngModel)]="width" required>
+            </div>
+            <br>
+
+            <div class="length">
+              <label for="length">Largo:&nbsp;</label>
+              <input type="number" id="length" name="length" [(ngModel)]="length" required>
+            </div>
+            <br>
+
+            <div class="cropModality">
+              <label for="cropModality">Modalidad de cultivo:&nbsp;</label>
+
+              <select id="cropModality" name="cropModality" [(ngModel)]="cropModality" required>
+                <option class="dropdown-item" value="">Seleccione una opción</option>
+                <option class="dropdown-item" value="Indoor">Interior</option>
+                <option class="dropdown-item" value="Outdoor">Exterior</option>
+              </select>
+            </div>
+
+            <br>
+            <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+          </form>
+        </p-dialog>
       </div>
 
-        <div class="width">
-          <label for="width">Ancho: </label>
-          <input type="number" id="width" name="width" [(ngModel)]="width" required>
-        </div>
-        <br>
 
-        <div class="length">
-          <label for="length">Altura: </label>
-          <input type="number" id="length" name="length" [(ngModel)]="length" required>
-        </div>
-        <br>
-
-        <div class="cropModality">
-        <label for="cropModality">Modalidad de cultivo:</label>
-
-        <select id="cropModality" name="cropModality" [(ngModel)]="cropModality"  required>
-          <option class="dropdown-item" value="">Seleccione una opción</option>
-          <option class="dropdown-item" value="Indoor">Interior</option>
-          <option class="dropdown-item" value="Outdoor">Exterior</option>
-        </select>
-      </div>
-
-      <br>
-        <button class="btn btn-primary btn-block" type="submit">Enviar</button>
-      </form>
-      </p-dialog>
-    </div>
-
-
-    <!-- Informacion de parcelas -->
+      <!-- Informacion de parcelas -->
       <!--nombre_variable despues en type script -->
-      <p-dialog
-      [(visible)]="visibleParcel"
-      [style]="{ width: '50vw' }"
-      [modal]="true"
-      class="model"
-      styleClass="p-fluid"
-      [baseZIndex]="999"
-      >
-      <h2 class="text-center">Informacion de {{nombreGranja}}</h2>
-      <p-table
-        #dt
-        [value]="produt_parcel"
-        [rows]="10"
-        [paginator]="true"
-        [globalFilterFields]="['id', 'width', 'length', 'crop_modality', 'create_date']"
-        responsiveLayout="scroll"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        [(selection)]="selectedParcelas"
-        [rowHover]="true"
-        dataKey="id"
-        currentPageReportTemplate="Mostrando  {first} pagina de {last}. Datos totales {totalRecords} "
-        [showCurrentPageReport]="true"
-      >
-        <ng-template pTemplate="caption">
-          <div class="flex align-items-center justify-content-between">
-            <span class="p-input-icon-right">
-              <i class="pi pi-search"></i>
-              <input
-                pInputText
-                type="text"
-                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                placeholder="Buscar..."
-              />
-            </span>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-          <tr>
-            <th style="width: 3rem">
-              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
-            <th pSortableColumn="id">
-              Identificación <p-sortIcon field="Id"></p-sortIcon>
-            </th>
-            <th pSortableColumn="width">
-              Ancho <p-sortIcon field="width"></p-sortIcon>
-            </th>
-            <th pSortableColumn="length">
-              Largo <p-sortIcon field="length"></p-sortIcon>
-            </th>
-            <th pSortableColumn="crop_modality">
-              Modalidad de cultivo <p-sortIcon field="crop_modality"></p-sortIcon>
-            </th>
-            <th pSortableColumn="create_date">
-              Fecha de creación <p-sortIcon field="create_date"></p-sortIcon>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-produt_parcel>
-          <tr>
-            <td>
-              <p-tableCheckbox [value]="produt_parcel"></p-tableCheckbox>
-            </td>
-            <td>{{ produt_parcel.id }}</td>
-            <td>{{ produt_parcel.width }}</td>
-            <td>{{ produt_parcel.length }}</td>
-            <td>{{ produt_parcel.crop_modality }}</td>
-            <td>{{ produt_parcel.date_creation_parcel}}</td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-          <div class="flex align-items-center justify-content-between">
-            Tiene en total: {{ produt_parcel ? produt_parcel.length : 0 }} Parcelas.
-          </div>
-        </ng-template>
-      </p-table>
+      <p-dialog [(visible)]="visibleParcel" [style]="{ width: '50vw' }" [modal]="true" class="model"
+        styleClass="p-fluid" [baseZIndex]="999">
+        <h2 class="text-center">Información de {{nombreGranja}}</h2>
+        <br />
+        <p-table #dp [value]="produt_parcel" [rows]="10" [paginator]="true"
+          [globalFilterFields]="['id', 'width', 'length', 'crop_modality', 'create_date']" responsiveLayout="scroll"
+          [tableStyle]="{ 'min-width': '50rem' }" [(selection)]="selectedParcelas" [rowHover]="true" dataKey="id"
+          currentPageReportTemplate="Mostrando  {first} pagina de {last}. Datos totales {totalRecords} "
+          [showCurrentPageReport]="true">
+          <!-- <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+              <span class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dp.filterGlobal($any($event.target).value, 'contains')"
+                  placeholder="Buscar..." />
+              </span>
+            </div>
+          </ng-template> -->
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th pSortableColumn="id">
+                Identificación <p-sortIcon field="Id"></p-sortIcon>
+              </th>
+              <th pSortableColumn="width">
+                Ancho <p-sortIcon field="width"></p-sortIcon>
+              </th>
+              <th pSortableColumn="length">
+                Largo <p-sortIcon field="length"></p-sortIcon>
+              </th>
+              <th pSortableColumn="crop_modality">
+                Modalidad de cultivo <p-sortIcon field="crop_modality"></p-sortIcon>
+              </th>
+              <th pSortableColumn="create_date">
+                Fecha de creación <p-sortIcon field="create_date"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-produt_parcel>
+            <tr>
+              <td>
+                <p-tableCheckbox [value]="produt_parcel"></p-tableCheckbox>
+              </td>
+              <td>{{ produt_parcel.id }}</td>
+              <td>{{ produt_parcel.width }}</td>
+              <td>{{ produt_parcel.length }}</td>
+              <td>{{ getTranslatedCropModality(produt_parcel.crop_modality) }}</td>
+              <td>{{ produt_parcel.date_creation_parcel}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              Tiene en total: {{ produt_parcel ? produt_parcel.length : 0 }} Parcelas.
+            </div>
+          </ng-template>
+        </p-table>
       </p-dialog>
     </div>
   </p-card>

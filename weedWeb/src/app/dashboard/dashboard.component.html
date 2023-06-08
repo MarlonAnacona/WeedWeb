@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-auto">
                   <div>
-                    <label for="seedName">GRANJA:</label>
+                    <label for="seedName">GRANJA:&nbsp;</label>
                     <select id="seedName" name="seedName" [(ngModel)]="farmName" (ngModelChange)="onSeedNameChange()"  required>
                       <option value="">Seleccione una opción</option>
                       <option *ngFor="let option of farmsOptions" [value]="option.farm_name">{{ option.farm_name }}</option>
