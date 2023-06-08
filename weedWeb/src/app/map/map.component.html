@@ -78,6 +78,7 @@
             </th>
             <th>Agregar parcela</th>
             <th>Ubicación </th>
+            <th>Ver parcelas</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product_farm>
@@ -93,7 +94,7 @@
                 pRipple
                 icon="pi pi-plus"
                 class="p-button-rounded p-button-success mr-2"
-                (click)="showCreatFarm(product_farm.id)"
+                (click)="showCreatParcel(product_farm.id)"
               ></button>
             </td>
             <td>
@@ -106,7 +107,17 @@
                 [value]="product_farm"
               ></button>
             </td>
-
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-eye"
+                class="p-button-rounded p-button-success mr-2"
+                [value]="product_farm"
+                (click)="showParcel(product_farm.id,product_farm.farm_name)"
+                (click)="parcel(product_farm.id)"
+              ></button>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -115,6 +126,8 @@
           </div>
         </ng-template>
       </p-table>
+
+      <!-- Crear una parcela -->
       <div class="parcela">
       <p-dialog
       [(visible)]="visibleCreateFarm"
@@ -178,17 +191,18 @@
       </p-dialog>
     </div>
 
+
+    <!-- Informacion de parcelas -->
       <!--nombre_variable despues en type script -->
-       <p-dialog header="Información granjas - {{product_farm}} "
-      [(visible)]="visibleA"
+      <p-dialog
+      [(visible)]="visibleParcel"
       [style]="{ width: '50vw' }"
       [modal]="true"
       class="model"
       styleClass="p-fluid"
       [baseZIndex]="999"
-
       >
-      <!-- <h2>{{product_farm}}</h2> -->
+      <h2 class="text-center">Informacion de {{nombreGranja}}</h2>
       <p-table
         #dt
         [value]="produt_parcel"
@@ -248,22 +262,13 @@
             <td>{{ produt_parcel.width }}</td>
             <td>{{ produt_parcel.length }}</td>
             <td>{{ produt_parcel.crop_modality }}</td>
-            <td>{{ produt_parcel.create_date }}</td>
+            <td>{{ produt_parcel.date_creation_parcel}}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
           <div class="flex align-items-center justify-content-between">
             Tiene en total: {{ produt_parcel ? produt_parcel.length : 0 }} Parcelas.
           </div>
-        </ng-template>
-        <ng-template pTemplate="summary">
-          <button
-          pButton
-          pRipple
-          label="Nueva parcela"
-          icon="pi pi-plus"
-          class="p-button-success mr-2"
-        ></button>
         </ng-template>
       </p-table>
       </p-dialog>

@@ -1,3 +1,4 @@
+import { farmCreate } from './../model/interfaces';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MapGeocoder } from '@angular/google-maps';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -18,8 +19,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   selectedParcelas: parcela[] = [];
   token= localStorage.getItem('token')
   public visibleA: Boolean = false;
+  public visibleParcel: Boolean = false;
   public visibleCreateFarm: Boolean = false;
   apiLoaded!: Observable<boolean>;
+  nombreGranja: string = '';
   autocomplete!: google.maps.places.Autocomplete;
   checked: boolean = false;
   address: string = '';
@@ -75,7 +78,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.services.getFarm(this.token).subscribe({
       next:(data)=>{
         this.product_farm=data;
-
       },
       error:(err)=>{
       console.log(err)
@@ -84,9 +86,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     })
   }
 
-  this.services.getParcel(1).subscribe({
-    next: (response)=>{
-      console.log(response)
+  this.services.getParcel(this.product_farm.id).subscribe({
+    next:(data)=>{
+      this.produt_parcel=data
     }, error:(err)=>{
       console.log(err)
     }
@@ -110,18 +112,30 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.visibleA = true;
 
   }
-  showCreatFarm(id:number) {
+
+  showParcel(id:number,nombre:string){
     this.farmId=id
+    this.nombreGranja  = nombre
+    this.visibleParcel = true;
+  }
+  parcel(id:number){
+    this.services.getParcel(id).subscribe({
+      next:(data)=>{
+        this.produt_parcel=data
+        console.log(this.produt_parcel)
+      }, error:(err)=>{
+        console.log(err)
+      }
+    })
+  }
 
+  showCreatParcel(id:number) {
+    this.farmId=id
     this.visibleCreateFarm = true;
-
   }
 
    pointMap(){
-
-
    }
-
 
   zoom = 4;
   moveMap(event: google.maps.MapMouseEvent) {
@@ -215,7 +229,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       length: this.length,
       crop_modality: this.cropModality
     };
-
 
    this.createParcela(data)
   }
