@@ -23,6 +23,13 @@ export interface parcelaCreate {
 
 }
 
+export interface parcelaEdit {
+  seed_id: number,
+  width: number,
+  length: number,
+  crop_modality: string
+}
+
 export interface farm {
   user_id?: string;
   farm_name: string;

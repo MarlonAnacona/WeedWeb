@@ -6,6 +6,7 @@ import {
   userRegister,
   farmCreate,
   parcelaCreate,
+  parcelaEdit,
 } from '../model/interfaces';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
@@ -107,6 +108,10 @@ export class ServicesService {
     return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain&timezone=auto')
   }
 
+  editParcel(body:parcelaEdit){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+    return this.Http.put(this.url+'farms/update-parcel/',body,{headers})
+  }
 
   getWheaterApiOneDay(latitude:number, longitude:number,day:number): Observable<any>{
     return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,rain&forecast_days='+day+'&timezone=auto')

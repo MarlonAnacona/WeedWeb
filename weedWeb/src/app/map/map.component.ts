@@ -47,6 +47,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   editVisibleParcel:boolean=false;
 
   parcelaCreate: any;
+  parcelaEdit: any;
   idSeedSet: number = -1;
   constructor(private services: ServicesService,
     private messagerService: MessageService,
@@ -107,13 +108,25 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   showParcelEdit(id:any){
     this.editVisibleParcel=true
-//Llamar servicio de traer parcela por id y mandar al html
+    this.farmId = id
+  }
+
+  editParcel(id:any){
+
     this.services.getParcel(id).subscribe({
       next: (response)=>{
-        //data del user que seria igual a response
+        this.messagerService.add({
+          severity: 'success',
+          summary: 'Movimiento exitoso',
+          detail: 'Has logrado editar tu parcela ',
+        });
       },
       error: (err)=>{
-
+        this.messagerService.add({
+          severity: 'error',
+          summary: 'Hubo un error ',
+          detail: 'No se ha podido editar tu parcela ',
+        });
       }
     })
 
@@ -244,6 +257,18 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
 
     this.createParcela(data)
+  }
+
+  onSubmit2() {
+
+    const data = {
+      seed_id: this.idSeedSet,
+      width: this.width,
+      length: this.length,
+      crop_modality: this.cropModality
+    };
+
+    this.editParcel(data)
   }
 
   getTranslatedCropModality(cropModality: string): string {
