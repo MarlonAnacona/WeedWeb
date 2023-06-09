@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.db import IntegrityError
 from django.utils import timezone
-from .models import Customer, Company, Person
+from users.models import Customer, Company, Person
 
 # Create your tests here.
 
