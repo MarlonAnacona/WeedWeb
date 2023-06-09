@@ -11,12 +11,15 @@ import { ServicesService } from '../services/services.service';
 export class DashboardComponent implements OnInit {
   public chart: any;
   public chart1: any;
-  long:number=-106.346771000;
-  latitude:number=56.13036600;
+  public chart2: any;
+  long:number=0;
+  latitude:number=0;
 
   days:any[]=[];
+  daysSelecte:any;
   temperature:any[]=[];
   precipitation:any[]=[];
+  humety:any[]=[]
   farmsOptions:any[]=[];
   farmName: string ="";
   selectFarmOption:any;
@@ -45,12 +48,31 @@ export class DashboardComponent implements OnInit {
         this.days=response.hourly.time
         this.temperature=response.hourly.temperature_2m
         this.precipitation=response.hourly.precipitation_probability
+        this.humety=response.hourly.relativehumidity_2m
+        console.log(response)
         this.createChart();
       }, error: (err)=>{
 
       }
     })
   }
+
+
+  getDaysWheaterDay(day:number){
+    console.log(day)
+    this.service.getWheaterApiOneDay(this.latitude,this.long,day).subscribe({
+      next: (response)=>{
+        this.days=response.hourly.time
+        this.temperature=response.hourly.temperature_2m
+        this.precipitation=response.hourly.precipitation_probability
+        console.log(response)
+        this.createChart();
+      }, error: (err)=>{
+
+      }
+    })
+  }
+
   createChart() {
     var mode = 'light';
     var fonts = {
@@ -110,7 +132,7 @@ export class DashboardComponent implements OnInit {
         ],
         datasets: [
           {
-            label: 'Perfomance',
+            label: 'Temperatura ',
 
             data: [...this.temperature],
 
@@ -187,7 +209,7 @@ export class DashboardComponent implements OnInit {
     if (this.chart1) {
       this.chart1.destroy();
     }
-    this.chart1 = new Chart('temperatura', {
+    this.chart1 = new Chart('precipitacion', {
       type: 'line', //this denotes tha type of chart
 
       data: {
@@ -197,9 +219,94 @@ export class DashboardComponent implements OnInit {
         ],
         datasets: [
           {
-            label: 'Perfomance',
+            label: 'precipitación %',
 
             data: [...this.precipitation],
+          },
+        ],
+      },
+
+      options: {
+        maintainAspectRatio: true,
+        backgroundColor: 'red',
+
+        font: {
+          family: fonts.base,
+          size: 13,
+        },
+        layout: {
+          padding: 10,
+        },
+        elements: {
+          point: {
+            radius: 4,
+            hitRadius: 20,
+
+            backgroundColor: colors.theme['primary'],
+          },
+          line: {
+            tension: 0.4,
+            borderWidth: 4,
+            borderColor: colors.theme['primary'],
+            backgroundColor: colors.transparent,
+            borderCapStyle: 'round',
+          },
+          arc: {
+            backgroundColor: colors.theme['primary'],
+            borderColor: mode == 'dark' ? colors.gray[800] : colors.white,
+            borderWidth: 4,
+          },
+        },
+
+        responsive: true,
+
+        scales: {
+          y: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              drawOnChartArea: false,
+              tickLength: 10,
+              tickWidth: 4,
+              tickColor: 'yellow',
+            },
+          },
+
+          x: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              tickColor: 'yellow',
+              tickLength: 15,
+              tickWidth: 3,
+              drawOnChartArea: false,
+            },
+          },
+        },
+      },
+      plugins: [plugin],
+    });
+
+    if (this.chart2) {
+      this.chart2.destroy();
+    }
+    this.chart2 = new Chart('humedad', {
+      type: 'line', //this denotes tha type of chart
+
+      data: {
+        // values on X-Axis
+        labels: [
+          ...this.days
+        ],
+        datasets: [
+          {
+            label: 'Humedad %',
+
+            data: [...this.humety],
           },
         ],
       },
@@ -274,10 +381,16 @@ export class DashboardComponent implements OnInit {
 
   onSeedNameChange() {
     this.selectFarmOption = this.farmsOptions.find(option => option.farm_name === this.farmName);
-    console.log(this.selectFarmOption)
     this.long=this.selectFarmOption.longitude
     this.latitude=this.selectFarmOption.latitude
     this.getDaysWheater()
+  }
+
+  onSeedNameChangeDay(day:number) {
+    this.selectFarmOption = this.farmsOptions.find(option => option.farm_name === this.farmName);
+    this.long=this.selectFarmOption.longitude
+    this.latitude=this.selectFarmOption.latitude
+    this.getDaysWheaterDay(day)
   }
 
 }
