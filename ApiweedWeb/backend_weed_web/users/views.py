@@ -27,8 +27,7 @@ class CreateCompanyView(generics.CreateAPIView):
 class RetrivePersonOwnInfo(generics.RetrieveAPIView):    
     serializer_class = PersonSerializer
     queryset = Person.objects.all()
-    # permission_classes = [permissions.IsAuthenticated, IsOwnerPermission]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerPermission]
     lookup_field = 'pk'
 
 
