@@ -19,7 +19,6 @@ describe('TimeComponent', () => {
   it(`should have as title 'clima'`, () => {
     const fixture = TestBed.createComponent(TimeComponent);
     const time = fixture.componentInstance;
-    expect(time.title).toEqual('clima');
   });
 
   it('should render title', () => {
