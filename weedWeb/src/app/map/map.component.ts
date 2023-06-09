@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 export class MapComponent implements OnInit, AfterViewInit {
   product_farm: any;
   selected_farm: any;
-  produt_parcel: any;
+  produt_parcel: any=[];
   selectedParcelas: parcela[] = [];
   token = localStorage.getItem('token')
   public visibleA: Boolean = false;
@@ -45,6 +45,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   seedName: string = "";
   showProductId: number = -1;
   editVisibleParcel:boolean=false;
+  specie_nameInput:string=""
+  widthInput:string=""
+  lengthInput:string=""
+  crop_modalityInput:string=""
 
   parcelaCreate: any;
   parcelaEdit: any;
@@ -106,14 +110,19 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.idSeedSet = this.selectedOption.id
   }
 
-  showParcelEdit(id:any){
-    this.editVisibleParcel=true
+  showParcelEdit(id:any,showparcel:any){
     this.farmId = id
+    this.specie_nameInput=showparcel.species_name
+    this.widthInput=showparcel.width
+    this.lengthInput=showparcel.length
+
+    this.editVisibleParcel=true
+
   }
 
-  editParcel(id:any){
+  editParcel(data:any){
 
-    this.services.getParcel(id).subscribe({
+    this.services.editParcel(data,this.farmId).subscribe({
       next: (response)=>{
         this.messagerService.add({
           severity: 'success',
@@ -149,7 +158,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.services.getParcel(id).subscribe({
       next: (data) => {
         this.produt_parcel = data
-        console.log(this.produt_parcel)
+
+
       }, error: (err) => {
         console.log(err)
       }
@@ -262,9 +272,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   onSubmit2() {
 
     const data = {
+      farm_id: this.farmId,
       seed_id: this.idSeedSet,
-      width: this.width,
-      length: this.length,
+      width: this.widthInput,
+      length: this.lengthInput,
       crop_modality: this.cropModality
     };
 

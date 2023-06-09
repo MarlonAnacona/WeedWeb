@@ -15,7 +15,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServicesService {
-  url: string = 'http://127.0.0.1:8000/';
+  url: string = 'https://weed-backend.onrender.com/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
@@ -67,13 +67,13 @@ export class ServicesService {
   getFarm(token:any) :Observable<any>{
 
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'/farms/get-farm/',{headers});
+      return this.Http.get(this.url+'farms/get-farm/',{headers});
   }
 
   getParcel(id:number) :Observable<any>{
 
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'/farms/get-parcel/?farm_id='+id,{headers});
+      return this.Http.get(this.url+'farms/get-parcel/?farm_id='+id,{headers});
   }
 
   tokenRefresh(): Observable<any> {
@@ -108,9 +108,9 @@ export class ServicesService {
     return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain&timezone=auto')
   }
 
-  editParcel(body:parcelaEdit){
+  editParcel(body:parcelaEdit,id:number){
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.put(this.url+'farms/update-parcel/',body,{headers})
+    return this.Http.put(this.url+'farms/update-parcel/'+id+'/',body,{headers})
   }
 
   getWheaterApiOneDay(latitude:number, longitude:number,day:number): Observable<any>{
