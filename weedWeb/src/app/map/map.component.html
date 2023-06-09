@@ -200,8 +200,8 @@
               <td>{{ produt_parcel.date_creation_parcel}}</td>
               <td>
                 <button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-success mr-2"
-                  [value]="produt_parcel" (click)="showParcelEdit(produt_parcel.id)"
-                  (click)="parcel(produt_parcel.id)"></button>
+                  [value]="produt_parcel" (click)="showParcelEdit(produt_parcel.id,produt_parcel)"
+                ></button>
               </td>
             </tr>
           </ng-template>
@@ -223,7 +223,8 @@
             <div class="seedName1">
               <label for="seedName">Nombre de la semilla:&nbsp;</label>
               <select id="seedName" name="seedName" [(ngModel)]="seedName" (ngModelChange)="onSeedNameChange()"
-                required>
+              [value]="specie_nameInput"
+              required>
                 <option value="">Seleccione una opción</option>
                 <option *ngFor="let option of seedOptions" [value]="option.species_name">{{ option.species_name }}
                 </option>
@@ -242,20 +243,20 @@
 
             <div class="width1">
               <label for="width">Ancho:&nbsp;</label>
-              <input type="number" id="width" name="width" [(ngModel)]="width" required>
+              <input type="number" id="widthInput" name="widthInput" [(ngModel)]="widthInput" [value]="widthInput" required>
             </div>
             <br>
 
             <div class="length1">
               <label for="length">Largo:&nbsp;</label>
-              <input type="number" id="length" name="length" [(ngModel)]="length" required>
+              <input type="number" id="lengthInput" name="lengthInput" [value]="lengthInput" [(ngModel)]="lengthInput" required>
             </div>
             <br>
 
             <div class="cropModality1">
               <label for="cropModality">Modalidad de cultivo:&nbsp;</label>
 
-              <select id="cropModality" name="cropModality" [(ngModel)]="cropModality" required>
+              <select id="cropModality" name="cropModality" [(ngModel)]="cropModality" [value]="crop_modalityInput" required>
                 <option class="dropdown-item" value="">Seleccione una opción</option>
                 <option class="dropdown-item" value="Indoor">Interior</option>
                 <option class="dropdown-item" value="Outdoor">Exterior</option>

@@ -108,9 +108,9 @@ export class ServicesService {
     return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain&timezone=auto')
   }
 
-  editParcel(body:parcelaEdit){
+  editParcel(body:parcelaEdit,id:number){
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.put(this.url+'farms/update-parcel/',body,{headers})
+    return this.Http.put(this.url+'farms/update-parcel/'+id+'/',body,{headers})
   }
 
   getWheaterApiOneDay(latitude:number, longitude:number,day:number): Observable<any>{
