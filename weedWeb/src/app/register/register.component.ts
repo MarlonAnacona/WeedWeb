@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
         nombre:['',[Validators.required,]],
         apellido:['',Validators.required],
         email:['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-        cedula:['',[Validators.required, Validators.minLength(10)]],
+        cedula:['',[Validators.required, Validators.minLength(8)]],
         telefono:['',[Validators.required,]],
         password:['',[Validators.required, Validators.minLength(8)]]
       }

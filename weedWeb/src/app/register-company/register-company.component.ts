@@ -55,7 +55,7 @@ export class RegisterCompanyComponent implements OnInit {
       {
         nombreEmpresa:['',[Validators.required,]],
         emailEmpresa:['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-        nit:['',[Validators.required, Validators.minLength(10)]],
+        nit:['',[Validators.required, Validators.minLength(9)]],
         telefonoEmpresa:['',[Validators.required,]],
         passwordEmpresa:['',[Validators.required, Validators.minLength(8)]]
       }

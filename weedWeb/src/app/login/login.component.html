@@ -1,29 +1,20 @@
 <div ng-controller="controller">
   <div class="pantalla">
     <div style="background-color: black">
-      <div
-        id="carouselExampleInterval"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="500">
             <img
               src="https://www.comunidad.madrid/sites/default/files/styles/colorbox_modal/public/doc/sanidad/drog/cannabis_plantacion.jpg?itok=E8HoucXT"
-              class="d-block w-100 img-fluid img-opaca"
-              alt="..."
-            />
+              class="d-block w-100 img-fluid img-opaca" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>LA GRANJA DE LA FELICIDAD</h5>
               <p>Conoce como cultivar y cuidad tus amigos</p>
             </div>
           </div>
           <div class="carousel-item" bsdata--interval="500">
-            <img
-              src="https://www.cdc.gov/marijuana/featured-topics/images/cannabis-plant.jpg?_=33642"
-              class="d-block w-100 img-fluid img-opaca"
-              alt="..."
-            />
+            <img src="https://www.cdc.gov/marijuana/featured-topics/images/cannabis-plant.jpg?_=33642"
+              class="d-block w-100 img-fluid img-opaca" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>El cannabis es vida</h5>
               <p>El cannabis calma los dolores y se utiliza como medicina</p>
@@ -32,9 +23,7 @@
           <div class="carousel-item" bsdata--interval="500">
             <img
               src="http://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2022/08-Agosto/362/AgenciaUNAL-010822-01.jpg"
-              class="d-block w-100 img-fluid img-opaca"
-              alt="..."
-            />
+              class="d-block w-100 img-fluid img-opaca" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>¿Sabias qué?</h5>
               <p>Los mangos potencian los efectos de la marihuana</p>
@@ -47,13 +36,8 @@
     <div class="homecontainer">
       <div class="form-container-home">
         <h1>
-          <button
-            class="btn"
-            data-bs-toggle="offcanvas"
-            (click)="home()"
-            role="button"
-            aria-controls="offcanvasExample"
-          >
+          <button class="btn" data-bs-toggle="offcanvas" (click)="home()" role="button"
+            aria-controls="offcanvasExample">
             <img src="../../../assets/image/logo.png " width="70" height="50" />
             <div class="text-center text-white">HOME</div>
           </button>
@@ -69,79 +53,44 @@
           <div class="form-group">
             <label for="username" class="letter">Correo electrónico:</label>
             <div class="col-md-10">
-              <input
-                type="email"
-                class="form-control"
-                name="userlogin.email"
-                class="form-control"
-                id="username"
-                pInputText
-                [(ngModel)]="userlogin.email"
-                placeholder="Ejemplo@gmail.com"
-              />
+              <input type="email" class="form-control" name="userlogin.email" class="form-control" id="username"
+                pInputText [(ngModel)]="userlogin.email" placeholder="Ejemplo@gmail.com" />
             </div>
           </div>
 
           <div class="form-group">
             <label for="password" class="letter">Contraseña:</label>
             <div class="col-md-10">
-              <input
-                type="password"
-                class="form-control"
-                name="userlogin.password"
-                [(ngModel)]="userlogin.password"
-                id="password"
-                placeholder="********"
-              />
+              <input type="password" class="form-control" name="userlogin.password" [(ngModel)]="userlogin.password"
+                id="password" placeholder="********" />
             </div>
           </div>
           <div class="my-5">
             <div class="d-flex justify-content-center">
-              <button
-                type="submit"
-                class="btn btn-primary btn-block"
-                (click)="login()"
-              >
+              <button type="submit" class="btn btn-primary btn-block" (click)="login()">
                 Ingresar
               </button>
             </div>
-          </div>
-          <div class="col-md-10 my-2">
-            <a href="#">¿Olvidaste tu contraseña?</a>
-          </div>
-
-          <div class="col-md-10 my-2">
-            <button class="buttonLink" (click)="showModal()">Registrarse</button>
+            <br />
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary btn-block" (click)="showModal()">
+                Registrarse
+              </button>
+            </div>
           </div>
         </form>
       </div>
-      <p-dialog
-      [(visible)]="visibleA"
-      [style]="{ width: '50vw' }"
-      [modal]="true"
-      class="model"
-      styleClass="p-fluid"
-      [baseZIndex]="999"
-    >
-    <h2 class="text-center">¿Cómo te quieres registrar?</h2>
-    <br />
-    <div class="boton1">
-  <button
-    type="submit"
-    class="btn btn-primary btn-block ml-6"
-    (click)="registerCompany()"
-  >
-    Registrar empresa
-  </button>
-  <button
-    type="submit"
-    class="btn btn-primary btn-block mt-10"
-    (click)="registerUser()"
-  >
-    Registrar usuario
-  </button>
-</div>
-    </p-dialog>
+      <p-dialog [(visible)]="visibleA" [style]="{ width: 'auto' }" [modal]="true" class="center" styleClass="p-fluid"
+        [baseZIndex]="999">
+        <h2 class="text-center">¿Cómo te quieres registrar?</h2>
+        <br />
+        <button type="submit" class="btn btn-primary btn-block ml-6 center" (click)="registerCompany()">
+          Registrar empresa
+        </button>&nbsp;
+        <button type="submit" class="btn btn-primary btn-block mt-10 center" (click)="registerUser()">
+          Registrar usuario
+        </button>
+      </p-dialog>
     </div>
   </div>
 </div>
