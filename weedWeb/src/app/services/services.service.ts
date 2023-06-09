@@ -6,6 +6,7 @@ import {
   userRegister,
   farmCreate,
   parcelaCreate,
+  parcelaEdit,
 } from '../model/interfaces';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
@@ -14,7 +15,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServicesService {
-  url: string = 'http://127.0.0.1:8000/';
+  url: string = 'https://weed-backend.onrender.com/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
@@ -25,8 +26,8 @@ export class ServicesService {
     return this.Http.post(this.url + 'users/person/create/', data);
   }
 
-  getUser(id:any,token:any ){
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+  getUser(id:any ): Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
 
     return this.Http.get(this.url + 'users/person/'+ id,{headers});
   }
@@ -63,10 +64,16 @@ export class ServicesService {
     }
   }
 
-  getFarm(token:any){
+  getFarm(token:any) :Observable<any>{
 
-      const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
-      return this.Http.get(this.url+'/farms/get-farm/',{headers});
+      const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+      return this.Http.get(this.url+'farms/get-farm/',{headers});
+  }
+
+  getParcel(id:number) :Observable<any>{
+
+      const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+      return this.Http.get(this.url+'farms/get-parcel/?farm_id='+id,{headers});
   }
 
   tokenRefresh(): Observable<any> {
@@ -94,6 +101,20 @@ export class ServicesService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
 
     return this.Http.get(this.url+'seeds/get-seed/',{headers})
+  }
+
+
+  getWheaterApi(latitude:number, longitude:number): Observable<any>{
+    return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain&timezone=auto')
+  }
+
+  editParcel(body:parcelaEdit,id:number){
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
+    return this.Http.put(this.url+'farms/update-parcel/'+id+'/',body,{headers})
+  }
+
+  getWheaterApiOneDay(latitude:number, longitude:number,day:number): Observable<any>{
+    return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,rain&forecast_days='+day+'&timezone=auto')
   }
 
 }

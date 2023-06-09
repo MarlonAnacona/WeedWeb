@@ -10,13 +10,67 @@ import { ServicesService } from '../services/services.service';
 })
 export class DashboardComponent implements OnInit {
   public chart: any;
+  public chart1: any;
+  public chart2: any;
+  long:number=0;
+  latitude:number=0;
+
+  days:any[]=[];
+  daysSelecte:any;
+  temperature:any[]=[];
+  precipitation:any[]=[];
+  humety:any[]=[]
+  farmsOptions:any[]=[];
+  farmName: string ="";
+  selectFarmOption:any;
 
   constructor(private service:ServicesService){
 
   }
   ngOnInit() {
     this.service.refresacarToken()
-    this.createChart();
+    this.service.getFarm(localStorage.getItem('token')).subscribe({
+      next:(data)=>{
+        this.farmsOptions=data;
+
+      },
+      error:(err)=>{
+      console.log(err)
+      }
+
+    })
+
+  }
+
+  getDaysWheater(){
+    this.service.getWheaterApi(this.latitude,this.long).subscribe({
+      next: (response)=>{
+        this.days=response.hourly.time
+        this.temperature=response.hourly.temperature_2m
+        this.precipitation=response.hourly.precipitation_probability
+        this.humety=response.hourly.relativehumidity_2m
+        console.log(response)
+        this.createChart();
+      }, error: (err)=>{
+
+      }
+    })
+  }
+
+
+  getDaysWheaterDay(day:number){
+    console.log(day)
+    this.service.getWheaterApiOneDay(this.latitude,this.long,day).subscribe({
+      next: (response)=>{
+        this.days=response.hourly.time
+        this.temperature=response.hourly.temperature_2m
+        this.precipitation=response.hourly.precipitation_probability
+        console.log(response)
+        this.createChart();
+      }, error: (err)=>{
+
+      }
+    })
   }
 
   createChart() {
@@ -64,44 +118,26 @@ export class DashboardComponent implements OnInit {
         ctx.restore();
       },
     };
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
     this.chart = new Chart('MyChart', {
       type: 'line', //this denotes tha type of chart
 
       data: {
         // values on X-Axis
         labels: [
-          '2022-05-10',
-          '2022-05-11',
-          '2022-05-12',
-          '2022-05-13',
-          '2022-05-14',
-          '2022-05-15',
-          '2022-05-16',
-          '2022-05-17',
-          '2022-05-18',
+          ...this.days
         ],
         datasets: [
           {
-            label: 'Perfomance',
+            label: 'Temperatura ',
 
-            data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
-            // borderColor: '#228B22',
-            // borderWidth: 5,
-            // pointBackgroundColor: '#228B22',
-            // pointHitRadius: 20,
-            // pointBorderColor: 'transparent',
-            // tension: 0.4,
+            data: [...this.temperature],
+
           },
-          // {
-          //   label: 'Profit',
-          //   data: ['542', '542', '536', '327', '17', '0.00', '538', '541'],
-          //   borderColor: '#8f0065',
-          //   borderWidth: 5,
-          //   pointBackgroundColor: '#8f0065',
-          //   pointBorderColor: 'transparent',
-          //   pointHitRadius: 20,
-          //   tension: 0.4,
-          // },
+
         ],
       },
 
@@ -170,27 +206,107 @@ export class DashboardComponent implements OnInit {
       plugins: [plugin],
     });
 
-    this.chart = new Chart('temperatura', {
-      type: 'bar', //this denotes tha type of chart
+    if (this.chart1) {
+      this.chart1.destroy();
+    }
+    this.chart1 = new Chart('precipitacion', {
+      type: 'line', //this denotes tha type of chart
 
       data: {
         // values on X-Axis
         labels: [
-          '2022-05-10',
-          '2022-05-11',
-          '2022-05-12',
-          '2022-05-13',
-          '2022-05-14',
-          '2022-05-15',
-          '2022-05-16',
-          '2022-05-17',
-          '2022-05-18',
+          ...this.days
         ],
         datasets: [
           {
-            label: 'Perfomance',
+            label: 'precipitación %',
 
-            data: ['467', '576', '572', '79', '92', '574', '573', '576', '200'],
+            data: [...this.precipitation],
+          },
+        ],
+      },
+
+      options: {
+        maintainAspectRatio: true,
+        backgroundColor: 'red',
+
+        font: {
+          family: fonts.base,
+          size: 13,
+        },
+        layout: {
+          padding: 10,
+        },
+        elements: {
+          point: {
+            radius: 4,
+            hitRadius: 20,
+
+            backgroundColor: colors.theme['primary'],
+          },
+          line: {
+            tension: 0.4,
+            borderWidth: 4,
+            borderColor: colors.theme['primary'],
+            backgroundColor: colors.transparent,
+            borderCapStyle: 'round',
+          },
+          arc: {
+            backgroundColor: colors.theme['primary'],
+            borderColor: mode == 'dark' ? colors.gray[800] : colors.white,
+            borderWidth: 4,
+          },
+        },
+
+        responsive: true,
+
+        scales: {
+          y: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              drawOnChartArea: false,
+              tickLength: 10,
+              tickWidth: 4,
+              tickColor: 'yellow',
+            },
+          },
+
+          x: {
+            offset: true,
+            ticks: {
+              color: 'white',
+            },
+            grid: {
+              tickColor: 'yellow',
+              tickLength: 15,
+              tickWidth: 3,
+              drawOnChartArea: false,
+            },
+          },
+        },
+      },
+      plugins: [plugin],
+    });
+
+    if (this.chart2) {
+      this.chart2.destroy();
+    }
+    this.chart2 = new Chart('humedad', {
+      type: 'line', //this denotes tha type of chart
+
+      data: {
+        // values on X-Axis
+        labels: [
+          ...this.days
+        ],
+        datasets: [
+          {
+            label: 'Humedad %',
+
+            data: [...this.humety],
           },
         ],
       },
@@ -260,4 +376,21 @@ export class DashboardComponent implements OnInit {
       plugins: [plugin],
     });
   }
+
+
+
+  onSeedNameChange() {
+    this.selectFarmOption = this.farmsOptions.find(option => option.farm_name === this.farmName);
+    this.long=this.selectFarmOption.longitude
+    this.latitude=this.selectFarmOption.latitude
+    this.getDaysWheater()
+  }
+
+  onSeedNameChangeDay(day:number) {
+    this.selectFarmOption = this.farmsOptions.find(option => option.farm_name === this.farmName);
+    this.long=this.selectFarmOption.longitude
+    this.latitude=this.selectFarmOption.latitude
+    this.getDaysWheaterDay(day)
+  }
+
 }

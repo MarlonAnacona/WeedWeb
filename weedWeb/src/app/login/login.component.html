@@ -7,7 +7,7 @@
         data-bs-ride="carousel"
       >
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="2000">
+          <div class="carousel-item active" data-bs-interval="500">
             <img
               src="https://www.comunidad.madrid/sites/default/files/styles/colorbox_modal/public/doc/sanidad/drog/cannabis_plantacion.jpg?itok=E8HoucXT"
               class="d-block w-100 img-fluid img-opaca"
@@ -18,7 +18,7 @@
               <p>Conoce como cultivar y cuidad tus amigos</p>
             </div>
           </div>
-          <div class="carousel-item" bsdata--interval="2000">
+          <div class="carousel-item" bsdata--interval="500">
             <img
               src="https://www.cdc.gov/marijuana/featured-topics/images/cannabis-plant.jpg?_=33642"
               class="d-block w-100 img-fluid img-opaca"
@@ -29,7 +29,7 @@
               <p>El cannabis calma los dolores y se utiliza como medicina</p>
             </div>
           </div>
-          <div class="carousel-item" bsdata--interval="2000">
+          <div class="carousel-item" bsdata--interval="500">
             <img
               src="http://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2022/08-Agosto/362/AgenciaUNAL-010822-01.jpg"
               class="d-block w-100 img-fluid img-opaca"
@@ -67,7 +67,7 @@
           <h2 class="text-center">Iniciar sesión</h2>
 
           <div class="form-group">
-            <label for="username" class="letter">Nombre de usuario:</label>
+            <label for="username" class="letter">Correo electrónico:</label>
             <div class="col-md-10">
               <input
                 type="email"
@@ -111,12 +111,37 @@
           </div>
 
           <div class="col-md-10 my-2">
-            <a href="/Register">Registrar usuario</a>
+            <button class="buttonLink" (click)="showModal()">Registrarse</button>
           </div>
-
-          <a href="/RegisterCompany">Registrar empresa</a>
         </form>
       </div>
+      <p-dialog
+      [(visible)]="visibleA"
+      [style]="{ width: '50vw' }"
+      [modal]="true"
+      class="model"
+      styleClass="p-fluid"
+      [baseZIndex]="999"
+    >
+    <h2 class="text-center">¿Cómo te quieres registrar?</h2>
+    <br />
+    <div class="boton1">
+  <button
+    type="submit"
+    class="btn btn-primary btn-block ml-6"
+    (click)="registerCompany()"
+  >
+    Registrar empresa
+  </button>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block mt-10"
+    (click)="registerUser()"
+  >
+    Registrar usuario
+  </button>
+</div>
+    </p-dialog>
     </div>
   </div>
 </div>

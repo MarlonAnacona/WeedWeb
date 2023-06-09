@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public name: any;
   public password: any;
   tokenObject: any;
+  public visibleA: Boolean = false;
   constructor(
     private route: Router,
     private serivce: ServicesService,
@@ -34,6 +35,17 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['../Home']);
   }
 
+  showModal() {
+    this.visibleA = true;
+  }
+  registerCompany() {
+    this.route.navigate(['../RegisterCompany']);
+  }
+
+  registerUser() {
+    this.route.navigate(['../Register']);
+  }
+
   /**
    * Login for the user
    * if login is success-> go to the Dashboard
@@ -48,17 +60,26 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         localStorage.setItem('token', response.access);
         localStorage.setItem('tokenRefresh', response.refresh);
-        this.route.navigate(['../CreateFarm']);
+        this.tokenObject = jwt_decode(response.access)
 
-         // Decodificar el token utilizando atob()
-         this.tokenObject = jwt_decode(response.access)
+          this.serivce.getUser(this.tokenObject.user_id).subscribe({
+            next: (data) => {
 
-         localStorage.setItem('userName',this.tokenObject.email)
-             this.message.add({
-               severity: 'success',
-               summary: 'Bienvenido ',
-               detail: ' ',
-             });
+
+              localStorage.setItem('userName',data.first_name+' '+ data.last_name)
+                  this.message.add({
+                    severity: 'success',
+                    summary: 'Bienvenido ',
+                    detail: ' ',
+                  });
+                  this.route.navigate(['../CreateFarm']);
+
+                },
+                  error : (err)=>{
+              console.log(err)
+            }
+
+          })
 
 
       },
