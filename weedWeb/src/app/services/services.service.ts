@@ -15,7 +15,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServicesService {
-  url: string = 'http://127.0.0.1:8000/';
+  url: string = 'https://weed-backend.onrender.com/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
@@ -67,13 +67,13 @@ export class ServicesService {
   getFarm(token:any) :Observable<any>{
 
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'/farms/get-farm/',{headers});
+      return this.Http.get(this.url+'farms/get-farm/',{headers});
   }
 
   getParcel(id:number) :Observable<any>{
 
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'/farms/get-parcel/?farm_id='+id,{headers});
+      return this.Http.get(this.url+'farms/get-parcel/?farm_id='+id,{headers});
   }
 
   tokenRefresh(): Observable<any> {
