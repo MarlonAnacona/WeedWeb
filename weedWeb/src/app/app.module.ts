@@ -45,6 +45,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { FreemiumComponent } from './freemium/freemium.component';
 
 
 
@@ -65,6 +66,7 @@ const routes: Routes = [
   {
     path: 'Catalogo',
     component: CatalogoComponent,
+    // canActivate: [AuthGuardService],
   },
   {
     path: 'Dashboard',
@@ -79,6 +81,11 @@ const routes: Routes = [
   {
     path: 'Time',
     component: TimeComponent,
+    // canActivate: [AuthGuardService],
+  },
+  {
+    path: 'Freemium',
+    component: FreemiumComponent,
     // canActivate: [AuthGuardService],
   },
   {
@@ -112,6 +119,7 @@ const routes: Routes = [
     RegisterComponent,
     RegisterCompanyComponent,
     CreateFarmComponent,
+    FreemiumComponent,
   ],
   imports: [
     GoogleMapsModule,
