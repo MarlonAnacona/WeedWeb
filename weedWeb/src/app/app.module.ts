@@ -46,7 +46,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FreemiumComponent } from './freemium/freemium.component';
-
+import { AnimateModule } from 'primeng/animate';
 
 
 const routes: Routes = [
@@ -71,7 +71,7 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuardService],
+    //canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
@@ -144,6 +144,7 @@ const routes: Routes = [
     CardModule,
     TableModule,
     DialogModule,
+    AnimateModule,
 
   ],
   providers: [
