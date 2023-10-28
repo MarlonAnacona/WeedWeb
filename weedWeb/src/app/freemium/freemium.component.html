@@ -5,12 +5,13 @@
             <h1 class="titulo mb-4">Suscríbete y potencia tu granja</h1>
             <br/>
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <p-card header="Plan normal" subheader="Gratis" [style]="{ 'background-color': 'rgba(255, 255, 255)', height: '300px' }" class="d-flex flex-column h-100">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <p-card header="Plan normal" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px', width: '300px' , color: 'white'}" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                        <h6 style="color: white;">Gratis</h6>
                         <ul class="list-unstyled mt-3">
-                            <li><i class="fas fa-check text-success"></i> </li>
-                            <li><i class="fas fa-check text-success"></i> </li>
-                            <li><i class="fas fa-times text-muted"></i> Descuentos en la e-commerce</li>
+                            <li style="color: white;"><i class="fas fa-check text-success" ></i> Puedes crear una granja </li>
+                            <li style="color: white;"><i class="fas fa-check text-success" ></i> Puedes crear 6 parcelas </li>
+                            <li style="color: white;"><i class="fas fa-times text-danger"></i> Descuentos en la e-commerce</li>
                             <br/>
                         </ul>
                         <div class="mt-auto mt-3">
@@ -18,44 +19,58 @@
                         </div>
                     </p-card>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <p-card header="Plan premium" subheader="Mensual" [style]="{ 'background-color': 'rgba(255, 255, 255)', height: '300px'  }" class="d-flex flex-column h-100">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <p-card header="Plan premium" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px'  , width: '300px' , color: 'white' }" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                        <h6 style="color: white;">Mensual</h6>
+                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20"> $100</h6>
                         <ul class="list-unstyled mt-3">
-                            <li><i class="fas fa-check text-success"></i> Puede crear  granjas</li>
-                            <li><i class="fas fa-check text-success"></i> Puede manejar parcelas ilimitadas</li>
-                            <li><i class="fas fa-check text-success"></i> Descuentos en la e-commerce</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear más granjas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar más parcelas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la e-commerce</li>
                         </ul>
                         <div class="mt-auto mt-3">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalProcesoPago">Suscribirse</button>
+                            <button class="btn btn-primary" data-toggle="modal-premium" data-target="#modalProcesoPagoPremium">Suscribirse</button>
+                        </div>
+                    </p-card>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <p-card header="Plan premium pro" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px' , width: '300px' , color: 'white' }" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                        <h6 style="color: white;">Anual</h6>
+                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20"> $900</h6>
+                        <ul class="list-unstyled mt-3">
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear más granjas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar más parcelas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la e-commerce</li>
+                        </ul>
+                        <div class="mt-auto mt-3">
+                            <button class="btn btn-primary" data-toggle="modal-pro" data-target="#modalProcesoPagoPro">Suscribirse</button>
                         </div>
                     </p-card>
                 </div>
             </div>
-    
-            <div class="mt-4 d-flex justify-content-center align-items-center">
-                <h5 class="mr-1 font-weight-bold">Usa medio de pago: Cannabit</h5>
-                <img src="../../assets/image/cannabit.png" alt="Cannabit" height="25">
-            </div>
         </div>
     </div>
-    
-    <!-- Modal de Procesamiento de Pago -->
-    <div class="modal fade" id="modalProcesoPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Procesando Pago</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Por favor espere mientras procesamos su pago...</p>
-                    <!-- Agrega aquí cualquier información adicional sobre el proceso de pago -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
+</div>
+
+<app-barrabaja></app-barrabaja>
+
+<!-- Modal de Procesamiento de Pago -->
+<div class="modal fade" id="modalProcesoPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Procesando Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Por favor espere mientras procesamos su pago...</p>
+                <!-- Agrega aquí cualquier información adicional sobre el proceso de pago -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

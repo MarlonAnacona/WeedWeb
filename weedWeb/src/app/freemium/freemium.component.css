@@ -1,7 +1,6 @@
 .center {
     margin-left: auto;
     margin-right: auto;
-    /* display: grid; */
     place-items: center;
     justify-content: space-around;
 }
@@ -13,9 +12,9 @@
 }
 
 .contenido {
-    padding: 20px; /* Añade espacio alrededor del contenido */
+    padding: 50px; /* Añade espacio alrededor del contenido */
     background-color: #C3D9C9;
-    height: 86.5vh;
+    height: 100%;
 }
 
 

@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenubaruserComponent } from './menubaruser/menubaruser.component';
 import { MapComponent } from './map/map.component';
 import { point } from 'leaflet';
+import { BarrabajaComponent } from './barrabaja/barrabaja.component';
 
 
 
@@ -25,6 +26,7 @@ import { point } from 'leaflet';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
+    BarrabajaComponent,
 
   ],
   imports: [
@@ -44,6 +46,7 @@ import { point } from 'leaflet';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
+    BarrabajaComponent,
 
   ],
 })
