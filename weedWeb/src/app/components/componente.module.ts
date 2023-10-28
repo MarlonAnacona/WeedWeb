@@ -16,6 +16,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MenubaruserComponent } from './menubaruser/menubaruser.component';
 import { MapComponent } from './map/map.component';
 import { point } from 'leaflet';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
 
 
 
@@ -25,7 +27,8 @@ import { point } from 'leaflet';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
-
+    SearchbarComponent,
+    CategoryDropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { point } from 'leaflet';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
-
+    SearchbarComponent,
+    CategoryDropdownComponent,
   ],
 })
 export class componentModule {}

@@ -1,0 +1,48 @@
+nav {
+    padding: 10px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+  }
+  
+  .bg-custom{
+    background-color: rgb(217, 217, 217);
+  }
+
+  .custom-color{
+    color: black;
+    margin-right: 200px;
+    font-weight: normal
+  }
+
+  .icon-heart {
+    margin-right: 20px; 
+    color:rgb(119,150,36);
+    font-size: 1.55rem 
+  }
+  
+  .icon-cart {
+    color: rgb(119,150,36);
+    font-size: 1.55rem;
+    margin-right: 10px;
+  }
+
+  .search-container {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    font-size: 1.25rem;
+    color: rgb(119,150,36);
+  }
+  

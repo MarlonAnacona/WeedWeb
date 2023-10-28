@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Categorías
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li *ngFor="let category of categories">
+        <a class="dropdown-item">{{ category }}</a>
+      </li>
+    </ul>
+  </div>
