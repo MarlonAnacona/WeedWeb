@@ -11,3 +11,11 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
 }
+
+.contenido {
+    padding: 20px; /* Añade espacio alrededor del contenido */
+    background-color: #C3D9C9;
+    height: 86.5vh;
+}
+
+
