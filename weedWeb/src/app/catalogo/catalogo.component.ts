@@ -17,17 +17,9 @@ export class CatalogoComponent implements OnInit {
 
   products!: Product[];
 
-  constructor(private productService: ProductService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.productService
-      .getProducts()
-      .then((data) => (this.products = data.slice(0, 5)));
-
-    this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' },
-    ];
   }
 
   onSortChange(event: any) {
