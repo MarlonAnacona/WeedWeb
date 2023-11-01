@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { componentModule } from './components/componente.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { DataViewModule } from 'primeng/dataview';
 import { AppComponent } from './app.component';
 import {
   NgbAlertModule,
@@ -13,6 +13,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { RatingModule } from 'primeng/rating';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -46,8 +47,10 @@ import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FreemiumComponent } from './freemium/freemium.component';
-
-
+import { TagModule } from 'primeng/tag';
+import { DragDropModule } from 'primeng/dragdrop';
+import { DropdownModule } from 'primeng/dropdown';
+import { Tag } from 'primeng/tag';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -144,7 +147,10 @@ const routes: Routes = [
     CardModule,
     TableModule,
     DialogModule,
-
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    DropdownModule,DragDropModule,
   ],
   providers: [
     MessageService,
