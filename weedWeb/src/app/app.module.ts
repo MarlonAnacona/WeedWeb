@@ -50,7 +50,6 @@ import { FreemiumComponent } from './freemium/freemium.component';
 import { TagModule } from 'primeng/tag';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DropdownModule } from 'primeng/dropdown';
-import { Tag } from 'primeng/tag';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -150,7 +149,7 @@ const routes: Routes = [
     DataViewModule,
     RatingModule,
     TagModule,
-    DropdownModule,DragDropModule,
+    DropdownModule,DragDropModule,ButtonModule
   ],
   providers: [
     MessageService,

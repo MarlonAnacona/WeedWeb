@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FavoriteWindowComponent } from '../favorite-window/favorite-window.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-searchbar',
@@ -6,14 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-  favoriteIcon = true;
-  isFavoriteModalOpen: boolean = false;
-  
-  constructor() { }
+  favoriteIcon: boolean = true;
+  favoriteProducts: string[] = ["Maleton"];
+  newFavoriteProduct: string = '';
+  constructor() {}
+  showFavoriteModal: boolean = false;
 
-  openFavoriteModal(){
+  openFavoriteModal() {
+    this.showFavoriteModal = true;
     this.favoriteIcon = !this.favoriteIcon;
   }
+
+  closeFavoriteModal() {
+    this.showFavoriteModal = false;
+  }
+  addFavoriteProduct(product: string) {
+    this.favoriteProducts.push(product);
+  }
+
   ngOnInit(): void {
   }
 

@@ -2,6 +2,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ComponentsComponent } from './menubar/components.component';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 import {
   NgbAlertModule,
@@ -18,8 +21,7 @@ import { MapComponent } from './map/map.component';
 import { point } from 'leaflet';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
-
-
+import { FavoriteWindowComponent } from './favorite-window/favorite-window.component';
 
 @NgModule({
   declarations: [
@@ -29,16 +31,20 @@ import { CategoryDropdownComponent } from './category-dropdown/category-dropdown
     MapComponent,
     SearchbarComponent,
     CategoryDropdownComponent,
+    FavoriteWindowComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    NgbPaginationModule,
     NgbAlertModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     GoogleMapsModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [],
@@ -48,7 +54,7 @@ import { CategoryDropdownComponent } from './category-dropdown/category-dropdown
     MenubaruserComponent,
     MapComponent,
     SearchbarComponent,
-    CategoryDropdownComponent,
+    CategoryDropdownComponent,FavoriteWindowComponent
   ],
 })
 export class componentModule {}

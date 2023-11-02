@@ -25,12 +25,22 @@
         </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
+            <p-button icon="pi pi-heart"  severity="help" ></p-button>
             <a class="nav-link" (click)="openFavoriteModal()">
               <i class="pi" [ngClass]="favoriteIcon ? 'pi-heart icon-heart' : 'pi-heart-fill icon-heart'" ></i>
             </a>
           </li>
-          <div class="modal fade" [class.show]="isFavoriteModalOpen" id="favoriteModal" tabindex="-1" aria-labelledby="favoriteModalLabel" aria-hidden="true">
-            
+          
+          <div class="favorite-modal" *ngIf="showFavoriteModal">
+            <button (click)="closeFavoriteModal()">Cerrar</button>
+            <h2>Mis productos favoritos</h2>
+            <ul>
+              <li *ngFor="let product of favoriteProducts">{{ product }}</li>
+            </ul>
+            <div>
+              <input type="text" [(ngModel)]="newFavoriteProduct" placeholder="Nuevo producto favorito">
+              <button (click)="addFavoriteProduct(newFavoriteProduct)">Agregar</button>
+            </div>
           </div>
           <li class="nav-item">
             <a class="nav-link">
