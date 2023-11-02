@@ -44,7 +44,6 @@ import { FavoriteWindowComponent } from './favorite-window/favorite-window.compo
     BrowserAnimationsModule,
     ButtonModule,
     DialogModule,
-    ButtonModule
   ],
   providers: [],
   bootstrap: [],

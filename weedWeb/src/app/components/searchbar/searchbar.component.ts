@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteWindowComponent } from '../favorite-window/favorite-window.component';
-import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-searchbar',

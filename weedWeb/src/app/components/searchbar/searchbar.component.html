@@ -25,11 +25,7 @@
         </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <p-button icon="pi pi-heart" severity="help" ></p-button>
-            <a class="nav-link" (click)="openFavoriteModal()">
-              <i class="pi" [ngClass]="favoriteIcon ? 'pi-heart icon-heart' : 'pi-heart-fill icon-heart'" ></i>
-            </a>
-          </li>
+            <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-rounded my-custom-color p-button-outlined" (click)="openFavoriteModal()"></button>
           
           <div class="favorite-modal" *ngIf="showFavoriteModal">
             <button (click)="closeFavoriteModal()">Cerrar</button>
