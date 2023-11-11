@@ -2,6 +2,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ComponentsComponent } from './menubar/components.component';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 import {
   NgbAlertModule,
@@ -19,6 +22,9 @@ import { point } from 'leaflet';
 import { BarrabajaComponent } from './barrabaja/barrabaja.component';
 
 
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
+import { FavoriteWindowComponent } from './favorite-window/favorite-window.component';
 
 @NgModule({
   declarations: [
@@ -28,16 +34,21 @@ import { BarrabajaComponent } from './barrabaja/barrabaja.component';
     MapComponent,
     BarrabajaComponent,
 
+    SearchbarComponent,
+    CategoryDropdownComponent,
+    FavoriteWindowComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    NgbPaginationModule,
     NgbAlertModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     GoogleMapsModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [],
@@ -48,6 +59,8 @@ import { BarrabajaComponent } from './barrabaja/barrabaja.component';
     MapComponent,
     BarrabajaComponent,
 
+    SearchbarComponent,
+    CategoryDropdownComponent,FavoriteWindowComponent
   ],
 })
 export class componentModule {}

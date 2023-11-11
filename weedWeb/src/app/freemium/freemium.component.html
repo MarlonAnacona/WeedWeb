@@ -3,48 +3,67 @@
     <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 mt-5">
         <div class="container-fluid text-center">
             <h1 class="titulo mb-4">Suscríbete y potencia tu granja</h1>
-            <br/>
+            <br />
             <div class="row justify-content-center">
+                <!-- Card 1-->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <p-card header="Plan normal" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px', width: '300px' , color: 'white'}" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                    <p-card header="Plan normal"
+                        [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px', width: '300px' , color: 'white'}"
+                        class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
                         <h6 style="color: white;">Gratis</h6>
                         <ul class="list-unstyled mt-3">
-                            <li style="color: white;"><i class="fas fa-check text-success" ></i> Puedes crear una granja </li>
-                            <li style="color: white;"><i class="fas fa-check text-success" ></i> Puedes crear 6 parcelas </li>
-                            <li style="color: white;"><i class="fas fa-times text-danger"></i> Descuentos en la e-commerce</li>
-                            <br/>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear una granja
+                            </li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear 6 parcelas
+                            </li>
+                            <li style="color: white;"><i class="fas fa-times text-danger"></i> Descuentos en la
+                                e-commerce</li>
+                            <br />
                         </ul>
                         <div class="mt-auto mt-3">
                             <button class="btn btn-success" disabled>Ya lo tengo</button>
                         </div>
                     </p-card>
                 </div>
+                <!-- Card 2-->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <p-card header="Plan premium" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px'  , width: '300px' , color: 'white' }" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                    <p-card header="Plan premium"
+                        [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px'  , width: '300px' , color: 'white' }"
+                        class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
                         <h6 style="color: white;">Mensual</h6>
-                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20"> $100</h6>
+                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20">
+                            $100</h6>
                         <ul class="list-unstyled mt-3">
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear más granjas</li>
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar más parcelas</li>
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la e-commerce</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear 6 granjas
+                            </li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar 12
+                                parcelas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la
+                                e-commerce</li>
                         </ul>
                         <div class="mt-auto mt-3">
-                            <button class="btn btn-primary" data-toggle="modal-premium" data-target="#modalProcesoPagoPremium">Suscribirse</button>
+                            <button class="btn btn-primary" [routerLink]="'/Freemium-premium'">Suscribirse</button>
                         </div>
                     </p-card>
                 </div>
-                
+                <!-- Card 3-->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <p-card header="Plan premium pro" [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px' , width: '300px' , color: 'white' }" class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
+                    <p-card header="Plan premium pro"
+                        [style]="{ 'background-color': 'rgba(0, 0, 0, 0.5)', height: '300px' , width: '300px' , color: 'white' }"
+                        class="d-flex flex-column align-items-center justify-content-center h-100 p-3">
                         <h6 style="color: white;">Anual</h6>
-                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20"> $900</h6>
+                        <h6 style="color: white;"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20">
+                            $900</h6>
                         <ul class="list-unstyled mt-3">
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear más granjas</li>
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar más parcelas</li>
-                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la e-commerce</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes crear 12 granjas
+                            </li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Puedes manejar 20
+                                parcelas</li>
+                            <li style="color: white;"><i class="fas fa-check text-success"></i> Descuentos en la
+                                e-commerce</li>
                         </ul>
                         <div class="mt-auto mt-3">
-                            <button class="btn btn-primary" data-toggle="modal-pro" data-target="#modalProcesoPagoPro">Suscribirse</button>
+                            <button class="btn btn-primary" [routerLink]="'/Freemium-premiumpro'">Suscribirse</button>
                         </div>
                     </p-card>
                 </div>
@@ -54,24 +73,3 @@
 </div>
 
 <app-barrabaja></app-barrabaja>
-
-<!-- Modal de Procesamiento de Pago -->
-<div class="modal fade" id="modalProcesoPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Procesando Pago</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Por favor espere mientras procesamos su pago...</p>
-                <!-- Agrega aquí cualquier información adicional sobre el proceso de pago -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>

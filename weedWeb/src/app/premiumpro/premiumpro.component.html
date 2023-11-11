@@ -1,0 +1,122 @@
+<menu-bar-user></menu-bar-user>
+<div class="contenido">
+    <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 mt-5">
+        <div class="container-fluid text-center">
+            <h1 class="titulo mb-4">Proceso de pago plan premium pro</h1>
+            <div class="row justify-content-center">
+                <!-- Card 1-->
+                <div class="col-md-6 col-lg-5 mb-3">
+                    <div class="contenedor">
+                        <!-- Tarjeta -->
+                        <section class="tarjeta" id="tarjeta" (click)="toggleTarjeta()">
+                            <div class="delantera">
+                                <img src="img/chip-tarjeta.png" class="chip" alt="">
+                                <div class="datos">
+                                    <div class="grupo" id="numero">
+                                        <p class="label">Número Tarjeta</p>
+                                        <p class="numero">#### #### #### ####</p>
+                                    </div>
+                                    <div class="flexbox">
+                                        <div class="grupo" id="nombre">
+                                            <p class="label">Nombre Tarjeta</p>
+                                            <p class="nombre">Jhon Doe</p>
+                                        </div>
+                                        <div class="grupo" id="expiracion">
+                                            <p class="label">Expiracion</p>
+                                            <p class="expiracion"><span class="mes">MM</span> / <span
+                                                    class="year">AA</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trasera">
+                                <div class="barra-magnetica"></div>
+                                <div class="datos">
+                                    <div class="grupo" id="firma">
+                                        <p class="label">Firma</p>
+                                        <div class="firma">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="grupo" id="ccv">
+                                        <p class="label">CCV</p>
+                                        <p class="ccv"></p>
+                                    </div>
+                                </div>
+                                <p class="leyenda">En la intersección de innovación y confiabilidad, nuestra tarjeta
+                                    representa un compromiso con experiencias excepcionales. </p>
+                                <a href="#" class="link-banco">www.weedweb.com</a>
+                            </div>
+                        </section>
+                        <!-- Contenedor Boton Abrir Formulario -->
+                        <div class="contenedor-btn">
+                            <button class="btn-abrir-formulario" id="btn-abrir-formulario" (click)="toggleFormulario()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <!-- Formulario -->
+                        <form action="" id="formulario-tarjeta" class="formulario-tarjeta"
+                            (submit)="enviarFormulario()">
+                            <div class="grupo">
+                                <label for="inputNumero">Número Tarjeta</label>
+                                <input type="text" id="inputNumero" maxlength="19" autocomplete="off">
+                            </div>
+                            <div class="grupo">
+                                <label for="inputNombre">Nombre</label>
+                                <input type="text" id="inputNombre" maxlength="19" autocomplete="off">
+                            </div>
+                            <div class="flexbox">
+                                <div class="grupo expira">
+                                    <label for="selectMes">Expiracion</label>
+                                    <div class="flexbox">
+                                        <div class="grupo-select">
+                                            <select name="mes" id="selectMes">
+                                                <option disabled selected>Mes</option>
+                                            </select>
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                        <div class="grupo-select">
+                                            <select name="year" id="selectYear">
+                                                <option disabled selected>Año</option>
+                                            </select>
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grupo ccv">
+                                    <label for="inputCCV">CCV</label>
+                                    <input type="text" id="inputCCV" maxlength="3">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-enviar">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Card 2-->
+                <div class="col-md-6 col-lg-5 mb-3 mt-3">
+                    <p-card header="Plan a comprar"
+                        [style]="{ 'background-color': 'white', height: '100%', width: '100%', color: 'black'}"
+                        class="d-flex flex-column align-items-start justify-content-between p-2">
+                        <h5 style="color: rgb(0, 0, 0);"><img src="../../assets/image/cannabit.png" alt="Cannabit" height="20">
+                            {{ totalAnual }}</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li style="color: rgb(0, 0, 0);"><i class="fas fa-check text-success"></i> Puedes crear 12 granjas
+                            </li>
+                            <li style="color: rgb(0, 0, 0);"><i class="fas fa-check text-success"></i> Puedes manejar 20
+                                parcelas</li>
+                            <li style="color: rgb(0, 0, 0);"><i class="fas fa-check text-success"></i> Descuentos en la
+                                e-commerce</li>
+                        </ul>
+                        <h6>Paga un total de {{ totalAnual }} cannabits por todo el año</h6>
+                        <p>Total : {{ totalAnual }}</p>
+                        <div>
+                            <button class="btn btn-success">Pagar</button>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-barrabaja></app-barrabaja>
