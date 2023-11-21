@@ -149,7 +149,7 @@ const routes: Routes = [
     DataViewModule,
     RatingModule,
     TagModule,
-    DropdownModule,DragDropModule,ButtonModule
+    DropdownModule,DragDropModule,ButtonModule,
   ],
   providers: [
     MessageService,

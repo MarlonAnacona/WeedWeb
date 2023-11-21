@@ -5,6 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { ProductService } from './data-view/productservice';
+import { DataViewModule } from 'primeng/dataview';
+import { PanelModule } from 'primeng/panel';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { RatingModule } from 'primeng/rating';
+import { RippleModule } from 'primeng/ripple';
 
 import {
   NgbAlertModule,
@@ -22,6 +29,7 @@ import { point } from 'leaflet';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
 import { FavoriteWindowComponent } from './favorite-window/favorite-window.component';
+import { DataViewComponent } from './data-view/data-view.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +40,7 @@ import { FavoriteWindowComponent } from './favorite-window/favorite-window.compo
     SearchbarComponent,
     CategoryDropdownComponent,
     FavoriteWindowComponent,
+    DataViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +53,14 @@ import { FavoriteWindowComponent } from './favorite-window/favorite-window.compo
     BrowserAnimationsModule,
     ButtonModule,
     DialogModule,
+    DataViewModule,
+    PanelModule,
+    DropdownModule,
+    InputTextModule,
+    RatingModule,
+    RippleModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [],
   exports: [
     ComponentsComponent,
@@ -53,7 +68,9 @@ import { FavoriteWindowComponent } from './favorite-window/favorite-window.compo
     MenubaruserComponent,
     MapComponent,
     SearchbarComponent,
-    CategoryDropdownComponent,FavoriteWindowComponent
+    CategoryDropdownComponent,
+    FavoriteWindowComponent,
+    DataViewComponent,
   ],
 })
 export class componentModule {}
