@@ -5,8 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-<<<<<<< HEAD
-=======
 import { ProductService } from './data-view/productservice';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
@@ -14,7 +12,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
->>>>>>> ecommerce-pepa
 
 import {
   NgbAlertModule,
@@ -44,18 +41,11 @@ import { DataViewComponent } from './data-view/data-view.component';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
-<<<<<<< HEAD
     BarrabajaComponent,
-
-    SearchbarComponent,
-    CategoryDropdownComponent,
-    FavoriteWindowComponent,
-=======
     SearchbarComponent,
     CategoryDropdownComponent,
     FavoriteWindowComponent,
     DataViewComponent,
->>>>>>> ecommerce-pepa
   ],
   imports: [
     BrowserModule,
@@ -68,15 +58,12 @@ import { DataViewComponent } from './data-view/data-view.component';
     BrowserAnimationsModule,
     ButtonModule,
     DialogModule,
-<<<<<<< HEAD
-=======
     DataViewModule,
     PanelModule,
     DropdownModule,
     InputTextModule,
     RatingModule,
     RippleModule,
->>>>>>> ecommerce-pepa
   ],
   providers: [ProductService],
   bootstrap: [],
@@ -85,17 +72,12 @@ import { DataViewComponent } from './data-view/data-view.component';
     FooterComponent,
     MenubaruserComponent,
     MapComponent,
-<<<<<<< HEAD
     BarrabajaComponent,
 
-    SearchbarComponent,
-    CategoryDropdownComponent,FavoriteWindowComponent
-=======
     SearchbarComponent,
     CategoryDropdownComponent,
     FavoriteWindowComponent,
     DataViewComponent,
->>>>>>> ecommerce-pepa
   ],
 })
 export class componentModule {}

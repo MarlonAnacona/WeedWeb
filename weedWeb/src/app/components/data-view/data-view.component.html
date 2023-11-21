@@ -24,7 +24,8 @@
             class="search-input"
             type="search"
             pInputText
-            placeholder="Search by Name" 
+            placeholder="Search by Name"
+            (input)="dv.filter($any($event.target).value)"
           />
         </span>
         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
