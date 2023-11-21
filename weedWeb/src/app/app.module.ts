@@ -47,6 +47,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FreemiumComponent } from './freemium/freemium.component';
+<<<<<<< HEAD
 import { AnimateModule } from 'primeng/animate';
 
 import { TagModule } from 'primeng/tag';
@@ -55,6 +56,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PremiumComponent } from './premium/premium.component';
 import { PremiumproComponent } from './premiumpro/premiumpro.component';
 
+=======
+import { TagModule } from 'primeng/tag';
+import { DragDropModule } from 'primeng/dragdrop';
+import { DropdownModule } from 'primeng/dropdown';
+>>>>>>> ecommerce-pepa
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -163,11 +169,18 @@ const routes: Routes = [
     CardModule,
     TableModule,
     DialogModule,
+<<<<<<< HEAD
     AnimateModule,
     DataViewModule,
     RatingModule,
     TagModule,
     DropdownModule,DragDropModule,ButtonModule
+=======
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    DropdownModule,DragDropModule,ButtonModule,
+>>>>>>> ecommerce-pepa
   ],
   providers: [
     MessageService,
