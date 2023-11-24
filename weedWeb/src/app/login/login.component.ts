@@ -52,20 +52,15 @@ export class LoginComponent implements OnInit {
    * else -> error
    */
   login() {
-    //
-
-    //Servicio que llama y trae los tokens
 
     this.serivce.login(this.userlogin).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.access);
-        localStorage.setItem('tokenRefresh', response.refresh);
-        this.tokenObject = jwt_decode(response.access)
-
-          this.serivce.getUser(this.tokenObject.user_id).subscribe({
+        localStorage.setItem('token', response.tokenSessionAccess);
+        localStorage.setItem('tokenRefresh', response.tokenSessionRefresh);
+        const tokendecoded = this.tokenObject = jwt_decode(response.tokenSessionAccess);
+        this.route.navigate(['../CreateFarm']);
+          this.serivce.getUser(this.tokenObject.userId).subscribe({
             next: (data) => {
-
-
               localStorage.setItem('userName',data.first_name+' '+ data.last_name)
                   this.message.add({
                     severity: 'success',
@@ -80,8 +75,6 @@ export class LoginComponent implements OnInit {
             }
 
           })
-
-
       },
       error: (err) => {
         this.message.add({

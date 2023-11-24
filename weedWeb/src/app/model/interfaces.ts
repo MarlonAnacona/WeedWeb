@@ -67,8 +67,9 @@ export interface companyRegister {
 }
 
 export interface userLogin {
-  email: string;
   password: string;
+  email: string;
+
 }
 
 export interface seed{

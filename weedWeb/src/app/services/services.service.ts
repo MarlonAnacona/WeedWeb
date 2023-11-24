@@ -15,25 +15,24 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServicesService {
-  url: string = 'https://weed-backend.onrender.com/';
+  url: string = 'http://localhost:4000/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
-    return this.Http.post(this.url + 'users/api/token/', data);
+    return this.Http.post(this.url + 'users/api/SignIn', data);
   }
 
   userRegister(data: userRegister) {
-    return this.Http.post(this.url + 'users/person/create/', data);
+    return this.Http.post(this.url + 'users/api/person', data);
+  }
+
+  companyRegister(data: companyRegister) {
+    return this.Http.post(this.url + 'users/api/company ', data);
   }
 
   getUser(id:any ): Observable<any>{
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-
-    return this.Http.get(this.url + 'users/person/'+ id,{headers});
-  }
-
-  companyRegister(data: companyRegister) {
-    return this.Http.post(this.url + 'users/company/create/ ', data);
+    return this.Http.get(this.url + '/users/api/'+ id,{headers});
   }
 
   createFarm(data: farmCreate) {
