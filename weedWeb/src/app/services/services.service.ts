@@ -32,7 +32,7 @@ export class ServicesService {
 
   getUser(id:any ): Observable<any>{
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.get(this.url + '/users/api/'+ id,{headers});
+    return this.Http.get(this.url + 'users/api/'+ id,{headers});
   }
 
   createFarm(data: farmCreate) {
@@ -64,7 +64,6 @@ export class ServicesService {
   }
 
   getFarm(token:any) :Observable<any>{
-
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
       return this.Http.get(this.url+'farms/get-farm/',{headers});
   }
@@ -78,17 +77,20 @@ export class ServicesService {
   tokenRefresh(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
    const token={
-    refresh: localStorage.getItem('tokenRefresh')
+   token: localStorage.getItem('tokenRefresh')
    }
-    return this.Http.post(this.url+'users/api/token/refresh/',  token, {headers})
+    return this.Http.post(this.url+'users/api/tokenRefresh', token ,{headers})
   }
 
   refresacarToken(){
     this.tokenRefresh().subscribe({ next: (response)=>{
-
-      localStorage.setItem('token',response.access)
-    }})
+      localStorage.setItem('token',response.tokenSessionAccess)
+      localStorage.setItem('tokenRefresh',response.tokenSessionRefresh)
+    }
+  })
   }
+
+
 
   createParcel(body:parcelaCreate){
 

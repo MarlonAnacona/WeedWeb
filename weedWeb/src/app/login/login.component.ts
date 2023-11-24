@@ -46,22 +46,19 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['../Register']);
   }
 
-  /**
-   * Login for the user
-   * if login is success-> go to the Dashboard
-   * else -> error
-   */
   login() {
 
     this.serivce.login(this.userlogin).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.tokenSessionAccess);
         localStorage.setItem('tokenRefresh', response.tokenSessionRefresh);
-        const tokendecoded = this.tokenObject = jwt_decode(response.tokenSessionAccess);
+         this.tokenObject = jwt_decode(response.tokenSessionAccess);
         this.route.navigate(['../CreateFarm']);
           this.serivce.getUser(this.tokenObject.userId).subscribe({
             next: (data) => {
-              localStorage.setItem('userName',data.first_name+' '+ data.last_name)
+              const email = data.email
+              const userName = email.split('@')[0]
+              localStorage.setItem('userName', userName)
                   this.message.add({
                     severity: 'success',
                     summary: 'Bienvenido ',
@@ -73,7 +70,6 @@ export class LoginComponent implements OnInit {
                   error : (err)=>{
               console.log(err)
             }
-
           })
       },
       error: (err) => {
