@@ -16,7 +16,7 @@ export class RegisterCompanyComponent implements OnInit {
     email: '',
     password: '',
     name: '',
-    NIT: undefined,
+    nit: undefined,
     phone_number: undefined,
   };
   constructor(

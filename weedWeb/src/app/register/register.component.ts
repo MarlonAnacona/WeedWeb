@@ -14,8 +14,7 @@ export class RegisterComponent implements OnInit {
   forma!:FormGroup
 
   public userRegister: userRegister = {
-    first_name: '',
-    middle_name: '',
+    name: '',
     last_name: '',
     email: '',
     national_id: undefined,
