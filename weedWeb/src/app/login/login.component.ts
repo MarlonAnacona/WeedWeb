@@ -52,13 +52,13 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         localStorage.setItem('token', response.tokenSessionAccess);
         localStorage.setItem('tokenRefresh', response.tokenSessionRefresh);
+        const email = response.emailUser
+        const userName = email.split('@')[0]
+        localStorage.setItem('userName', userName);
          this.tokenObject = jwt_decode(response.tokenSessionAccess);
         this.route.navigate(['../CreateFarm']);
           this.serivce.getUser(this.tokenObject.userId).subscribe({
             next: (data) => {
-              const email = data.email
-              const userName = email.split('@')[0]
-              localStorage.setItem('userName', userName)
                   this.message.add({
                     severity: 'success',
                     summary: 'Bienvenido ',
