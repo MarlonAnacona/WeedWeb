@@ -61,24 +61,22 @@ a:hover {
 }
 
 .form-container {
-  z-index: 100;
-  /* position: absolute;
-  right: 0; */
-  top: 50%;
+  position: fixed;
+  top: 40%;
+  right: 0;
   transform: translateY(-50%);
-  max-width: 20%;
-  width: 30%;
-  min-height: 70%;
-  position: absolute;
-  padding-left: 1rem;
-  padding-right: 0rem;
-  padding-top: 5rem;
-  padding-bottom: 10rem;
-  margin-left: 60vmax;
-  /* margin-right: auto;
-  margin-block-end: auto; */
-  background-color: rgba(228, 237, 210, 0.863);
-  border-radius: 70px;
+  height: 60%;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 50px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semi-transparente */
+  animation: fadeIn 0.5s ease-in-out;
 }
 .form-container-home {
   z-index: 100;
@@ -153,7 +151,7 @@ a:hover {
   color: #000000;
 }
 
-.buttonLink{
+.buttonLink {
   background: none;
   border: none;
   padding: 0;
@@ -161,9 +159,8 @@ a:hover {
   color: blue; /* Color del enlace */
   text-decoration: underline; /* Subrayado del enlace */
   cursor: pointer;
-
 }
-.botones{
+.botones {
   text-align: center;
   display: flex;
 }
@@ -178,4 +175,46 @@ a:hover {
 
 .boton1 {
   align-items: center;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Puedes ajustar esto según tus preferencias */
+  margin-top: 20px; /* Ajusta el margen superior entre los botones */
+}
+
+.btn {
+  width: 60%; /* Ajusta el ancho de los botones según tus preferencias */
+}
+
+.btn-sign-up {
+  background-color: rgb(127, 160, 35);
+  margin-right: 40px; 
+  color: #fff;
+}
+
+.btn-sign-in {
+  background-color: rgb(127, 160, 35);
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: rgb(105, 131, 36);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
