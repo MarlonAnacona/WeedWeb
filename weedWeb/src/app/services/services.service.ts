@@ -6,7 +6,7 @@ import {
   userRegister,
   farmCreate,
   parcelaCreate,
-  parcelaEdit,
+  parcelaEdit
 } from '../model/interfaces';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
@@ -15,24 +15,25 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServicesService {
+  urlCRUD: string = 'https://weedweb-crud.onrender.com/';
   url: string = 'http://localhost:4000/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
-    return this.Http.post(this.url + 'users/api/SignIn', data);
+    return this.Http.post(this.urlCRUD + 'users/api/SignIn', data);
   }
 
   userRegister(data: userRegister) {
-    return this.Http.post(this.url + 'users/api/person', data);
+    return this.Http.post(this.urlCRUD + 'users/api/person', data);
   }
 
   companyRegister(data: companyRegister) {
-    return this.Http.post(this.url + 'users/api/company ', data);
+    return this.Http.post(this.urlCRUD + 'users/api/company ', data);
   }
 
   getUser(id:any ): Observable<any>{
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.get(this.url + 'users/api/'+ id,{headers});
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+ localStorage.getItem('token'));
+    return this.Http.get(this.urlCRUD + 'users/api/'+ id,{headers});
   }
 
   createFarm(data: farmCreate) {
@@ -79,7 +80,7 @@ export class ServicesService {
    const token={
    token: localStorage.getItem('tokenRefresh')
    }
-    return this.Http.post(this.url+'users/api/tokenRefresh', token ,{headers})
+    return this.Http.post(this.urlCRUD+'users/api/tokenRefresh', token ,{headers})
   }
 
   refresacarToken(){
@@ -90,11 +91,14 @@ export class ServicesService {
   })
   }
 
-
+  logout(): Observable<any>{
+    const token={
+      token: localStorage.getItem('tokenRefresh')
+    }
+    return this.Http.post(this.urlCRUD+'users/api/logout', token)
+  }
 
   createParcel(body:parcelaCreate){
-
-
     return this.Http.post(this.url+'farms/create-parcel/',body)
   }
 
@@ -103,7 +107,6 @@ export class ServicesService {
 
     return this.Http.get(this.url+'seeds/get-seed/',{headers})
   }
-
 
   getWheaterApi(latitude:number, longitude:number): Observable<any>{
     return this.Http.get('https://api.open-meteo.com/v1/forecast?longitude='+longitude+'&latitude='+latitude+'&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain&timezone=auto')
