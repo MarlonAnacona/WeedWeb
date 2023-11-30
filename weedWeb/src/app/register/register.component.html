@@ -58,81 +58,94 @@
         </div>
         <div class="form-row p-6">
           <div class="form-group col-md-12 mt-1" >
-            <label>Nombre</label>
-            <input
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-user input-group-text"></i></span>
+              <input
               type="text"
               formControlName= "nombre"
               [class.is-invalid]="validacionNombre"
               name="nombre"
               [(ngModel)]="userRegister.name"
               class="form-control"
+              placeholder="Nombre"
               required
             />
+            </div>
             <small *ngIf="validacionNombre" class="text-danger">El nombre es un campo requerido</small>
           </div>
 
           <div class="form-group col-md-12 mt-1">
-            <label>Apellido</label>
-            <input
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-user input-group-text"></i></span>
+              <input
               formControlName="apellido"
               [class.is-invalid] = "validacionApellido"
               type="text"
               name="userRegister.lastName"
               [(ngModel)]="userRegister.last_name"
               class="form-control"
+              placeholder="Apellido"
               required
             />
+            </div>
             <small *ngIf="validacionApellido" class="text-danger">El apellido es un campo requerido</small>
           </div>
 
           <div class="form-group col-md-12 mt-1">
-            <label>Cédula</label>
-            <input
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-id-card input-group-text"></i></span>
+              <input
               formControlName="cedula"
               [class.is-invalid] = "validacionCedula"
               type="text"
               name="userRegister.nationalId"
               [(ngModel)]="userRegister.national_id"
               class="form-control"
+              placeholder="Cédula"
               required
             />
+            </div>
             <small *ngIf="validacionCedula" class="text-danger" >Ingrese una cédula válida</small>
           </div>
 
           <div class="form-group col-md-12 mt-1">
-            <label>Email</label>
-            <input
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-at input-group-text"></i></span>
+              <input
               formControlName="email"
               [class.is-invalid] = "validacionEmail"
               type="email"
               name="userRegister.email"
               [(ngModel)]="userRegister.email"
               class="form-control"
+              placeholder="Email"
               required
             />
+            </div>
             <small *ngIf="validacionEmail" class="text-danger">Ingrese un email válido</small>
+
+
           </div>
 
           <div class="form-group col-md-12 mt-1">
-            <label>Contraseña</label>
             <div class="input-group">
+              <div class="input-group-append">
+                <span
+                  class="input-group-prepend input-group-text"
+                >
+                  <i (click)= "togglePasswordVisibility()" class="pi" [ngClass]="{'pi-eye ': !showPassword2, 'pi-eye-slash ': showPassword2}"></i>
+              </span>
+              </div>
               <input
                 formControlName="password"
                 [class.is-invalid]="validacionPassword"
-                type="password"
+                [type]="showPassword2 ? 'text' : 'password'"
                 name="userRegister.password"
                 class="form-control"
+                placeholder="Contraseña"
                 required
               />
-              <div class="input-group-append">
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  (click)="togglePasswordVisibility()"
-                >
-                  <i class="fas" [ngClass]="{'fa-eye': !showPassword2, 'fa-eye-slash': showPassword2}"></i>
-                </button>
-              </div>
+
             </div>
             <small *ngIf="validacionPassword" class="text-danger">
               Ingrese una contraseña de mínimo 8 caracteres
@@ -140,18 +153,24 @@
           </div>
 
           <div class="form-group col-md-12 mt-1">
-            <label>Número teléfonico</label>
-            <input
-              formControlName="telefono"
-              [class.is-invalid] = "validacionTelefono"
-              type="number"
-              name="userRegister.phone_number"
-              [(ngModel)]="userRegister.phone_number"
-              class="form-control"
-              required
-            />
-            <small *ngIf="validacionTelefono" class="text-danger">Ingrese un número teléfonico válido</small>
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <i class="pi pi-phone input-group-text"></i>
+              </span>
+              <input
+                formControlName="telefono"
+                [class.is-invalid]="validacionTelefono"
+                type="number"
+                name="userRegister.phone_number"
+                [(ngModel)]="userRegister.phone_number"
+                class="form-control"
+                placeholder="Número de telefono"
+                required
+              />
+            </div>
+            <small *ngIf="validacionTelefono" class="text-danger">Ingrese un número telefónico válido</small>
           </div>
+
         </div>
         <div class="register-button">
           <button

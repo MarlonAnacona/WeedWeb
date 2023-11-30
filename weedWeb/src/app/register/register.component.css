@@ -159,9 +159,28 @@ a:hover {
   padding: 8px;
 }
 
+.form-input:focus {
+  border-color: #007bff;
+  width: 100%;
+}
+
 .imagenRegistro{
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
+}
+
+.input-group  {
+  border-right: 0;
+  background-color: rgb(196, 219, 134);
+}
+
+.input-group-text{
+  border-right: 0;
+  background-color: rgb(196, 219, 134);
+}
+
+.input-group .form-control {
+  padding-left: 30px;
 }

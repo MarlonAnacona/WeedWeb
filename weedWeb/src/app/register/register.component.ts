@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
 
   showPassword2 = false;
 
-  togglePasswordVisibility() {
+  togglePasswordVisibility(): void {
     this.showPassword2 = !this.showPassword2;
     this.cdr.detectChanges();
   }
