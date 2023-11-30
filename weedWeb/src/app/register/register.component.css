@@ -98,6 +98,7 @@ a:hover {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+
 }
 
 .homecontainer {
@@ -148,4 +149,19 @@ a:hover {
   align-items: center;
   text-align: center;
   color: #000000;
+}
+
+.btn-sign-up {
+  background-color: rgb(127, 160, 35);
+  margin-right: 40px;
+  color: #fff;
+  width: 100%;
+  padding: 8px;
+}
+
+.imagenRegistro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
 }

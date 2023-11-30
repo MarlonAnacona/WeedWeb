@@ -1,6 +1,6 @@
 import { MessageService } from 'primeng/api';
 import { ServicesService } from './../services/services.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { userRegister } from '../model/interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     email: '',
     national_id: undefined,
     phone_number: undefined,
-    password: '',
+    password: ''
   };
   public firstName: any;
   public lastName: any;
@@ -28,11 +28,13 @@ export class RegisterComponent implements OnInit {
   public phoneNumber: any;
   public password: any;
 
+
   constructor(
     private route: Router,
     private servicesService: ServicesService,
     private message: MessageService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.crearFormulario();
   }
@@ -61,6 +63,13 @@ export class RegisterComponent implements OnInit {
 
   get validacionPassword(){
     return this.forma.get('password')?.invalid && this.forma.get('password')?.touched;
+  }
+
+  showPassword2 = false;
+
+  togglePasswordVisibility() {
+    this.showPassword2 = !this.showPassword2;
+    this.cdr.detectChanges();
   }
 
   crearFormulario(){

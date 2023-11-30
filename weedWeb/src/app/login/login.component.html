@@ -69,26 +69,25 @@
         <div class="input-container">
             <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input type="text" pInputText placeholder="Username" class="form-input" />
+                <input type="text" name="userlogin.email" [(ngModel)]="userlogin.email" placeholder="Email" class="form-input" />
             </div>
         </div>
-    
-  
+
             <p-password
-                [(ngModel)]="value3"
+                name="userlogin.password"
+                [(ngModel)]="userlogin.password"
                 [feedback]="false"
                 [toggleMask]="true"
                 placeholder="Password"
                 class="form-input"
             ></p-password>
-        
-    
+
             <div class="button-container">
               <button class="btn btn-sign-up" (click)="showModal()">Registrarse</button>
               <button type="submit" class="btn btn-sign-in" (click)="login()">Ingresar</button>
           </div>
     </div>
-    
+
       <p-dialog
         [(visible)]="visibleA"
         [style]="{ width: 'auto' }"
