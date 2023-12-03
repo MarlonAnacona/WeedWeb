@@ -8,6 +8,12 @@
   min-width: 100%;
   min-height: 100%;
 }
+.imagenRegistro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
 
 .carousel-caption {
   padding-left: 40px;
@@ -76,28 +82,33 @@ a:hover {
   display: flex;
   position: absolute;
   justify-content: center;
+  align-items: center;
   z-index: 100;
   top: 50%;
   transform: translateY(-50%);
   max-width: 40%;
-  width: 40%;
+  /* width: 40%; */
   min-width: 20%;
-  min-height: 70%;
-  padding-left: 0.5rem;
+  min-height: 20%;
+  /* padding-left: 0.5rem; */
   padding-right: 0rem;
-  padding-top: 5rem;
-  padding-bottom: 10rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   margin-left: 30vmax;
-  margin-right: 10vmax;
+  /* margin-right: 10vmax; */
   background-color: rgba(228, 237, 210, 0.863);
   border-radius: 70px;
 }
 
-.container .register-button{
+.register-button {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
 
+.btn-sign-up {
+  background-color: rgb(127, 160, 35);
+  color: #fff;
 }
 
 .homecontainer {
@@ -148,4 +159,18 @@ a:hover {
   align-items: center;
   text-align: center;
   color: #000000;
+}
+
+.input-group  {
+  border-right: 0;
+  background-color: rgb(196, 219, 134);
+}
+
+.input-group-text{
+  border-right: 0;
+  background-color: rgb(196, 219, 134);
+}
+
+.input-group .form-control {
+  padding-left: 30px;
 }

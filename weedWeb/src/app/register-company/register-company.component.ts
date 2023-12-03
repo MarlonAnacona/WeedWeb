@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { companyRegister } from '../model/interfaces';
 import { ServicesService } from '../services/services.service';
@@ -23,7 +23,8 @@ export class RegisterCompanyComponent implements OnInit {
     private route: Router,
     private servicesService: ServicesService,
     private message: MessageService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.iniciarFormulario();
   }
@@ -62,13 +63,52 @@ export class RegisterCompanyComponent implements OnInit {
     )
   }
 
+  // register() {
+  //   console.log(this.companyRegister);
+
+  //   this.servicesService.companyRegister(this.companyRegister).subscribe({
+  //     next: (data) => {
+  //       // this.route.navigate(['../CreateFarm']);
+
+  //       this.message.add({
+  //         severity: 'success',
+  //         summary: 'Ha sido registrado con éxito ',
+  //         detail: ' ',
+  //       });
+  //       this.route.navigate(['../Login']);
+  //     },
+  //     error: (err) => {
+  //       this.message.add({
+  //         severity: 'error',
+  //         summary: 'No ha sido posible el registro ',
+  //         detail: ' ',
+  //       });
+  //     },
+  //   });
+  // }
+
   register() {
-    console.log(this.companyRegister);
+    if (this.forma.invalid) {
+      this.message.add({
+        severity: 'error',
+        summary: 'Pon bien los datos para el envío del formulario',
+        detail: ' ',
+      });
+      return;
+    }
+
+    this.companyRegister = {
+      name: this.forma.get('nombreEmpresa')?.value,
+      email: this.forma.get('emailEmpresa')?.value,
+      nit: this.forma.get('nit')?.value,
+      phone_number: this.forma.get('telefonoEmpresa')?.value,
+      password: this.forma.get('passwordEmpresa')?.value,
+    };
+
+    console.log(this.companyRegister); // Verifica que los datos se asignen correctamente al objeto userRegister
 
     this.servicesService.companyRegister(this.companyRegister).subscribe({
       next: (data) => {
-        // this.route.navigate(['../CreateFarm']);
-
         this.message.add({
           severity: 'success',
           summary: 'Ha sido registrado con éxito ',
@@ -85,7 +125,21 @@ export class RegisterCompanyComponent implements OnInit {
       },
     });
   }
+
+
+
+
   Home(){
     this.route.navigate(['../Home']);
   }
+
+  showPassword2 = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword2 = !this.showPassword2;
+    this.cdr.detectChanges();
+  }
+
 }
+
+

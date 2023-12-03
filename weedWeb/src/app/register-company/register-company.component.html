@@ -51,82 +51,110 @@
   <div class="register-container">
     <div class="container">
       <form [formGroup]="forma">
-        <h2 class="text-center">Registrarse</h2>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label>Nombre de empresa</label>
-            <input
+        <h2 class="text-center">¡Registrate!</h2>
+        <div class="imagenRegistro">
+          <img src="../../../assets/image/toallin.png" alt="" width="100" height="120">
+        </div>
+        <div class="form-row p-6">
+          <div class="form-group col-md-12 mt-1" >
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-user input-group-text"></i></span>
+              <input
               type="text"
               name="nombreEmpresa"
               formControlName="nombreEmpresa"
               [class.is-invalid] = "validacionNombreEmpresa"
               class="form-control"
               [(ngModel)]="companyRegister.name"
+              placeholder="Nombre de empresa"
               required
             />
+            </div>
             <small *ngIf="validacionNombreEmpresa" class="text-danger">El nombre es un campo requerido</small>
           </div>
 
-          <div class="form-group col-md-12">
-            <label>Email</label>
-            <input
-              type="email"
-              formControlName="emailEmpresa"
-              [class.is-invalid] = "validacionEmailEmpresa"
-              name="emailEmpresa"
-              [(ngModel)]="companyRegister.email"
-              class="form-control"
-              required
-            />
-            <small *ngIf="validacionEmailEmpresa" class="text-danger">Ingrese un email válido</small>
-          </div>
-
-          <div class="form-group col-md-12">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              formControlName="passwordEmpresa"
-              [class.is-invalid]="validacionPasswordEmpresa"
-              name="passwordEmpresa"
-              [(ngModel)]="companyRegister.password"
-              class="form-control"
-              required
-            />
-            <small *ngIf="validacionPasswordEmpresa" class="text-danger">Ingrese una contraseña válida</small>
-          </div>
-
-          <div class="form-group col-md-12">
-            <label>Nit</label>
-            <input
+          <div class="form-group col-md-12 mt-1">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-id-card input-group-text"></i></span>
+              <input
               type="text"
               formControlName="nit"
               [class.is-invalid]="validacionNit"
               name="nit"
               class="form-control"
               [(ngModel)]="companyRegister.nit"
+              placeholder="Nit"
               required
             />
+            </div>
             <small *ngIf="validacionNit" class="text-danger">Ingrese un nit válido</small>
           </div>
 
-          <div class="form-group col-md-12">
-            <label>Número teléfonico</label>
-            <input
+          <div class="form-group col-md-12 mt-1">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="pi pi-at input-group-text"></i></span>
+              <input
+              type="email"
+              formControlName="emailEmpresa"
+              [class.is-invalid] = "validacionEmailEmpresa"
+              name="emailEmpresa"
+              [(ngModel)]="companyRegister.email"
+              class="form-control"
+              placeholder="Email"
+              required
+            />
+            </div>
+            <small *ngIf="validacionEmailEmpresa" class="text-danger">Ingrese un email válido</small>
+          </div>
+
+          <div class="form-group col-md-12 mt-1">
+            <div class="input-group">
+              <div class="input-group-append">
+                <span
+                  class="input-group-prepend input-group-text"
+                >
+                  <i (click)= "togglePasswordVisibility()" class="pi" [ngClass]="{'pi-eye ': !showPassword2, 'pi-eye-slash ': showPassword2}"></i>
+              </span>
+              </div>
+              <input
+              type="password"
+              formControlName="passwordEmpresa"
+              [class.is-invalid]="validacionPasswordEmpresa"
+              name="passwordEmpresa"
+              [(ngModel)]="companyRegister.password"
+              [type]="showPassword2 ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Contraseña"
+              required
+            />
+            </div>
+            <small *ngIf="validacionPasswordEmpresa" class="text-danger">Ingrese una contraseña válida</small>
+          </div>
+
+          <div class="form-group col-md-12 mt-1">
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <i class="pi pi-phone input-group-text"></i>
+              </span>
+              <input
               type="number"
               formControlName="telefonoEmpresa"
               [class.is.valdid]="validacionTelefonoEmpresa"
               name="telefonoEmpresa"
               [(ngModel)]="companyRegister.phone_number"
               class="form-control"
+              placeholder="Número de telefono"
               required
             />
+            </div>
             <small *ngIf="validacionTelefonoEmpresa" class="text-danger">El teléfono es requerido</small>
           </div>
+
         </div>
         <div class="register-button">
           <button
             type="submit"
-            class="btn btn-primary btn-block"
+            class="btn btn-sign-up"
             (click)="register()"
           >
             Registrarse

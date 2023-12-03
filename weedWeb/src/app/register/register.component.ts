@@ -86,11 +86,28 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.userRegister);
+    if (this.forma.invalid) {
+      this.message.add({
+        severity: 'error',
+        summary: 'Pon bien los datos para el envío del formulario',
+        detail: ' ',
+      });
+      return;
+    }
+
+    this.userRegister = {
+      name: this.forma.get('nombre')?.value,
+      last_name: this.forma.get('apellido')?.value,
+      email: this.forma.get('email')?.value,
+      national_id: this.forma.get('cedula')?.value,
+      phone_number: this.forma.get('telefono')?.value,
+      password: this.forma.get('password')?.value,
+    };
+
+    console.log(this.userRegister); // Verifica que los datos se asignen correctamente al objeto userRegister
 
     this.servicesService.userRegister(this.userRegister).subscribe({
       next: (data) => {
-        // this.route.navigate(['../CreateFarm']);
         this.message.add({
           severity: 'success',
           summary: 'Ha sido registrado con éxito ',
