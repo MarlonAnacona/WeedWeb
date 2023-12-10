@@ -48,7 +48,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FreemiumComponent } from './freemium/freemium.component';
 import { AnimateModule } from 'primeng/animate';
-
+import { PasswordModule } from "primeng/password";
 import { TagModule } from 'primeng/tag';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DropdownModule } from 'primeng/dropdown';
@@ -142,6 +142,7 @@ const routes: Routes = [
     PremiumproComponent,
   ],
   imports: [
+    PasswordModule,
     GoogleMapsModule,
     ButtonModule,
     ToastModule,

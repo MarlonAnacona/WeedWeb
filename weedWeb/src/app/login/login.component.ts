@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  value3?: string;
   public userlogin: userLogin = {
     password: '',
     email: '',

@@ -23,6 +23,7 @@ export class DataViewComponent {
   sortKey: any;
 
   dv: DataView | undefined;
+  currentLayout: string = 'list';
 
   constructor(
     private productService: ProductService,
@@ -33,8 +34,8 @@ export class DataViewComponent {
     this.productService.getProducts().then((data) => (this.products = data));
 
     this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' },
+      { label: 'Precio de Mayor a Menor', value: '!price' },
+      { label: 'Precio de Menor a Mayor', value: 'price' },
     ];
 
     this.primengConfig.ripple = true;
@@ -49,6 +50,21 @@ export class DataViewComponent {
     } else {
       this.sortOrder = 1;
       this.sortField = value;
+    }
+  }
+  toggleLayout(): void {
+    this.currentLayout = this.currentLayout === 'list' ? 'grid' : 'list';
+  }
+  getStatusClass(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'outofstock':
+        return 'out-of-stock';
+      case 'lowstock':
+        return 'low-stock';
+      case 'instock':
+        return 'in-stock';
+      default:
+        return '';
     }
   }
 }
