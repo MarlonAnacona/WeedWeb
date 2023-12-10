@@ -76,7 +76,7 @@ describe('ServicesService', () => {
       email:"company@email.com",
       password: "contrasena123",
       phone_number: 1234567819,
-      NIT: 11112,
+      nit: 11112,
       name: "company inc"
 
     };

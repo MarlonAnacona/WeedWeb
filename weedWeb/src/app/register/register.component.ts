@@ -1,6 +1,6 @@
 import { MessageService } from 'primeng/api';
 import { ServicesService } from './../services/services.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { userRegister } from '../model/interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,13 +14,12 @@ export class RegisterComponent implements OnInit {
   forma!:FormGroup
 
   public userRegister: userRegister = {
-    first_name: '',
-    middle_name: '',
+    name: '',
     last_name: '',
     email: '',
     national_id: undefined,
     phone_number: undefined,
-    password: '',
+    password: ''
   };
   public firstName: any;
   public lastName: any;
@@ -29,11 +28,13 @@ export class RegisterComponent implements OnInit {
   public phoneNumber: any;
   public password: any;
 
+
   constructor(
     private route: Router,
     private servicesService: ServicesService,
     private message: MessageService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.crearFormulario();
   }
@@ -64,6 +65,13 @@ export class RegisterComponent implements OnInit {
     return this.forma.get('password')?.invalid && this.forma.get('password')?.touched;
   }
 
+  showPassword2 = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword2 = !this.showPassword2;
+    this.cdr.detectChanges();
+  }
+
   crearFormulario(){
     this.forma = this.fb.group(
       {
@@ -78,11 +86,28 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.userRegister);
+    if (this.forma.invalid) {
+      this.message.add({
+        severity: 'error',
+        summary: 'Pon bien los datos para el envío del formulario',
+        detail: ' ',
+      });
+      return;
+    }
+
+    this.userRegister = {
+      name: this.forma.get('nombre')?.value,
+      last_name: this.forma.get('apellido')?.value,
+      email: this.forma.get('email')?.value,
+      national_id: this.forma.get('cedula')?.value,
+      phone_number: this.forma.get('telefono')?.value,
+      password: this.forma.get('password')?.value,
+    };
+
+    console.log(this.userRegister); // Verifica que los datos se asignen correctamente al objeto userRegister
 
     this.servicesService.userRegister(this.userRegister).subscribe({
       next: (data) => {
-        // this.route.navigate(['../CreateFarm']);
         this.message.add({
           severity: 'success',
           summary: 'Ha sido registrado con éxito ',

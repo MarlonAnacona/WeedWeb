@@ -1,12 +1,12 @@
 export interface userRegister {
-  first_name: string;
+  name: string;
   last_name: string;
   email: string;
   national_id?: number;
   phone_number?: string;
-  middle_name?: string;
   password: string;
 }
+
 export interface farmCreate {
   user_id: string;
   farm_name: string;
@@ -62,13 +62,14 @@ export interface companyRegister {
   name: string;
   email: string;
   password: string;
-  NIT?: number;
+  nit?: number;
   phone_number?: number;
 }
 
 export interface userLogin {
-  email: string;
   password: string;
+  email: string;
+
 }
 
 export interface seed{
