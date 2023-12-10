@@ -12,10 +12,11 @@
 }
 
 .contenido {
-    padding: 30px; /* Añade espacio alrededor del contenido */
+    padding: 10px 10px 0; /* Ajusta el padding-bottom a 0 o a un valor más bajo según tus necesidades */
     background-color: #C3D9C9;
     height: 50%;
 }
+
 
 .contenedor {
 	width: 90%;

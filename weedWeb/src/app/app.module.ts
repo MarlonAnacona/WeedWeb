@@ -79,7 +79,7 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
@@ -89,7 +89,7 @@ const routes: Routes = [
   {
     path: 'Time',
     component: TimeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Freemium',
