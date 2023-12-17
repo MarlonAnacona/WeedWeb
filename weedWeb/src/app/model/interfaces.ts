@@ -79,3 +79,30 @@ export interface seed{
   thc:number;
   species_name:string;
 }
+
+export interface producto {
+  code: string;
+  name: string;
+  description: string;
+  image: string | null; 
+  price: number;
+  category: number;
+  quantity: number;
+  rating: number;
+}
+
+
+export interface Purchase {
+  dateOfPurchase: string;
+  items: PurchaseItem[];
+}
+
+export interface PurchaseItem {
+  productId: number;
+  quantity: number;
+  priceAtPurchase: number;
+}
+
+export interface CreateCategory {
+  name: string;
+}
