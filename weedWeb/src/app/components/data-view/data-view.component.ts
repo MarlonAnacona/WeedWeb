@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from './productservice';
+import { ServicesService } from 'src/app/services/services.service';
 import { producto } from 'src/app/model/interfaces';
 import { SelectItem } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
@@ -22,7 +22,7 @@ export class DataViewComponent implements OnInit {
   loading: boolean = false;
 
   constructor(
-    private productService: ProductService,
+    private servicesService: ServicesService,
     private primengConfig: PrimeNGConfig
   ) {}
 
@@ -39,8 +39,8 @@ export class DataViewComponent implements OnInit {
 
   loadProducts(): void {
     this.loading = true;
-    this.productService
-      .getProducts()
+    this.servicesService
+      .getAllProduct()
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         (data: producto[]) => {  
@@ -52,8 +52,6 @@ export class DataViewComponent implements OnInit {
         }
       );
   }
-  
-  
 
   onSortChange(event: { value: string }) {
     let value = event.value;

@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { ProductService } from './data-view/productservice';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import { DropdownModule } from 'primeng/dropdown';
@@ -65,7 +64,6 @@ import { DataViewComponent } from './data-view/data-view.component';
     RatingModule,
     RippleModule,
   ],
-  providers: [ProductService],
   bootstrap: [],
   exports: [
     ComponentsComponent,

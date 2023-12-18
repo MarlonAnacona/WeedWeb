@@ -8,17 +8,16 @@ import {
   parcelaCreate,
   parcelaEdit,
   producto,
-  Purchase,
-  CreateCategory
+  Purchase
 } from '../model/interfaces';
-import { Observable } from 'rxjs';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServicesService {
-  urlEcommerce: string = 'http://localhost:8080';
+  urlEcommerce: string = 'http://localhost:8080/';
   urlCRUD: string = 'https://weedweb-crud.onrender.com/';
   url: string = 'http://localhost:4000/';
   constructor(private Http: HttpClient) {}
@@ -135,15 +134,21 @@ export class ServicesService {
   // }
 
   createPurchase(data: Purchase) {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
     return this.Http.post(this.urlEcommerce + '/v1/Purchase/createPurchase', data, { headers });
   }
-  
-  getAllProduct(): Observable<producto[]> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.Http.get<producto[]>(this.urlEcommerce + '/v1/Product/getProducts', { headers });
+
+  getAllProduct(): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token,
+    });
+
+    return this.Http.get(this.urlEcommerce + 'v1/Product/getProducts', { headers });
   }
-  
+
   
   getPurchase(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
