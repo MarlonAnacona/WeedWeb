@@ -138,13 +138,10 @@ export class ServicesService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.Http.post(this.urlEcommerce + '/v1/Purchase/createPurchase', data, { headers });
   }
-  
   getAllProduct(): Observable<producto[]> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.Http.get<producto[]>(this.urlEcommerce + '/v1/Product/getProducts', { headers });
   }
-  
-  
   getPurchase(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.Http.get(this.urlEcommerce + '/v1/Purchase/getPurchases', { headers });
