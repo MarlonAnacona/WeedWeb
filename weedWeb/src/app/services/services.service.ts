@@ -19,7 +19,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class ServicesService {
   urlEcommerce: string = 'http://localhost:8080/';
   urlCRUD: string = 'https://weedweb-crud.onrender.com/';
-  url: string = 'http://localhost:4000/';
+  url: string = 'https://farm-api-2.onrender.com/';
   constructor(private Http: HttpClient) {}
 
   login(data: userLogin): Observable<any> {
@@ -39,12 +39,17 @@ export class ServicesService {
     return this.Http.get(this.urlCRUD + 'users/api/'+ id,{headers});
   }
 
+  //API FARMS
+
   createFarm(data: farmCreate) {
-    return this.Http.post(this.url + 'farms/create-farm/', data);
+    // const token={
+    //   token: localStorage.getItem('token')
+    // }
+    return this.Http.post(this.url + 'farms/create-farm', data);
   }
 
   createParcela(data: parcelaCreate) {
-    return this.Http.post(this.url + 'farms/create-parcel/', data);
+    return this.Http.post(this.url + 'farms/create-parcel', data);
   }
 
   obtenerToken() {
@@ -58,7 +63,6 @@ export class ServicesService {
     return objetoToken;
   }
 
-
   obtenerTokenDecodificado() {
     const token = this.obtenerToken();
     if (token != null) {
@@ -69,13 +73,12 @@ export class ServicesService {
 
   getFarm(token:any) :Observable<any>{
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'farms/get-farm/',{headers});
+      return this.Http.get(this.url+'farms/get-farm?user_id='+this.obtenerTokenDecodificado().userId,{headers});
   }
 
   getParcel(id:number) :Observable<any>{
-
       const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-      return this.Http.get(this.url+'farms/get-parcel/?farm_id='+id,{headers});
+      return this.Http.get(this.url+'farms/get-parcel?farm_id='+id,{headers});
   }
 
   tokenRefresh(): Observable<any> {
@@ -102,12 +105,11 @@ export class ServicesService {
   }
 
   createParcel(body:parcelaCreate){
-    return this.Http.post(this.url+'farms/create-parcel/',body)
+    return this.Http.post(this.url+'farms/create-parcel',body)
   }
 
   findAllSeeds(): Observable<any>{
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-
     return this.Http.get(this.url+'seeds/get-seed/',{headers})
   }
 
@@ -117,7 +119,7 @@ export class ServicesService {
 
   editParcel(body:parcelaEdit,id:number){
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.put(this.url+'farms/update-parcel/'+id+'/',body,{headers})
+    return this.Http.put(this.url+'farms/update-parcel/'+id,body,{headers})
   }
 
   getWheaterApiOneDay(latitude:number, longitude:number,day:number): Observable<any>{

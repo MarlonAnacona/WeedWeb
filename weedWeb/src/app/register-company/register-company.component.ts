@@ -126,9 +126,6 @@ export class RegisterCompanyComponent implements OnInit {
     });
   }
 
-
-
-
   Home(){
     this.route.navigate(['../Home']);
   }

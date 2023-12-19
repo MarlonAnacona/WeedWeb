@@ -8,10 +8,14 @@ export interface userRegister {
 }
 
 export interface farmCreate {
-  user_id: string;
   farm_name: string;
   latitude?: number;
   longitude?: number;
+  token: string | null;
+}
+
+export interface farmGet{
+  token: string | null;
 }
 
 export interface parcelaCreate {
@@ -19,7 +23,8 @@ export interface parcelaCreate {
   seed_id: number,
   width: number,
   length: number,
-  crop_modality: string
+  crop_modality: string;
+  token: string | null;
 
 }
 
@@ -27,7 +32,8 @@ export interface parcelaEdit {
   seed_id: number,
   width: number,
   length: number,
-  crop_modality: string
+  crop_modality: string;
+  token: string | null;
 }
 
 export interface farm {
@@ -36,6 +42,7 @@ export interface farm {
   latitude?: number;
   longitude?: number;
   create_date?: string;
+  token: string | null;
 }
 
 
@@ -46,6 +53,7 @@ export interface parcela {
   length?: number;
   crop_modality?: string;
   create_date?: string;
+  token: string | null;
 }
 
 
@@ -78,6 +86,7 @@ export interface seed{
   cbd:number;
   thc:number;
   species_name:string;
+  token: string | null;
 }
 
 export interface producto {
