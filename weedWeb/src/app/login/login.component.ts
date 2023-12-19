@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
         const email = response.emailUser
         const userName = email.split('@')[0]
         localStorage.setItem('userName', userName);
+        localStorage.setItem('email', email);
          this.tokenObject = jwt_decode(response.tokenSessionAccess);
         this.route.navigate(['../CreateFarm']);
           this.serivce.getUser(this.tokenObject.userId).subscribe({

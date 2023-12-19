@@ -90,6 +90,7 @@ export interface seed{
 }
 
 export interface producto {
+  id: number;
   code: string;
   name: string;
   description: string;

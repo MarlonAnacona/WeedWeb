@@ -136,9 +136,27 @@ export class ServicesService {
   // }
 
   createPurchase(data: Purchase) {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+localStorage.getItem('token'));
-    return this.Http.post(this.urlEcommerce + 'v1/Purchase/createPurchase', data, { headers });
+    // Obtén el token y el email del localStorage
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
+  
+    // Verifica si ambos valores están presentes antes de hacer la solicitud
+    if (token && email) {
+      // Configura los encabezados con el token y el email
+      const headers = new HttpHeaders()
+        .set('Authorization', 'Bearer ' + token)
+        .set('Email', email);
+  
+      // Realiza la solicitud con los encabezados configurados
+      return this.Http.post(this.urlEcommerce + 'v1/Purchase/createPurchase', data, { headers });
+    } else {
+      // Si falta el token o el email, maneja la situación según tus necesidades
+      console.error('No se puede realizar la compra. Falta el token o el email.');
+      // Puedes lanzar un error, mostrar un mensaje, etc.
+      return throwError('No se puede realizar la compra. Falta el token o el email.');
+    }
   }
+  
   getAllProduct(): Observable<producto[]> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.Http.get<producto[]>(this.urlEcommerce + 'v1/Product/getProducts', { headers });

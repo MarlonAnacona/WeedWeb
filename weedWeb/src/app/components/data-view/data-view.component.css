@@ -1,3 +1,35 @@
+/* Estilo para la información del producto y botón de eliminar */
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Estilo para el botón de eliminar */
+  .p-button-sm {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    margin-left: 5px; /* Ajusta el margen según tus necesidades */
+  }
+  
+/* Estilo para el contenedor de cada artículo del carrito con espacio inferior */
+.cart-item {
+    margin-bottom: 20px; /* Ajusta el espacio inferior según tus necesidades */
+  }
+  
+  /* Espaciador entre los artículos y el botón de comprar */
+  .spacer {
+    height: 16px; /* Ajusta la altura según tus necesidades */
+  }
+  
+  
+  /* Estilo para centrar el botón de comprar */
+  .center-button {
+    text-align: center;
+  }
+  
+
 :host ::ng-deep {
     
     .p-dropdown {
