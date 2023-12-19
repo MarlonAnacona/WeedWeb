@@ -89,12 +89,12 @@ const routes: Routes = [
   {
     path: 'Time',
     component: TimeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Freemium',
     component: FreemiumComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Register',
@@ -112,12 +112,12 @@ const routes: Routes = [
   {
     path: 'Freemium-premium',
     component: PremiumComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Freemium-premiumpro',
     component: PremiumproComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   }
 ];
 

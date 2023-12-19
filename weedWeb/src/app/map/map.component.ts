@@ -1,4 +1,4 @@
-import { farmCreate } from './../model/interfaces';
+import { farmCreate, farmGet } from './../model/interfaces';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MapGeocoder } from '@angular/google-maps';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
+
+
   product_farm: any;
   selected_farm: any;
   produt_parcel: any=[];
@@ -21,6 +23,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   public visibleA: Boolean = false;
   public visibleParcel: Boolean = false;
   public visibleCreateFarm: Boolean = false;
+
   apiLoaded!: Observable<boolean>;
   nombreGranja: string = '';
   autocomplete!: google.maps.places.Autocomplete;
@@ -154,6 +157,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.nombreGranja = nombre
     this.visibleParcel = true;
   }
+
   parcel(id: number) {
     this.services.getParcel(id).subscribe({
       next: (data) => {
@@ -236,7 +240,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 
   createParcela(data: any) {
-
     this.services.createParcela(data).subscribe({
       next: (response) => {
         this.messagerService.add({
@@ -263,7 +266,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       seed_id: this.idSeedSet,
       width: this.width,
       length: this.length,
-      crop_modality: this.cropModality
+      crop_modality: this.cropModality,
+      token: localStorage.getItem("token")
     };
 
     this.createParcela(data)
@@ -276,7 +280,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       seed_id: this.idSeedSet,
       width: this.widthInput,
       length: this.lengthInput,
-      crop_modality: this.cropModality
+      crop_modality: this.cropModality,
+      token: localStorage.getItem("token")
     };
 
     this.editParcel(data)
