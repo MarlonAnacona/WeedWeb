@@ -1,0 +1,86 @@
+<div class="card">
+  <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+      [sortOrder]="sortOrder" [layout]="currentLayout">
+      <ng-template pTemplate="header">
+        <div class="flex md:flex-row md:justify-content-between">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Filtrar por precio"
+            (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+          <span class="p-input-icon-left mb-2 md:mb-0 search-input-container" *ngIf="dv">
+            <i class="pi pi-search"></i>
+            <input class="search-input" type="search" pInputText placeholder="Buscar por nombre"
+              (input)="dv.filter($any($event.target).value)" />
+          </span>
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+        <button pButton type="button" (click)="openCartModal()" icon="pi pi-shopping-cart" class="p-button-secondary">
+            Ver Carrito
+        </button>
+      </ng-template>
+  
+      <ng-template let-product pTemplate="listItem">
+        <div class="p-col-12">
+          <div class="product-list-item card">
+            <div class="product-list-detail">
+              <div class="product-name">{{ product.name }}</div>
+              <div class="product-description">{{ product.description }}</div>
+              <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+              <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{ product.category }}</span>
+            </div>
+            <div class="product-list-action">
+              <span class="product-price">${{ product.price }}</span>
+              <p-button icon="pi pi-shopping-cart" label="Agregar al carrito" (onClick)="addToCart(product)"
+                class="p-button-secondary p-ml-2"></p-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+  
+      <ng-template let-product pTemplate="gridItem">
+        <div class="col-12 md:col-4">
+          <div class="product-grid-item card">
+            <div class="product-grid-item-top">
+              <div>
+                <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{ product.category }}</span>
+              </div>
+            </div>
+            <div class="product-grid-item-content">
+              <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image" />
+              <div class="product-name">{{ product.name }}</div>
+              <div class="product-description">{{ product.description }}</div>
+              <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <div class="product-grid-item-bottom">
+              <span class="product-price">${{ product.price }}</span>
+              <p-button icon="pi pi-shopping-cart" label="Agregar al carrito" (onClick)="addToCart(product)"
+                class="p-button-secondary p-ml-2"></p-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+  </p-dataView>
+
+<!-- Modal del carrito con altura y ancho personalizados -->
+<p-dialog header="Carrito de compras" [(visible)]="displayCart" [modal]="true" [responsive]="true" [style]="{'width': '70%', 'max-width': '500px', 'height': '50%', 'max-height': '600px'}">
+  <ng-template let-producto pTemplate="content">
+    <!-- Aquí puedes mostrar los elementos del carrito con espacio entre ellos -->
+    <div *ngFor="let item of carrito" class="cart-item">
+      <div class="product-info">
+        {{ item.name }} - {{ item.price | currency: 'USD':'symbol':'1.2-2' }}
+        <!-- Agrega un botón más pequeño para eliminar -->
+        <p-button label="Eliminar" icon="pi pi-trash" (onClick)="eliminarDelCarrito(item)" class="p-button-danger p-button-sm"></p-button>
+      </div>
+    </div>
+    <!-- Agrega un espacio entre los artículos y el botón de comprar -->
+    <div class="spacer"></div>
+    <!-- Agrega un div para centrar el botón de comprar -->
+    <div class="center-button">
+      <!-- Agrega un botón para comprar con una clase específica para el estilo -->
+      <p-button label="Comprar" icon="pi pi-check" (onClick)="comprar()" class="p-button-success center-button"></p-button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+
+
+  
+</div>

@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { componentModule } from './components/componente.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { DataViewModule } from 'primeng/dataview';
 import { AppComponent } from './app.component';
 import {
   NgbAlertModule,
@@ -13,6 +13,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { RatingModule } from 'primeng/rating';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -47,6 +48,13 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FreemiumComponent } from './freemium/freemium.component';
 import { AnimateModule } from 'primeng/animate';
+import { PasswordModule } from "primeng/password";
+import { TagModule } from 'primeng/tag';
+import { DragDropModule } from 'primeng/dragdrop';
+import { DropdownModule } from 'primeng/dropdown';
+import { PremiumComponent } from './premium/premium.component';
+import { PremiumproComponent } from './premiumpro/premiumpro.component';
+
 
 
 const routes: Routes = [
@@ -71,7 +79,7 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Map',
@@ -81,12 +89,12 @@ const routes: Routes = [
   {
     path: 'Time',
     component: TimeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Freemium',
     component: FreemiumComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Register',
@@ -101,6 +109,16 @@ const routes: Routes = [
     component: CreateFarmComponent,
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'Freemium-premium',
+    component: PremiumComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'Freemium-premiumpro',
+    component: PremiumproComponent,
+    canActivate: [AuthGuardService],
+  }
 ];
 
 @NgModule({
@@ -120,8 +138,11 @@ const routes: Routes = [
     RegisterCompanyComponent,
     CreateFarmComponent,
     FreemiumComponent,
+    PremiumComponent,
+    PremiumproComponent,
   ],
   imports: [
+    PasswordModule,
     GoogleMapsModule,
     ButtonModule,
     ToastModule,
@@ -145,7 +166,10 @@ const routes: Routes = [
     TableModule,
     DialogModule,
     AnimateModule,
-
+    DataViewModule,
+    RatingModule,
+    TagModule,
+    DropdownModule,DragDropModule,ButtonModule
   ],
   providers: [
     MessageService,

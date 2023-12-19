@@ -1,0 +1,16 @@
+.navCannabit {
+    padding: 10px;
+    height: 100%;
+}
+
+.navbar-brandCannabit {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    place-items: center;
+    justify-content: space-around;
+}

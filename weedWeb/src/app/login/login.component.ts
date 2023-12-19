@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  value3?: string;
   public userlogin: userLogin = {
     password: '',
     email: '',
@@ -46,27 +47,20 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['../Register']);
   }
 
-  /**
-   * Login for the user
-   * if login is success-> go to the Dashboard
-   * else -> error
-   */
   login() {
-    //
-
-    //Servicio que llama y trae los tokens
 
     this.serivce.login(this.userlogin).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.access);
-        localStorage.setItem('tokenRefresh', response.refresh);
-        this.tokenObject = jwt_decode(response.access)
-
-          this.serivce.getUser(this.tokenObject.user_id).subscribe({
+        localStorage.setItem('token', response.tokenSessionAccess);
+        localStorage.setItem('tokenRefresh', response.tokenSessionRefresh);
+        const email = response.emailUser
+        const userName = email.split('@')[0]
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('email', email);
+         this.tokenObject = jwt_decode(response.tokenSessionAccess);
+        this.route.navigate(['../CreateFarm']);
+          this.serivce.getUser(this.tokenObject.userId).subscribe({
             next: (data) => {
-
-
-              localStorage.setItem('userName',data.first_name+' '+ data.last_name)
                   this.message.add({
                     severity: 'success',
                     summary: 'Bienvenido ',
@@ -78,10 +72,7 @@ export class LoginComponent implements OnInit {
                   error : (err)=>{
               console.log(err)
             }
-
           })
-
-
       },
       error: (err) => {
         this.message.add({

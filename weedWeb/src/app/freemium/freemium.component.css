@@ -1,7 +1,6 @@
 .center {
     margin-left: auto;
     margin-right: auto;
-    /* display: grid; */
     place-items: center;
     justify-content: space-around;
 }
@@ -10,4 +9,10 @@
     font-size: 30;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
+}
+
+.contenido {
+    padding: 50px; /* Añade espacio alrededor del contenido */
+    background-color: #C3D9C9;
+    height: 100%;
 }

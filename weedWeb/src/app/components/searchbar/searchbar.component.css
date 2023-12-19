@@ -1,0 +1,152 @@
+nav {
+  padding: 10px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+.bg-custom {
+  background-color: rgb(217, 217, 217);
+}
+
+.custom-color {
+  color: black;
+  margin-right: 200px;
+  font-weight: normal;
+}
+
+.icon-heart {
+  margin-right: 20px;
+  color: rgb(119, 150, 36);
+  font-size: 1.55rem;
+}
+
+.icon-cart {
+  color: rgb(119, 150, 36);
+  font-size: 1.55rem;
+  margin-right: 10px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  font-size: 1.25rem;
+  color: rgb(119, 150, 36);
+}
+.my-custom-color {
+  background-color: rgb(
+    119,
+    150,
+    36
+  ); /* Cambia este valor al color que desees */
+  color: #fff; /* Cambia este valor al color del texto que desees */
+}
+.favorite-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorite-modal > button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.favorite-modal {
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde ligero */
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  border-radius: 10px; /* Bordes redondeados */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  text-align: center;
+  width: 1200px; 
+  height: 500px;
+}
+
+.favorite-modal button {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #fff; /* Color del texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.favorite-modal button:hover {
+  background-color: #0056b3; /* Color de fondo azul oscuro en el hover */
+}
+
+.favorite-modal h2 {
+  font-size: 20px;
+  margin-top: 10px;
+  position: absolute; /* Habilita la posición absoluta para el título */
+  top: 0; /* Posición en la parte superior */
+  left: 0; /* Posición en la parte izquierda */
+  margin: 0; /* Elimina los márgenes */
+  padding: 10px;
+}
+
+.favorite-modal ul {
+  list-style: none;
+  padding: 0;
+}
+
+.favorite-modal li {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.favorite-modal input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.favorite-modal input[type="text"]:focus {
+  border-color: #007bff; /* Color de borde azul en el foco */
+}
+
+.favorite-modal .add-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.favorite-modal .add-button button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.favorite-modal .add-button button:hover {
+  background-color: #0056b3;
+}

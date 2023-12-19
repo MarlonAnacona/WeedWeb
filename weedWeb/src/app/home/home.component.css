@@ -268,6 +268,14 @@ section .card .image img{
   background: linear-gradient(106.32deg, #006602 14.23%, rgba(255,25,25,0) 139.97%);
 }
 
+.box3 {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(106.32deg, #7c857c 14.23%, rgba(255,25,25,0) 139.97%);
+}
+
 .abs-center {
   display:grid;
   min-height: 20vh;

@@ -1,7 +1,9 @@
 {
     "dependencies": {
-      "ngx-bootstrap": "^10.2.0",
-      "primeng": "^15.3.0",
-      "swiper": "^9.3.2"
+        "ngx-bootstrap": "^10.2.0",
+        "primeflex": "^3.3.1",
+        "primeicons": "^6.0.1",
+        "primeng": "^15.3.0",
+        "swiper": "^9.3.2"
     }
-  }
+}

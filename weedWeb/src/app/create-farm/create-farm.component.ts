@@ -17,10 +17,10 @@ export class CreateFarmComponent implements OnInit {
   zoom = 4;
 
   public farmCreate: farmCreate = {
-    user_id: this.servicesService.obtenerTokenDecodificado().user_id,
     farm_name: '',
     latitude: undefined,
     longitude: undefined,
+    token: this.servicesService.obtenerToken()
   };
 
   public farm_name: any;
@@ -59,8 +59,6 @@ autocompletado(){
     });
   }
 }
-
-
 
    geocodeAddres() {
     this.geocoder
